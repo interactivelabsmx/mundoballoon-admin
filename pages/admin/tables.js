@@ -1,11 +1,7 @@
 import React from "react";
-
-// components
-
+import withAuthServerSideProps from "lib/withAuthServerSideProps";
+import { withAuthUserTokenSSR } from 'next-firebase-auth';
 import CardTable from "components/Cards/CardTable.js";
-
-// layout for page
-
 import Admin from "layouts/Admin.js";
 
 export default function Tables() {
@@ -22,5 +18,7 @@ export default function Tables() {
     </>
   );
 }
+
+export const getServerSideProps = withAuthUserTokenSSR()(withAuthServerSideProps()());
 
 Tables.layout = Admin;
