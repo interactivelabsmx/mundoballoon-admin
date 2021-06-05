@@ -1,7 +1,7 @@
-import React from "react";
-import Auth from "layouts/Auth.js";
-import FirebaseAuth from "../../components/Auth/FirebaseAuth";
-import { withAuthUserTokenSSR } from "next-firebase-auth";
+import React from 'react';
+import Auth from 'layouts/Auth.js';
+import FirebaseAuth from '../../components/Auth/FirebaseAuth';
+import { withAuthUserTokenSSR } from 'next-firebase-auth';
 
 export default function Login() {
   return (
@@ -34,8 +34,8 @@ export const getServerSideProps = withAuthUserTokenSSR()(async (context) => {
       redirect: {
         permanent: false,
         destination: '/admin/dashboard',
-      }
-    }
+      },
+    };
   }
   return {};
 });

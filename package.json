@@ -1,9 +1,9 @@
 {
-  "name": "notus-nextjs",
-  "homepage": "https://demos.creative-tim.com/notus-nextjs",
-  "version": "1.1.0",
-  "description": "Notus NextJS - A free Tailwind CSS, NextJS and React Ui Kit and Admin by Creative Tim.",
-  "repository": "https://github.com/creativetimofficial/notus-nextjs",
+  "name": "mundoballoon-admin",
+  "homepage": "https://mundoballoon.com/admin",
+  "version": "1.0.0",
+  "description": "Mundo ballon admin based on Notus NextJS by Creative Tim.",
+  "repository": "https://github.com/interactivelabsmx/mundoballoon-admin",
   "license": "MIT",
   "dependencies": {
     "@apollo/client": "^3.3.19",
@@ -14,8 +14,6 @@
     "firebase": "^8.6.3",
     "firebase-admin": "^9.9.0",
     "graphql": "^15.5.0",
-    "gulp": "4.0.2",
-    "gulp-append-prepend": "1.0.8",
     "lodash.isequal": "^4.5.0",
     "next": "10.0.9",
     "next-firebase-auth": "^0.13.1",
@@ -24,14 +22,17 @@
     "react-firebaseui": "^5.0.2",
     "react-scripts": "4.0.3",
     "react-table": "^7.7.0",
-    "tailwindcss": "2.0.4"
+    "tailwindcss": "2.0.4",
+    "ts-migrate": "^0.1.19"
   },
   "scripts": {
     "start": "next start",
     "build": "next build",
     "dev": "next dev",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run dev",
-    "build:tailwind": "tailwind build styles/index.css -o styles/tailwind.css"
+    "build:tailwind": "tailwind build styles/index.css -o styles/tailwind.css",
+    "format": "prettier --write .",
+    "lint": "eslint . --ext ts --ext tsx --ext js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,11 +49,19 @@
       "last 1 safari version"
     ]
   },
-  "optionalDependencies": {
-    "typescript": "4.2.3"
-  },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "@types/node": "^15.12.0",
+    "@types/react": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
     "autoprefixer": "10.2.5",
-    "postcss": "8.2.8"
+    "eslint": "^7.27.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.24.0",
+    "lint-staged": "^11.0.0",
+    "postcss": "8.2.8",
+    "prettier": "^2.0.2",
+    "typescript": "^4.3.2"
   }
 }
