@@ -1,8 +1,8 @@
 import React from 'react';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import CardTable from '../../components/Cards/CardTable.js';
-import Admin from '../../layouts/Admin.js';
+import CardTable from '../../components/Cards/CardTable';
+import Admin from '../../layouts/Admin';
 import { gql, useQuery } from '@apollo/client';
 
 export const GET_PRODUCTS = gql`

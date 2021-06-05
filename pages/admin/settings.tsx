@@ -1,9 +1,9 @@
 import React from 'react';
-import withAuthServerSideProps from 'lib/withAuthServerSideProps';
+import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import CardSettings from '../../components/Cards/CardSettings.js';
-import CardProfile from '../../components/Cards/CardProfile.js';
-import Admin from 'layouts/Admin.js';
+import CardSettings from '../../components/Cards/CardSettings';
+import CardProfile from '../../components/Cards/CardProfile';
+import Admin from '../../layouts/Admin';
 
 export default function Settings() {
   return (

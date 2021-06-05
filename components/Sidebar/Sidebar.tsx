@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import NotificationDropdown from '../../components/Dropdowns/NotificationDropdown.js';
-import UserDropdown from '../../components/Dropdowns/UserDropdown.js';
-import menuOptions from 'lib/menuOptions';
+import NotificationDropdown from '../../components/Dropdowns/NotificationDropdown';
+import UserDropdown from '../../components/Dropdowns/UserDropdown';
+import menuOptions from '../../lib/menuOptions';
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState('hidden');
