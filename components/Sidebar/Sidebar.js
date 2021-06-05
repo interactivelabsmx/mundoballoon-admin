@@ -1,57 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
-
-const menuOptions = [
-  {
-    sectionName: "My Stuff",
-    sectionOptions: [
-      {
-        icon: 'fas fa-tv',
-        path: '/admin/dashboard',
-        label:  'Dashboard'
-      },
-      {
-        icon: 'fas fa-tools',
-        path: '/admin/settings',
-        label:  'Settings'
-      }
-    ]
-  },
-  {
-    sectionName: "Products",
-    sectionOptions: [
-      {
-        icon: 'fas fa-tv',
-        path: '/admin/tables',
-        label:  'Products List'
-      },
-      {
-        icon: 'fas fa-tools',
-        path: '/admin/tables',
-        label:  'Add Product'
-      }
-    ]
-  },
-  {
-    sectionName: "Users",
-    sectionOptions: [
-      {
-        icon: 'fas fa-tv',
-        path: '/admin/tables',
-        label:  'Users'
-      },
-      {
-        icon: 'fas fa-tools',
-        path: '/admin/tables',
-        label:  'Orders'
-      }
-    ]
-  }
-]
+import menuOptions from "lib/menuOptions";
 
 export default function Sidebar() {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
@@ -118,7 +70,7 @@ export default function Sidebar() {
               </div>
             </div>
             {menuOptions.map(section => (
-              <>
+              <div key={section.sectionName}>
                 <hr className="my-4 md:min-w-full" />
                 {/* Heading */}
                 <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
@@ -126,7 +78,7 @@ export default function Sidebar() {
                 </h6>
                 <ul className="md:flex-col md:min-w-full flex flex-col list-none">
                   {section.sectionOptions.map(option => (
-                    <li className="items-center">
+                    <li className="items-center" key={option.path}>
                       <Link href={option.path}>
                       <a
                           href={option.path}
@@ -151,7 +103,7 @@ export default function Sidebar() {
                     </li>
                   ))}
                 </ul>
-              </>
+              </div>
             ))}
           </div>
         </div>

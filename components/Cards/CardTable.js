@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
-export default function CardTable({ color }) {
+export default function CardTable({ color, title }) {
   return (
     <>
       <div
@@ -17,14 +17,16 @@ export default function CardTable({ color }) {
         <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-              <h3
-                className={
-                  "font-semibold text-lg " +
-                  (color === "light" ? "text-blueGray-700" : "text-white")
-                }
-              >
-                Card Tables
-              </h3>
+              {title && (
+                <h3
+                  className={
+                    "font-semibold text-lg " +
+                    (color === "light" ? "text-blueGray-700" : "text-white")
+                  }
+                >
+                  {title}
+                </h3>
+              )}
             </div>
           </div>
         </div>
