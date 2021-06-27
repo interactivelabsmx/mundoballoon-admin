@@ -1,9 +1,9 @@
 import React from 'react';
+import { gql, useQuery } from '@apollo/client';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import CardTable from '../../components/Cards/CardTable';
+import CardTable, { TableColor } from '../../components/Cards/CardTable';
 import Admin from '../../layouts/Admin';
-import { gql, useQuery } from '@apollo/client';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -70,7 +70,26 @@ export const productsQueryVars = {
   first: 5,
 };
 
-export default function Tables() {
+const columns = [
+  {
+    Header: 'Name',
+    accessor: 'name',
+  },
+  {
+    Header: 'Description',
+    accessor: 'description',
+  },
+  {
+    Header: 'Category',
+    accessor: 'category.name',
+  },
+  {
+    Header: 'Id',
+    accessor: 'productId',
+  },
+];
+
+const Products = (): JSX.Element => {
   const { loading, error, data } = useQuery(GET_PRODUCTS, {
     variables: productsQueryVars,
   });
@@ -80,23 +99,26 @@ export default function Tables() {
 
   const { allProducts } = data;
   const { nodes } = allProducts;
-  console.log(nodes);
   return (
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <CardTable />
-        </div>
-        <div className="w-full mb-12 px-4">
-          <CardTable color="dark" />
+          <CardTable
+            color={TableColor.DARK}
+            title="Products"
+            columns={columns}
+            data={nodes}
+          />
         </div>
       </div>
     </>
   );
-}
+};
 
 export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Tables.layout = Admin;
+Products.layout = Admin;
+
+export default Products;

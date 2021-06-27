@@ -1,15 +1,16 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState, useRef } from 'react';
 import { createPopper } from '@popperjs/core';
 import { useAuthUser } from 'next-firebase-auth';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
-const UserDropdown = () => {
+const UserDropdown = (): JSX.Element => {
   const router = useRouter();
   const AuthUser = useAuthUser();
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = useRef();
+  const popoverDropdownRef = useRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: 'bottom-start',
@@ -29,9 +30,8 @@ const UserDropdown = () => {
   );
   return (
     <>
-      <a
+      <button
         className="text-blueGray-500 block"
-        href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
           e.preventDefault();
@@ -47,7 +47,7 @@ const UserDropdown = () => {
             />
           </span>
         </div>
-      </a>
+      </button>
       <div
         ref={popoverDropdownRef}
         className={
@@ -55,25 +55,25 @@ const UserDropdown = () => {
           'bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48'
         }
       >
-        <a
-          href="#pablo"
-          className={
-            'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
-          }
-          onClick={(e) => e.preventDefault()}
-        >
-          Action
-        </a>
+        <Link href="/profile">
+          <a
+            className={
+              'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
+            }
+            onClick={(e) => e.preventDefault()}
+          >
+            Profile
+          </a>
+        </Link>
         <div className="h-0 my-2 border border-solid border-blueGray-100" />
-        <a
-          href="#pablo"
+        <button
           className={
             'text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700'
           }
           onClick={handleSignOut}
         >
           Sign Out
-        </a>
+        </button>
       </div>
     </>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from 'layouts/Auth.js';
+import Auth from '../../layouts/Auth';
 import FirebaseAuth from '../../components/Auth/FirebaseAuth';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 
@@ -29,7 +29,7 @@ export default function Login() {
 export const getServerSideProps = withAuthUserTokenSSR()(async (context) => {
   const { AuthUser } = context;
   const token = await AuthUser?.getIdToken();
-  if (!token) {
+  if (token) {
     return {
       redirect: {
         permanent: false,
