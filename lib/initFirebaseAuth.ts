@@ -25,7 +25,7 @@ export const baseFirebaseUIAuthConfig = {
   credentialHelper: 'none',
 };
 
-const initFirebaseAuth = () => {
+const initFirebaseAuth = (): void => {
   init({
     authPageURL: '/login',
     appPageURL: '/admin/dashboard',

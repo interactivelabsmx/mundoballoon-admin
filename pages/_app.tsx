@@ -18,14 +18,14 @@
 import React from 'react';
 import Head from 'next/head';
 import initFirebaseAuth from '../lib/initFirebaseAuth';
+import AppContexts from '../containers/AppContexts';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../styles/tailwind.css';
-import AppContexts from '../containers/AppContexts';
 
 initFirebaseAuth();
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
   const Layout = Component.layout || (({ children }) => <>{children}</>);
   return (
     <AppContexts pageProps={pageProps}>
@@ -41,4 +41,6 @@ export default function App({ Component, pageProps }) {
       </Layout>
     </AppContexts>
   );
-}
+};
+
+export default App;

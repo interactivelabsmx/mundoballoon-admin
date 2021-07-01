@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { createPopper } from '@popperjs/core';
 
-const NotificationDropdown = () => {
+const NotificationDropdown = (): JSX.Element => {
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = useState(false);
+  const btnDropdownRef = useRef();
+  const popoverDropdownRef = useRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
       placement: 'left-start',

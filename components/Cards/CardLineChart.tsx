@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Chart from 'chart.js';
 
-export default function CardLineChart() {
-  React.useEffect(() => {
+const CardLineChart = (): JSX.Element => {
+  useEffect(() => {
     const config = {
       type: 'line',
       data: {
@@ -103,7 +103,9 @@ export default function CardLineChart() {
         },
       },
     };
+    //@ts-expect-error html element
     const ctx = document.getElementById('line-chart').getContext('2d');
+    //@ts-expect-error constructor and widnow
     window.myLine = new Chart(ctx, config);
   }, []);
   return (
@@ -120,7 +122,6 @@ export default function CardLineChart() {
           </div>
         </div>
         <div className="p-4 flex-auto">
-          {/* Chart */}
           <div className="relative h-350-px">
             <canvas id="line-chart"></canvas>
           </div>
@@ -128,4 +129,6 @@ export default function CardLineChart() {
       </div>
     </>
   );
-}
+};
+
+export default CardLineChart;

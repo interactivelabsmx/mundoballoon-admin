@@ -1,27 +1,20 @@
 import React from 'react';
-import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import CardSettings from '../../components/Cards/CardSettings';
-import CardProfile from '../../components/Cards/CardProfile';
+import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import Admin from '../../layouts/Admin';
 
-export default function Settings() {
-  return (
-    <>
-      <div className="flex flex-wrap">
-        <div className="w-full lg:w-8/12 px-4">
-          <CardSettings />
-        </div>
-        <div className="w-full lg:w-4/12 px-4">
-          <CardProfile />
-        </div>
-      </div>
-    </>
-  );
-}
+const Settings = (): JSX.Element => (
+  <div className="flex flex-wrap">
+    <div className="w-full lg:w-8/12 px-4"></div>
+    <div className="w-full lg:w-4/12 px-4"></div>
+  </div>
+);
 
 export const getServerSideProps = withAuthUserTokenSSR()(
+  //@ts-expect-error argument not provided
   withAuthServerSideProps()()
 );
 
 Settings.layout = Admin;
+
+export default Settings;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
+import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import CardTable, { TableColor } from '../../components/Cards/CardTable';
 import Admin from '../../layouts/Admin';
 
@@ -116,6 +116,7 @@ const Products = (): JSX.Element => {
 };
 
 export const getServerSideProps = withAuthUserTokenSSR()(
+  //@ts-expect-error argument not provided
   withAuthServerSideProps()()
 );
 

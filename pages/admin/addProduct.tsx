@@ -1,26 +1,20 @@
 import React from 'react';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
-import CardTable from '../../components/Cards/CardTable';
 import Admin from '../../layouts/Admin';
 
-export default function Tables() {
-  return (
-    <>
-      <div className="flex flex-wrap mt-4">
-        <div className="w-full mb-12 px-4">
-          <CardTable />
-        </div>
-        <div className="w-full mb-12 px-4">
-          <CardTable color="dark" />
-        </div>
-      </div>
-    </>
-  );
-}
+const AddProduct = (): JSX.Element => (
+  <div className="flex flex-wrap mt-4">
+    <div className="w-full mb-12 px-4"></div>
+    <div className="w-full mb-12 px-4"></div>
+  </div>
+);
 
 export const getServerSideProps = withAuthUserTokenSSR()(
+  //@ts-expect-error argument not provided
   withAuthServerSideProps()()
 );
 
-Tables.layout = Admin;
+AddProduct.layout = Admin;
+
+export default AddProduct;
