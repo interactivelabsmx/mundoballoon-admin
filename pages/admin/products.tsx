@@ -53,8 +53,8 @@ export const GET_PRODUCTS = gql`
     }
   }
 
-  query allProducts($first: Int = 5) {
-    allProducts(first: $first, order: [{ price: ASC }]) {
+  query allProducts($first: Int = 5, $after: String) {
+    allProducts(first: $first, after: $after, order: [{ price: ASC }]) {
       nodes {
         ...productInfo
       }
@@ -68,6 +68,7 @@ export const GET_PRODUCTS = gql`
 
 export const productsQueryVars = {
   first: 5,
+  after: null,
 };
 
 const columns = [
@@ -84,13 +85,13 @@ const columns = [
     accessor: 'category.name',
   },
   {
-    Header: 'Id',
-    accessor: 'productId',
+    Header: 'Price',
+    accessor: 'price',
   },
 ];
 
 const Products = (): JSX.Element => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS, {
+  const { loading, error, data, fetchMore } = useQuery(GET_PRODUCTS, {
     variables: productsQueryVars,
   });
 
@@ -98,7 +99,7 @@ const Products = (): JSX.Element => {
   if (loading) return <div>Loading</div>;
 
   const { allProducts } = data;
-  const { nodes } = allProducts;
+  const { nodes, pageInfo } = allProducts;
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -109,6 +110,13 @@ const Products = (): JSX.Element => {
             columns={columns}
             data={nodes}
           />
+          <button
+            onClick={() =>
+              fetchMore({ variables: { after: pageInfo.endCursor } })
+            }
+          >
+            Load More
+          </button>
         </div>
       </div>
     </>
