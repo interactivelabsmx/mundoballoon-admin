@@ -100,6 +100,7 @@ const Products = (): JSX.Element => {
 
   const { allProducts } = data;
   const { nodes, pageInfo } = allProducts;
+  const onClick = () => fetchMore({ variables: { after: pageInfo.endCursor } });
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -110,13 +111,7 @@ const Products = (): JSX.Element => {
             columns={columns}
             data={nodes}
           />
-          <button
-            onClick={() =>
-              fetchMore({ variables: { after: pageInfo.endCursor } })
-            }
-          >
-            Load More
-          </button>
+          {pageInfo.hasNextPage && <button onClick={onClick}>Load More</button>}
         </div>
       </div>
     </>

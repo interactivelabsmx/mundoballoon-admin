@@ -1,5 +1,6 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { relayStylePagination } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import isEqual from 'lodash.isequal';
 
@@ -18,10 +19,19 @@ function createApolloClient(getAccessToken) {
     uri: 'https://localhost:5001/graphql/', // Server URL (must be absolute)
     credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
   });
+  const cache = new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          allProducts: relayStylePagination(),
+        },
+      },
+    },
+  });
   return new ApolloClient({
+    cache,
     ssrMode: typeof window === 'undefined',
     link: setAuthorizationLink.concat(link),
-    cache: new InMemoryCache(),
   });
 }
 
