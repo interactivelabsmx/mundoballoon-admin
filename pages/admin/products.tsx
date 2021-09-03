@@ -150,6 +150,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Products.layout = Admin;
+Products.Layout = Admin;
 
 export default Products;

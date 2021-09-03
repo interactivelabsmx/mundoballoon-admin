@@ -21,6 +21,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Dashboard.layout = Admin;
+Dashboard.Layout = Admin;
 
 export default Dashboard;

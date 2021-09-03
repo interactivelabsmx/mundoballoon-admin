@@ -15,6 +15,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Orders.layout = Admin;
+Orders.Layout = Admin;
 
 export default Orders;

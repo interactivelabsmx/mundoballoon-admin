@@ -1,5 +1,22 @@
+import { GetStaticPropsResult } from 'next';
+import { SSRPropsContext } from 'next-firebase-auth';
+
+type GetServerSideProps = (context: SSRPropsContext) => Promise<
+  GetStaticPropsResult<{
+    [key: string]: any;
+  }>
+>;
+
 const withAuthServerSideProps =
-  () => (getServerSidePropsFunc) => async (context) => {
+  () =>
+  (getServerSideProps: GetServerSideProps) =>
+  async (
+    context: SSRPropsContext
+  ): Promise<
+    GetStaticPropsResult<{
+      [key: string]: any;
+    }>
+  > => {
     const { AuthUser } = context;
     const token = await AuthUser?.getIdToken();
     if (!token) {
@@ -10,14 +27,15 @@ const withAuthServerSideProps =
         },
       };
     }
-    if (getServerSidePropsFunc) {
+    if (getServerSideProps) {
       return {
         props: {
-          ...((await getServerSidePropsFunc(context)).props || {}),
+          // @ts-expect-error Property 'props' does not exist on type
+          ...((await getServerSideProps(context)).props || {}),
         },
       };
     }
-    return {};
+    return { props: {} };
   };
 
 export default withAuthServerSideProps;

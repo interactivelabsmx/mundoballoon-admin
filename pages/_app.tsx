@@ -17,6 +17,7 @@
 */
 import React from 'react';
 import Head from 'next/head';
+import { AppProps } from 'next/dist/shared/lib/router/router';
 import initFirebaseAuth from '../lib/initFirebaseAuth';
 import AppContexts from '../containers/AppContexts';
 
@@ -26,22 +27,21 @@ import '../styles/tailwind.css';
 
 initFirebaseAuth();
 
-const App = ({ Component, pageProps }) => {
-  const Layout = Component.layout || (({ children }) => <>{children}</>);
-  return (
-    <AppContexts pageProps={pageProps}>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <title>Mundo Balloon -- Admin Site</title>
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </AppContexts>
-  );
-};
+const App = ({ Component, pageProps }: AppProps): JSX.Element => (
+  <AppContexts pageProps={pageProps}>
+    <Head>
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <title>Mundo Balloon -- Admin Site</title>
+    </Head>
+    {/* @ts-expect-error Layout is not part of component */}
+    <Component.Layout>
+      <Component {...pageProps} />
+      {/* @ts-expect-error Layout is not part of component */}
+    </Component.Layout>
+  </AppContexts>
+);
 
 export default App;

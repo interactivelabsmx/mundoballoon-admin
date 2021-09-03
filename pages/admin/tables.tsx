@@ -15,6 +15,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Tables.layout = Admin;
+Tables.Layout = Admin;
 
 export default Tables;

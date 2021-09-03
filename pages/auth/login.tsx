@@ -36,6 +36,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(async (context) => {
   return { redirect: null };
 });
 
-Login.layout = Auth;
+Login.Layout = Auth;
 
 export default Login;
