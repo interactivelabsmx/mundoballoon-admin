@@ -1,6 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
+import Button from '@material-tailwind/react/Button';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import CardTable, { TableColor } from '../../components/Cards/CardTable';
 import Admin from '../../layouts/Admin';
@@ -117,15 +118,26 @@ const Products = (): JSX.Element => {
             data={nodes}
           />
           <div className="flex justify-between">
-            <button
-              onClick={onClickPrevPage}
+            <Button
+              buttonType="outline"
+              color="blue"
               disabled={!pageInfo.hasPreviousPage}
+              onClick={onClickPrevPage}
+              ripple="dark"
+              size="lg"
             >
               Prev Page
-            </button>
-            <button onClick={onClickNextPage} disabled={!pageInfo.hasNextPage}>
+            </Button>
+            <Button
+              buttonType="outline"
+              color="blue"
+              disabled={!pageInfo.hasNextPage}
+              onClick={onClickNextPage}
+              ripple="dark"
+              size="lg"
+            >
               Next Page
-            </button>
+            </Button>
           </div>
         </div>
       </div>

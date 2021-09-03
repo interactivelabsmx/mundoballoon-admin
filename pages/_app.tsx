@@ -21,6 +21,7 @@ import initFirebaseAuth from '../lib/initFirebaseAuth';
 import AppContexts from '../containers/AppContexts';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import '@material-tailwind/react/tailwind.css';
 import '../styles/tailwind.css';
 
 initFirebaseAuth();
