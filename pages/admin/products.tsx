@@ -61,6 +61,8 @@ export const GET_PRODUCTS = gql`
       pageInfo {
         hasNextPage
         endCursor
+        hasPreviousPage
+        startCursor
       }
     }
   }
@@ -100,7 +102,10 @@ const Products = (): JSX.Element => {
 
   const { allProducts } = data;
   const { nodes, pageInfo } = allProducts;
-  const onClick = () => fetchMore({ variables: { after: pageInfo.endCursor } });
+  const onClickNextPage = () =>
+    fetchMore({ variables: { after: pageInfo.endCursor } });
+  const onClickPrevPage = () =>
+    fetchMore({ variables: { before: pageInfo.startCursor } });
   return (
     <>
       <div className="flex flex-wrap mt-4">
@@ -111,7 +116,17 @@ const Products = (): JSX.Element => {
             columns={columns}
             data={nodes}
           />
-          {pageInfo.hasNextPage && <button onClick={onClick}>Load More</button>}
+          <div className="flex justify-between">
+            <button
+              onClick={onClickPrevPage}
+              disabled={!pageInfo.hasPreviousPage}
+            >
+              Prev Page
+            </button>
+            <button onClick={onClickNextPage} disabled={!pageInfo.hasNextPage}>
+              Next Page
+            </button>
+          </div>
         </div>
       </div>
     </>
