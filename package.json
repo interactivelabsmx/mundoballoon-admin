@@ -8,22 +8,25 @@
   "dependencies": {
     "@apollo/client": "3.4.16",
     "@fortawesome/fontawesome-free": "5.15.4",
+    "@hookform/resolvers": "^2.8.2",
     "@material-tailwind/react": "0.3.4",
     "@popperjs/core": "2.10.2",
     "@tailwindcss/forms": "0.3.4",
-    "chart.js": "3.5.1",
+    "chart.js": "3.6.0",
     "firebase": "8.10.0",
     "firebase-admin": "9.11.1",
-    "graphql": "15.6.1",
+    "graphql": "16.0.0",
     "lodash.isequal": "4.5.0",
-    "next": "11.1.2",
-    "next-firebase-auth": "0.13.3",
+    "next": "12.0.1",
+    "next-firebase-auth": "0.13.4",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-firebaseui": "5.0.2",
+    "react-hook-form": "^7.18.0",
     "react-scripts": "4.0.3",
     "react-table": "7.7.0",
-    "tailwindcss": "2.2.16"
+    "tailwindcss": "2.2.19",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "next start",
@@ -51,17 +54,17 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.10.3",
-    "@types/react": "^17.0.27",
-    "@typescript-eslint/eslint-plugin": "^4.33.0",
-    "@typescript-eslint/parser": "^4.33.0",
-    "autoprefixer": "10.3.7",
-    "eslint": "^7.32.0",
+    "@types/node": "^16.11.6",
+    "@types/react": "^17.0.33",
+    "@typescript-eslint/eslint-plugin": "^5.2.0",
+    "@typescript-eslint/parser": "^5.2.0",
+    "autoprefixer": "10.4.0",
+    "eslint": "^8.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.26.1",
-    "lint-staged": "^11.2.0",
-    "postcss": "8.3.9",
+    "lint-staged": "^11.2.6",
+    "postcss": "8.3.11",
     "prettier": "^2.4.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.4"
   }
 }
