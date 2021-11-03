@@ -1,7 +1,7 @@
 import React from 'react';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
-import Admin from '../../layouts/Admin';
+import AdminLayot from '../../layouts/AdminLayot';
 import AddProductForm from '../../components/Products/AddProductForm';
 
 const AddProduct = (): JSX.Element => (
@@ -17,6 +17,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-AddProduct.Layout = Admin;
+AddProduct.Layout = AdminLayot;
 
 export default AddProduct;

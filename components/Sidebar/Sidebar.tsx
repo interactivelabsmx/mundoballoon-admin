@@ -1,108 +1,105 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import NotificationDropdown from '../../components/Dropdowns/NotificationDropdown';
-import UserDropdown from '../../components/Dropdowns/UserDropdown';
-import menuOptions from '../../lib/menuOptions';
+import { Dispatch, Fragment } from 'react';
+import { Dialog, Transition } from '@headlessui/react';
+import { XIcon } from '@heroicons/react/solid';
+import SideBarOptions from './SideBarOptions';
+import NavBarProfile from '../User/NavBarProfile';
+import { INavigationOption } from '../../layouts/AdminLayot';
 
-const Sidebar = (): JSX.Element => {
-  const [collapseShow, setCollapseShow] = useState('hidden');
-  const router = useRouter();
-  return (
-    <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
-      <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
-        <button
-          className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-          type="button"
-          onClick={() => setCollapseShow('bg-white m-2 py-3 px-6')}
+interface ISideBar {
+  sidebarOpen: boolean;
+  setSidebarOpen: Dispatch<boolean>;
+  navigationOptions: INavigationOption[];
+}
+
+const SideBar = ({
+  sidebarOpen,
+  setSidebarOpen,
+  navigationOptions,
+}: ISideBar) => (
+  <>
+    <Transition.Root show={sidebarOpen} as={Fragment}>
+      <Dialog
+        as="div"
+        className="fixed inset-0 flex z-40 md:hidden"
+        onClose={setSidebarOpen}
+      >
+        <Transition.Child
+          as={Fragment}
+          enter="transition-opacity ease-linear duration-300"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition-opacity ease-linear duration-300"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
         >
-          <i className="fas fa-bars"></i>
-        </button>
-        <Link href="/admin/dashboard">
-          <a
-            href="/admin/dashboard"
-            className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-          >
-            Mundo Balloon Admin
-          </a>
-        </Link>
-        <ul className="md:hidden items-center flex flex-wrap list-none">
-          <li className="inline-block relative">
-            <NotificationDropdown />
-          </li>
-          <li className="inline-block relative">
-            <UserDropdown />
-          </li>
-        </ul>
-        <div
-          className={
-            'md:flex md:flex-col md:items-stretch md:opacity-100 md:relative md:mt-4 md:shadow-none shadow absolute top-0 left-0 right-0 z-40 overflow-y-auto overflow-x-hidden h-auto items-center flex-1 rounded ' +
-            collapseShow
-          }
+          <Dialog.Overlay className="fixed inset-0 bg-gray-600 bg-opacity-75" />
+        </Transition.Child>
+        <Transition.Child
+          as={Fragment}
+          enter="transition ease-in-out duration-300 transform"
+          enterFrom="-translate-x-full"
+          enterTo="translate-x-0"
+          leave="transition ease-in-out duration-300 transform"
+          leaveFrom="translate-x-0"
+          leaveTo="-translate-x-full"
         >
-          <div className="md:min-w-full md:hidden block pb-4 mb-4 border-b border-solid border-blueGray-200">
-            <div className="flex flex-wrap">
-              <div className="w-6/12">
-                <Link href="/admin/dashboard">
-                  <a
-                    href="/admin/dashboard"
-                    className="md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0"
-                  >
-                    Mundo Balloon Admin
-                  </a>
-                </Link>
-              </div>
-              <div className="w-6/12 flex justify-end">
+          <div className="relative flex-1 flex flex-col max-w-xs w-full bg-gray-800">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-in-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in-out duration-300"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="absolute top-0 right-0 -mr-12 pt-2">
                 <button
                   type="button"
-                  className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
-                  onClick={() => setCollapseShow('hidden')}
+                  className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                  onClick={() => setSidebarOpen(false)}
                 >
-                  <i className="fas fa-times"></i>
+                  <span className="sr-only">Close sidebar</span>
+                  <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
                 </button>
               </div>
+            </Transition.Child>
+            <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
+              <div className="flex-shrink-0 flex items-center px-4">
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                  alt="Workflow"
+                />
+              </div>
+              <SideBarOptions navigationOptions={navigationOptions} />
             </div>
+            <NavBarProfile />
           </div>
-          {menuOptions.map((section) => (
-            <div key={section.sectionName}>
-              <hr className="my-4 md:min-w-full" />
-              <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
-                {section.sectionName}
-              </h6>
-              <ul className="md:flex-col md:min-w-full flex flex-col list-none">
-                {section.sectionOptions.map((option) => (
-                  <li className="items-center" key={option.path}>
-                    <Link href={option.path}>
-                      <a
-                        href={option.path}
-                        className={
-                          'text-xs uppercase py-3 font-bold block ' +
-                          (router.pathname.indexOf(option.path) !== -1
-                            ? 'text-lightBlue-500 hover:text-lightBlue-600'
-                            : 'text-blueGray-700 hover:text-blueGray-500')
-                        }
-                      >
-                        <i
-                          className={
-                            option.icon +
-                            ' mr-2 text-sm ' +
-                            (router.pathname.indexOf(option.path) !== -1
-                              ? 'opacity-75'
-                              : 'text-blueGray-300')
-                          }
-                        ></i>{' '}
-                        {option.label}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        </Transition.Child>
+        <div className="flex-shrink-0 w-14">
+          {/* Force sidebar to shrink to fit close icon */}
         </div>
+      </Dialog>
+    </Transition.Root>
+    {/* Static sidebar for desktop */}
+    <div className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
+      {/* Sidebar component, swap this element with another sidebar if you like */}
+      <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
+        <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+          <div className="flex items-center flex-shrink-0 px-4">
+            <img
+              className="h-8 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+              alt="Workflow"
+            />
+          </div>
+          <SideBarOptions navigationOptions={navigationOptions} />
+        </div>
+        <NavBarProfile />
       </div>
-    </nav>
-  );
-};
+    </div>
+  </>
+);
 
-export default Sidebar;
+export default SideBar;

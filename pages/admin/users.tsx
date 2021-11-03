@@ -1,20 +1,15 @@
 import React from 'react';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
-import Admin from '../../layouts/Admin';
+import AdminLayot from '../../layouts/AdminLayot';
 
-const Users = (): JSX.Element => (
-  <div className="flex flex-wrap mt-4">
-    <div className="w-full mb-12 px-4"></div>
-    <div className="w-full mb-12 px-4"></div>
-  </div>
-);
+const Users = (): JSX.Element => <div>Users</div>;
 
 export const getServerSideProps = withAuthUserTokenSSR()(
   //@ts-expect-error argument not provided
   withAuthServerSideProps()()
 );
 
-Users.layout = Admin;
+Users.Layout = AdminLayot;
 
 export default Users;

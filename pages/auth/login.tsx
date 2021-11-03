@@ -1,5 +1,5 @@
 import React from 'react';
-import Auth from '../../layouts/Auth';
+import AuthLayout from '../../layouts/AuthLayout';
 import FirebaseAuth from '../../components/Auth/FirebaseAuth';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 
@@ -36,6 +36,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(async (context) => {
   return { redirect: null };
 });
 
-Login.Layout = Auth;
+Login.Layout = AuthLayout;
 
 export default Login;

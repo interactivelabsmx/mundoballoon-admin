@@ -2,11 +2,11 @@ import React, { ReactNode } from 'react';
 import Navbar from '../components/Navbars/AuthNavbar';
 import FooterSmall from '../components/Footers/FooterSmall';
 
-interface AuthLayoutProps {
+interface IAuthLayout {
   children: ReactNode;
 }
 
-const AuthLayout = ({ children }: AuthLayoutProps): JSX.Element => (
+const AuthLayout = ({ children }: IAuthLayout): JSX.Element => (
   <>
     <Navbar />
     <main>

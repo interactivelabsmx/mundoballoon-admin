@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import Input from '@material-tailwind/react/Input';
-import Button from '@material-tailwind/react/Button';
 import ProductCategorySelector from './ProductCategorySelector';
+import Input from '../UI/form/Input';
+import PrimaryButton from '../UI/buttons/PrimaryButton';
 
 const newProductSchema = yup
   .object({
@@ -41,7 +41,8 @@ const AddProductForm = (): JSX.Element => {
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="Product Name"
+              label="Product Name"
+              placeholder="Some nice product"
               error={errors?.name?.message}
             />
           )}
@@ -55,7 +56,8 @@ const AddProductForm = (): JSX.Element => {
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="Description"
+              label="Description"
+              placeholder="Some nice product"
               error={errors?.description?.message}
             />
           )}
@@ -69,9 +71,11 @@ const AddProductForm = (): JSX.Element => {
           render={({ field }) => (
             <Input
               {...field}
-              placeholder="Price"
-              error={errors?.price?.message}
+              label="Price"
               type="number"
+              placeholder="1.0"
+              leading="$"
+              error={errors?.price?.message}
             />
           )}
         />
@@ -84,14 +88,14 @@ const AddProductForm = (): JSX.Element => {
           render={({ field }) => (
             <ProductCategorySelector
               field={field}
-              placeholder="Product Category"
+              label="Product Category"
               error={errors?.productCategoryId?.message}
             />
           )}
         />
       </div>
       <div className="flex justify-end">
-        <Button type="submit">Save</Button>
+        <PrimaryButton type="submit">Save</PrimaryButton>
       </div>
     </form>
   );

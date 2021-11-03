@@ -1,10 +1,9 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
-import Button from '@material-tailwind/react/Button';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
 import CardTable, { TableColor } from '../../components/Cards/CardTable';
-import Admin from '../../layouts/Admin';
+import AdminLayot from '../../layouts/AdminLayot';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -118,26 +117,20 @@ const Products = (): JSX.Element => {
             data={nodes}
           />
           <div className="flex justify-between">
-            <Button
-              buttonType="outline"
+            <button
               color="blue"
               disabled={!pageInfo.hasPreviousPage}
               onClick={onClickPrevPage}
-              ripple="dark"
-              size="lg"
             >
               Prev Page
-            </Button>
-            <Button
-              buttonType="outline"
+            </button>
+            <button
               color="blue"
               disabled={!pageInfo.hasNextPage}
               onClick={onClickNextPage}
-              ripple="dark"
-              size="lg"
             >
               Next Page
-            </Button>
+            </button>
           </div>
         </div>
       </div>
@@ -150,6 +143,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Products.Layout = Admin;
+Products.Layout = AdminLayot;
 
 export default Products;

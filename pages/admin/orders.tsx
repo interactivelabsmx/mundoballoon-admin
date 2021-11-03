@@ -1,7 +1,7 @@
 import React from 'react';
 import { withAuthUserTokenSSR } from 'next-firebase-auth';
 import withAuthServerSideProps from '../../lib/withAuthServerSideProps';
-import Admin from '../../layouts/Admin';
+import AdminLayot from '../../layouts/AdminLayot';
 
 const Orders = (): JSX.Element => (
   <div className="flex flex-wrap mt-4">
@@ -15,6 +15,6 @@ export const getServerSideProps = withAuthUserTokenSSR()(
   withAuthServerSideProps()()
 );
 
-Orders.Layout = Admin;
+Orders.Layout = AdminLayot;
 
 export default Orders;
