@@ -1,5 +1,4 @@
 import React, { ReactNode } from 'react';
-import Navbar from '../components/Navbars/AuthNavbar';
 import FooterSmall from '../components/Footers/FooterSmall';
 
 interface IAuthLayout {
@@ -8,7 +7,6 @@ interface IAuthLayout {
 
 const AuthLayout = ({ children }: IAuthLayout): JSX.Element => (
   <>
-    <Navbar />
     <main>
       <section className="relative w-full h-full py-40 min-h-screen">
         <div

@@ -1,13 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { withAuthUser, AuthAction } from 'next-firebase-auth';
-import firebase from 'firebase/app';
-import 'firebase/auth';
-
-import { baseFirebaseUIAuthConfig } from '../../lib/initFirebaseAuth';
 import { useRouter } from 'next/router';
+import {
+  EmailAuthProvider,
+  FacebookAuthProvider,
+  GoogleAuthProvider,
+  PhoneAuthProvider,
+} from '@firebase/auth';
+import FirebaseGoogleAuth from './FirebaseGoogleAuth';
+
+export const baseFirebaseUIAuthConfig = {
+  signInFlow: 'popup',
+  // Auth providers
+  // https://github.com/firebase/firebaseui-web#configure-oauth-providers
+  signInOptions: [
+    {
+      provider: PhoneAuthProvider.PROVIDER_ID,
+    },
+    {
+      provider: EmailAuthProvider.PROVIDER_ID,
+      requireDisplayName: false,
+    },
+    {
+      provider: GoogleAuthProvider.PROVIDER_ID,
+    },
+    {
+      provider: FacebookAuthProvider.PROVIDER_ID,
+      scopes: ['public_profile'],
+    },
+  ],
+  signInSuccessUrl: '/',
+  credentialHelper: 'none',
+};
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {
@@ -20,20 +45,20 @@ const CREATE_USER = gql`
 `;
 
 const FirebaseAuth = () => {
-  const router = useRouter();
-  const [createUser, { loading, error }] = useMutation(CREATE_USER);
+  // const router = useRouter();
+  // const [createUser, { loading, error }] = useMutation(CREATE_USER);
   const [renderAuth, setRenderAuth] = useState(false);
-  const firebaseAuthConfig = {
-    ...baseFirebaseUIAuthConfig,
-    callbacks: {
-      signInSuccessWithAuthResult: (authResult) => {
-        createUser({ variables: { userId: authResult.user.uid } }).then(() =>
-          router.push('/admin/dashboard')
-        );
-        return false;
-      },
-    },
-  };
+  // const firebaseAuthConfig = {
+  //   ...baseFirebaseUIAuthConfig,
+  //   callbacks: {
+  //     signInSuccessWithAuthResult: (authResult) => {
+  //       createUser({ variables: { userId: authResult.user.uid } }).then(() =>
+  //         router.push('/admin/dashboard')
+  //       );
+  //       return false;
+  //     },
+  //   },
+  // };
   useEffect(() => {
     if (typeof window !== 'undefined') {
       setRenderAuth(true);
@@ -41,20 +66,11 @@ const FirebaseAuth = () => {
   }, []);
   return (
     <div>
-      {error && <div>{error}</div>}
-      {loading && <div>LOADING...</div>}
-      {renderAuth ? (
-        <StyledFirebaseAuth
-          uiConfig={firebaseAuthConfig}
-          firebaseAuth={firebase.auth()}
-        />
-      ) : null}
+      {/* {error && <div>{error}</div>}
+      {loading && <div>LOADING...</div>} */}
+      {renderAuth ? <FirebaseGoogleAuth /> : null}
     </div>
   );
 };
 
-export default withAuthUser({
-  whenAuthed: AuthAction.REDIRECT_TO_APP,
-  whenUnauthedBeforeInit: AuthAction.RETURN_NULL,
-  whenUnauthedAfterInit: AuthAction.RENDER,
-})(FirebaseAuth);
+export default FirebaseAuth;

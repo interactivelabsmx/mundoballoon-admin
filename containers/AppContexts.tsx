@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { useAuthUser, withAuthUser } from 'next-firebase-auth';
 import { useApollo } from '../lib/apolloClient';
 
 interface IAppContexts {
@@ -9,9 +8,9 @@ interface IAppContexts {
 }
 
 const AppContexts = ({ children, pageProps }: IAppContexts) => {
-  const AuthUser = useAuthUser();
+  const AuthUser = { getIdToken: () => '123' };
   const apolloClient = useApollo(pageProps, AuthUser.getIdToken);
   return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 };
 
-export default withAuthUser<IAppContexts>()(AppContexts);
+export default AppContexts;
