@@ -1,11 +1,11 @@
-import { unsetAuthCookies } from 'next-firebase-auth';
-import initFirebaseAuth from '../../lib/initFirebaseAuth';
+// import { unsetAuthCookies } from 'next-firebase-auth';
+// import initFirebaseAuth from '../../lib/initFirebaseAuth';
 
-initFirebaseAuth();
+// initFirebaseAuth();
 
 const handler = async (req, res) => {
   try {
-    await unsetAuthCookies(req, res);
+    // await unsetAuthCookies(req, res);
   } catch (e) {
     return res.status(500).json({ error: 'Unexpected error.' });
   }

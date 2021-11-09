@@ -1,7 +1,7 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import CardTable, { TableColor } from '../../components/Cards/CardTable';
 import AdminLayot from '../../layouts/AdminLayot';
+import BaseTable, { TableColor } from '../../components/UI/tables/BaseTable';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -108,7 +108,7 @@ const Products = (): JSX.Element => {
     <>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <CardTable
+          <BaseTable
             color={TableColor.DARK}
             title="Products"
             columns={columns}

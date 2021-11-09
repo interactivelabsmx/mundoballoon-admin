@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps } from 'firebase/app';
 
 const CLIENT_CONFIG = {
   apiKey: 'AIzaSyDGCFoykUUvq6Ztl5EhTRL9QhuOXzl9oo0', // required
@@ -7,6 +7,6 @@ const CLIENT_CONFIG = {
   projectId: 'mundoballoon-dev',
 };
 
-if (typeof window !== 'undefined') {
+if (typeof window !== 'undefined' && !getApps().length) {
   initializeApp(CLIENT_CONFIG);
 }

@@ -7,7 +7,7 @@ import ProductCategorySelector from './ProductCategorySelector';
 import Input from '../UI/form/Input';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
 
-const newProductSchema = yup
+export const newProductSchema = yup
   .object({
     name: yup.string().required(),
     description: yup.string().required(),
@@ -16,18 +16,18 @@ const newProductSchema = yup
   })
   .required();
 
-interface IFormInput extends Asserts<typeof newProductSchema> {}
+interface INewProductForm extends Asserts<typeof newProductSchema> {}
 
 const AddProductForm = (): JSX.Element => {
   const {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IFormInput>({
+  } = useForm<INewProductForm>({
     resolver: yupResolver(newProductSchema),
   });
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
+  const onSubmit: SubmitHandler<INewProductForm> = (data) => {
     console.log(data);
   };
 

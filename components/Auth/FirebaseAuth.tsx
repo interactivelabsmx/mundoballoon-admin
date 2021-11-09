@@ -2,37 +2,10 @@ import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import {
-  EmailAuthProvider,
-  FacebookAuthProvider,
-  GoogleAuthProvider,
-  PhoneAuthProvider,
-} from '@firebase/auth';
-import FirebaseGoogleAuth from './FirebaseGoogleAuth';
 
-export const baseFirebaseUIAuthConfig = {
-  signInFlow: 'popup',
-  // Auth providers
-  // https://github.com/firebase/firebaseui-web#configure-oauth-providers
-  signInOptions: [
-    {
-      provider: PhoneAuthProvider.PROVIDER_ID,
-    },
-    {
-      provider: EmailAuthProvider.PROVIDER_ID,
-      requireDisplayName: false,
-    },
-    {
-      provider: GoogleAuthProvider.PROVIDER_ID,
-    },
-    {
-      provider: FacebookAuthProvider.PROVIDER_ID,
-      scopes: ['public_profile'],
-    },
-  ],
-  signInSuccessUrl: '/',
-  credentialHelper: 'none',
-};
+import FirebaseFacebookButton from './FirebaseFacebookButton';
+import FirebaseGoogleButton from './FirebaseGoogleButton';
+import FirebaseEmailAuth from './FirebaseEmailAuth';
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {
@@ -64,13 +37,37 @@ const FirebaseAuth = () => {
       setRenderAuth(true);
     }
   }, []);
-  return (
-    <div>
-      {/* {error && <div>{error}</div>}
-      {loading && <div>LOADING...</div>} */}
-      {renderAuth ? <FirebaseGoogleAuth /> : null}
-    </div>
-  );
+
+  return renderAuth ? (
+    <>
+      <div>
+        <div>
+          <div className="mt-1 grid grid-cols-3 gap-3">
+            <FirebaseFacebookButton />
+            <FirebaseGoogleButton />
+          </div>
+        </div>
+
+        <div className="mt-6 relative">
+          <div
+            className="absolute inset-0 flex items-center"
+            aria-hidden="true"
+          >
+            <div className="w-full border-t border-gray-300" />
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-gray-100 text-gray-500">
+              Or continue with
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-6">
+        <FirebaseEmailAuth />
+      </div>
+    </>
+  ) : null;
 };
 
 export default FirebaseAuth;

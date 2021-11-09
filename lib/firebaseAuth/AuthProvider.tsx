@@ -1,52 +1,43 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
-import nookies from 'nookies';
-import { User } from '@firebase/auth';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+// import nookies from 'nookies';
+import { Auth, signOut, User } from '@firebase/auth';
+import { getAuth } from '@firebase/auth';
 
 import './firebaseClient';
+import { useRouter } from 'next/router';
 
-const AuthContext = createContext<{ user: User | null }>({
+interface IAuthContext {
+  user?: User;
+  auth?: Auth;
+  login: (user: User) => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<IAuthContext>({
   user: null,
+  auth: null,
+  login: () => null,
+  logout: () => null,
 });
 
 export function AuthProvider({ children }: any) {
+  const [auth, setAuth] = useState<Auth>(null);
   const [user, setUser] = useState<User | null>(null);
+  const { replace } = useRouter();
+  const login = (user: User) => setUser(user);
+  const logout = () => {
+    setUser(null);
+    signOut(auth).then(() => replace('/'));
+  };
   useEffect(() => {
-    const auth = getAuth();
-    return onAuthStateChanged(auth, async (user) => {
-      console.log(`token changed!`);
-      if (!user) {
-        console.log(`no token found...`);
-        setUser(null);
-        nookies.destroy(null, 'token');
-        nookies.set(null, 'token', '', { path: '/' });
-        return;
-      }
-
-      console.log(`updating token...`);
-      const token = await user.getIdToken();
-      setUser(user);
-      nookies.destroy(null, 'token');
-      nookies.set(null, 'token', token, { path: '/' });
-    });
-  }, []);
-
-  // force refresh the token every 10 minutes
-  useEffect(() => {
-    const handle = setInterval(async () => {
-      console.log(`refreshing token...`);
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (user) await user.getIdToken(true);
-    }, 10 * 60 * 1000);
-    return () => clearInterval(handle);
+    setAuth(getAuth());
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, auth, login, logout }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
 
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);
