@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Head from 'next/head';
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import AppContexts from '../containers/AppContexts';
-import { AuthProvider } from '../lib/firebaseAuth/AuthProvider';
+import { AuthProvider } from '../components/Auth/AuthProvider';
 
 import '../styles/index.css';
 

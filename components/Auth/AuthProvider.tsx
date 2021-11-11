@@ -16,7 +16,7 @@ import {
 } from '@firebase/auth';
 import { useRouter } from 'next/router';
 
-import './firebaseClient';
+import '../../lib/firebaseAuth/firebaseClient';
 
 interface IAuthContext {
   user?: User;

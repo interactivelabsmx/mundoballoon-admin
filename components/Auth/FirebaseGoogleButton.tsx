@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, User } from '@firebase/auth';
-import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
+import { useAuth } from './AuthProvider';
 import getOpenSignInWithPopupFuction from '../../lib/firebaseAuth/getOpenSignInWithPopupFuction';
 import SecundaryButton from '../UI/buttons/SecundaryButton';
 import GoogleIcon from '../UI/Icons/GoogleIcon';

@@ -2,13 +2,12 @@ import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { User } from '@firebase/auth';
-
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
-import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
+import { useAuth } from './AuthProvider';
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {
