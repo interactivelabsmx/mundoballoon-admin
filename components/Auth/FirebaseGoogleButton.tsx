@@ -1,26 +1,25 @@
-import {
-  Auth,
-  AuthProvider,
-  getAuth,
-  GoogleAuthProvider,
-} from '@firebase/auth';
-import { useEffect, useState } from 'react';
+import { GoogleAuthProvider, User } from '@firebase/auth';
+import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
 import getOpenSignInWithPopupFuction from '../../lib/firebaseAuth/getOpenSignInWithPopupFuction';
 import SecundaryButton from '../UI/buttons/SecundaryButton';
 import GoogleIcon from '../UI/Icons/GoogleIcon';
 
-const FirebaseGoogleButton = () => {
-  const [provider, setProvider] = useState<AuthProvider>(null);
-  const [auth, setAuth] = useState<Auth>(null);
-  useEffect(() => {
-    setProvider(new GoogleAuthProvider());
-    setAuth(getAuth());
-  }, []);
-  const openSignInWithPopup = getOpenSignInWithPopupFuction(
+interface IFirebaseGoogleButton {
+  onAuthComplete: (user: User) => void;
+}
+
+const FirebaseGoogleButton = ({ onAuthComplete }: IFirebaseGoogleButton) => {
+  const { auth, onAuth } = useAuth();
+  const provider = new GoogleAuthProvider();
+  const handleAuh = (user: User) => {
+    onAuthComplete(user);
+    onAuth(user);
+  };
+  const openSignInWithPopup = getOpenSignInWithPopupFuction({
     auth,
     provider,
-    GoogleAuthProvider
-  );
+    onAuth: handleAuh,
+  });
   return (
     <div>
       <SecundaryButton onClick={openSignInWithPopup} className="w-full">

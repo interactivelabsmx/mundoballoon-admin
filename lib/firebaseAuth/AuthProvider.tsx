@@ -1,40 +1,74 @@
-import React, { useState, useEffect, useContext, createContext } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  ReactNode,
+  useCallback,
+} from 'react';
 // import nookies from 'nookies';
-import { Auth, signOut, User } from '@firebase/auth';
-import { getAuth } from '@firebase/auth';
+import {
+  Auth,
+  onAuthStateChanged,
+  signOut,
+  User,
+  getAuth,
+} from '@firebase/auth';
+import { useRouter } from 'next/router';
 
 import './firebaseClient';
-import { useRouter } from 'next/router';
 
 interface IAuthContext {
   user?: User;
   auth?: Auth;
-  login: (user: User) => void;
+  onAuth: (user: User) => void;
   logout: () => void;
 }
 
 const AuthContext = createContext<IAuthContext>({
-  user: null,
-  auth: null,
-  login: () => null,
+  onAuth: () => null,
   logout: () => null,
 });
 
-export function AuthProvider({ children }: any) {
+interface IAuthProvider {
+  children: ReactNode;
+}
+
+export function AuthProvider({ children }: IAuthProvider) {
   const [auth, setAuth] = useState<Auth>(null);
   const [user, setUser] = useState<User | null>(null);
-  const { replace } = useRouter();
-  const login = (user: User) => setUser(user);
-  const logout = () => {
+  const { push } = useRouter();
+
+  const onAuth = useCallback(
+    async (user: User) => {
+      localStorage.setItem('ft', await user.getIdToken());
+      setUser(user);
+    },
+    [setUser]
+  );
+
+  const logout = useCallback(() => {
     setUser(null);
-    signOut(auth).then(() => replace('/'));
-  };
+    localStorage.setItem('ft', null);
+    signOut(auth).then(() => push('/'));
+  }, [setUser, auth, push]);
+
   useEffect(() => {
     setAuth(getAuth());
   }, []);
 
+  useEffect(() => {
+    if (auth) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          onAuth(user);
+        }
+      });
+    }
+  }, [auth, logout, onAuth]);
+
   return (
-    <AuthContext.Provider value={{ user, auth, login, logout }}>
+    <AuthContext.Provider value={{ user, auth, onAuth, logout }}>
       {children}
     </AuthContext.Provider>
   );

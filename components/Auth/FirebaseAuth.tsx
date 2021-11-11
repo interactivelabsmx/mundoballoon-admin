@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { User } from '@firebase/auth';
 
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
+import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
+import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
+import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {
@@ -18,33 +21,30 @@ const CREATE_USER = gql`
 `;
 
 const FirebaseAuth = () => {
-  // const router = useRouter();
-  // const [createUser, { loading, error }] = useMutation(CREATE_USER);
-  const [renderAuth, setRenderAuth] = useState(false);
-  // const firebaseAuthConfig = {
-  //   ...baseFirebaseUIAuthConfig,
-  //   callbacks: {
-  //     signInSuccessWithAuthResult: (authResult) => {
-  //       createUser({ variables: { userId: authResult.user.uid } }).then(() =>
-  //         router.push('/admin/dashboard')
-  //       );
-  //       return false;
-  //     },
-  //   },
-  // };
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setRenderAuth(true);
-    }
-  }, []);
-
-  return renderAuth ? (
+  const { push } = useRouter();
+  const { auth } = useAuth();
+  const [createUser, { loading, error }] = useMutation(CREATE_USER);
+  const onAuthComplete = async (user: User) => {
+    const token = await user.getIdToken(true);
+    createUser({
+      context: { headers: { authorization: `Bearer ${token}` } },
+      variables: { userId: user.uid },
+    }).then(() => push('/admin/dashboard'));
+  };
+  return auth ? (
     <>
+      {loading && <div>Authenticating</div>}
+      {error && (
+        <SimpleTextAlert
+          text={error.message}
+          type={SimpleTextAlertType.ERROR}
+        />
+      )}
       <div>
         <div>
           <div className="mt-1 grid grid-cols-3 gap-3">
-            <FirebaseFacebookButton />
-            <FirebaseGoogleButton />
+            <FirebaseFacebookButton onAuthComplete={onAuthComplete} />
+            <FirebaseGoogleButton onAuthComplete={onAuthComplete} />
           </div>
         </div>
 
@@ -64,7 +64,7 @@ const FirebaseAuth = () => {
       </div>
 
       <div className="mt-6">
-        <FirebaseEmailAuth />
+        <FirebaseEmailAuth onAuthComplete={onAuthComplete} />
       </div>
     </>
   ) : null;

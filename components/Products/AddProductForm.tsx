@@ -27,8 +27,8 @@ const AddProductForm = (): JSX.Element => {
     resolver: yupResolver(newProductSchema),
   });
 
-  const onSubmit: SubmitHandler<INewProductForm> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<INewProductForm> = () => {
+    // console.log(data);
   };
 
   return (

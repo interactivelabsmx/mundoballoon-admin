@@ -5,10 +5,11 @@ import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import Input from '../UI/form/Input';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
-import { AuthErrorCodes, getAuth } from '@firebase/auth';
+import { AuthError, User } from '@firebase/auth';
 import unifiedEmailPasswordAuth from '../../lib/firebaseAuth/unifiedEmailPasswordAuth';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
+import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
 
 export const userPwdSchema = yup
   .object({
@@ -19,7 +20,12 @@ export const userPwdSchema = yup
 
 interface IUserPwdForm extends Asserts<typeof userPwdSchema> {}
 
-const FirebaseEmailAuth = () => {
+interface IFirebaseEmailAuth {
+  onAuthComplete: (user: User) => void;
+}
+
+const FirebaseEmailAuth = ({ onAuthComplete }: IFirebaseEmailAuth) => {
+  const { auth, onAuth } = useAuth();
   const [requestError, setRequestError] = useState('');
   const {
     control,
@@ -29,20 +35,24 @@ const FirebaseEmailAuth = () => {
     resolver: yupResolver(userPwdSchema),
   });
 
-  const onSubmit: SubmitHandler<IUserPwdForm> = async ({ email, password }) => {
+  const onError = (error: AuthError) => {
+    setRequestError(error.message);
+  };
+
+  const handleAuh = (user: User) => {
+    onAuthComplete(user);
+    onAuth(user);
+  };
+
+  const onSubmit: SubmitHandler<IUserPwdForm> = ({ email, password }) => {
     setRequestError('');
-    const auth = getAuth();
-    const [userCredential, error] = await unifiedEmailPasswordAuth({
+    unifiedEmailPasswordAuth({
       auth,
       email,
       password,
+      onAuth: handleAuh,
+      onError,
     });
-
-    if (error?.code === AuthErrorCodes.INVALID_PASSWORD) {
-      setRequestError('Wrong username and password combination');
-    }
-    console.log(userCredential);
-    console.log(error);
   };
 
   const onDismissAlert = () => setRequestError('');

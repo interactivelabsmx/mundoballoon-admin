@@ -8,8 +8,7 @@ interface IAppContexts {
 }
 
 const AppContexts = ({ children, pageProps }: IAppContexts) => {
-  const AuthUser = { getIdToken: () => '123' };
-  const apolloClient = useApollo(pageProps, AuthUser.getIdToken);
+  const apolloClient = useApollo(pageProps);
   return <ApolloProvider client={apolloClient}>{children}</ApolloProvider>;
 };
 

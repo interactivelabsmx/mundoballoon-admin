@@ -1,26 +1,27 @@
-import {
-  Auth,
-  AuthProvider,
-  getAuth,
-  FacebookAuthProvider,
-} from '@firebase/auth';
-import { useEffect, useState } from 'react';
+import { FacebookAuthProvider, User } from '@firebase/auth';
+import { useAuth } from '../../lib/firebaseAuth/AuthProvider';
 import getOpenSignInWithPopupFuction from '../../lib/firebaseAuth/getOpenSignInWithPopupFuction';
 import SecundaryButton from '../UI/buttons/SecundaryButton';
 import FacebookIcon from '../UI/Icons/FacebookIcon';
 
-const FirebaseFacebookButton = () => {
-  const [provider, setProvider] = useState<AuthProvider>(null);
-  const [auth, setAuth] = useState<Auth>(null);
-  useEffect(() => {
-    setProvider(new FacebookAuthProvider());
-    setAuth(getAuth());
-  }, []);
-  const openSignInWithPopup = getOpenSignInWithPopupFuction(
+interface IFirebaseFacebookButton {
+  onAuthComplete: (user: User) => void;
+}
+
+const FirebaseFacebookButton = ({
+  onAuthComplete,
+}: IFirebaseFacebookButton) => {
+  const { auth, onAuth } = useAuth();
+  const provider = new FacebookAuthProvider();
+  const handleAuh = (user: User) => {
+    onAuthComplete(user);
+    onAuth(user);
+  };
+  const openSignInWithPopup = getOpenSignInWithPopupFuction({
     auth,
     provider,
-    FacebookAuthProvider
-  );
+    onAuth: handleAuh,
+  });
   return (
     <div>
       <SecundaryButton onClick={openSignInWithPopup} className="w-full">

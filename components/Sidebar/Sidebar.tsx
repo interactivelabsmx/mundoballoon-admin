@@ -1,6 +1,7 @@
 import { Dispatch, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
+import Image from 'next/image';
 import SideBarOptions from './SideBarOptions';
 import NavBarProfile from '../User/NavBarProfile';
 import { INavigationOption } from '../../layouts/AdminLayot';
@@ -66,11 +67,13 @@ const SideBar = ({
             </Transition.Child>
             <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
               <div className="flex-shrink-0 flex items-center px-4">
-                <img
-                  className="h-8 w-auto"
-                  src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                  alt="Workflow"
-                />
+                <div className="h-8 w-auto relative flex-1">
+                  <Image
+                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                    alt="Workflow"
+                    layout="fill"
+                  />
+                </div>
               </div>
               <SideBarOptions navigationOptions={navigationOptions} />
             </div>
@@ -88,11 +91,13 @@ const SideBar = ({
       <div className="flex-1 flex flex-col min-h-0 bg-gray-800">
         <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
           <div className="flex items-center flex-shrink-0 px-4">
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-              alt="Workflow"
-            />
+            <div className="h-8 w-auto relative flex-1">
+              <Image
+                src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
+                alt="Workflow"
+                layout="fill"
+              />
+            </div>
           </div>
           <SideBarOptions navigationOptions={navigationOptions} />
         </div>
