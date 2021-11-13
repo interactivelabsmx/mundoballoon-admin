@@ -1,7 +1,6 @@
-interface IFacebookIcon {
-  height?: number;
-}
-const FacebookIcon = ({ height = 20 }: IFacebookIcon) => (
+import IBaseIcon from './IBaseIcon';
+
+const FacebookIcon = ({ height = 20 }: IBaseIcon) => (
   <svg
     height={height}
     className="w-5 h-5"

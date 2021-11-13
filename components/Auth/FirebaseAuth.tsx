@@ -7,7 +7,7 @@ import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
-import { useAuth } from './AuthProvider';
+import { useAuth } from '../../containers/AuthProvider';
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {

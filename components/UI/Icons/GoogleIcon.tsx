@@ -1,7 +1,6 @@
-interface IGoogleIcon {
-  height?: number;
-}
-const GoogleIcon = ({ height = 20 }: IGoogleIcon) => (
+import IBaseIcon from './IBaseIcon';
+
+const GoogleIcon = ({ height = 20 }: IBaseIcon) => (
   <svg
     height={height}
     aria-hidden="true"

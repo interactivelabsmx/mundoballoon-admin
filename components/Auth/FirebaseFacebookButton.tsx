@@ -1,5 +1,5 @@
 import { FacebookAuthProvider, User } from '@firebase/auth';
-import { useAuth } from './AuthProvider';
+import { useAuth } from '../../containers/AuthProvider';
 import getOpenSignInWithPopupFuction from '../../lib/firebaseAuth/getOpenSignInWithPopupFuction';
 import SecundaryButton from '../UI/buttons/SecundaryButton';
 import FacebookIcon from '../UI/Icons/FacebookIcon';

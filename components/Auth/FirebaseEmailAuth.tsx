@@ -9,7 +9,7 @@ import { AuthError, User } from '@firebase/auth';
 import unifiedEmailPasswordAuth from '../../lib/firebaseAuth/unifiedEmailPasswordAuth';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
-import { useAuth } from './AuthProvider';
+import { useAuth } from '../../containers/AuthProvider';
 
 export const userPwdSchema = yup
   .object({
