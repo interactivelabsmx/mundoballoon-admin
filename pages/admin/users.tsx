@@ -1,8 +1,10 @@
 import React from 'react';
-import AdminLayot from '../../layouts/AdminLayot';
+import AdminLayout from '../../layouts/AdminLayout';
 
-const Users = (): JSX.Element => <div>Users</div>;
-
-Users.Layout = AdminLayot;
+const Users = (): JSX.Element => (
+  <AdminLayout>
+    <div>Users</div>
+  </AdminLayout>
+);
 
 export default Users;

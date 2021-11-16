@@ -1,8 +1,10 @@
 import React from 'react';
-import AdminLayot from '../../layouts/AdminLayot';
+import AdminLayout from '../../layouts/AdminLayout';
 
-const Settings = (): JSX.Element => <div>Settings</div>;
-
-Settings.layout = AdminLayot;
+const Settings = (): JSX.Element => (
+  <AdminLayout>
+    <div>Settings</div>
+  </AdminLayout>
+);
 
 export default Settings;

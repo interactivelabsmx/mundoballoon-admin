@@ -1,9 +1,11 @@
 import React from 'react';
-import AdminLayot from '../../layouts/AdminLayot';
+import AdminLayout from '../../layouts/AdminLayout';
 import AddProductForm from '../../components/Products/AddProductForm';
 
-const AddProduct = (): JSX.Element => <AddProductForm />;
-
-AddProduct.Layout = AdminLayot;
+const AddProduct = (): JSX.Element => (
+  <AdminLayout>
+    <AddProductForm />
+  </AdminLayout>
+);
 
 export default AddProduct;

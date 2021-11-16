@@ -1,6 +1,6 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
-import AdminLayot from '../../layouts/AdminLayot';
+import AdminLayout from '../../layouts/AdminLayout';
 import BaseTable, { TableColor } from '../../components/UI/tables/BaseTable';
 
 export const GET_PRODUCTS = gql`
@@ -105,7 +105,7 @@ const Products = (): JSX.Element => {
   const onClickPrevPage = () =>
     fetchMore({ variables: { before: pageInfo.startCursor } });
   return (
-    <>
+    <AdminLayout>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
           <BaseTable
@@ -132,10 +132,8 @@ const Products = (): JSX.Element => {
           </div>
         </div>
       </div>
-    </>
+    </AdminLayout>
   );
 };
-
-Products.Layout = AdminLayot;
 
 export default Products;

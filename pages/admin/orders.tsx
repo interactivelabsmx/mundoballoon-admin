@@ -1,8 +1,10 @@
 import React from 'react';
-import AdminLayot from '../../layouts/AdminLayot';
+import AdminLayout from '../../layouts/AdminLayout';
 
-const Orders = (): JSX.Element => <div>Orders</div>;
-
-Orders.Layout = AdminLayot;
+const Orders = (): JSX.Element => (
+  <AdminLayout>
+    <div>Orders</div>
+  </AdminLayout>
+);
 
 export default Orders;

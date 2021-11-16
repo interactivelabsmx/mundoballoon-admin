@@ -4,7 +4,7 @@ import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
 import SideBarOptions from './SideBarOptions';
 import NavBarProfile from '../User/NavBarProfile';
-import { INavigationOption } from '../../layouts/AdminLayot';
+import { INavigationOption } from '../../layouts/AdminLayout';
 
 interface ISideBar {
   sidebarOpen: boolean;
