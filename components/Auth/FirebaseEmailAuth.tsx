@@ -1,14 +1,12 @@
-import { useState } from 'react';
+import { Dispatch } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AuthError, User } from '@firebase/auth';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import Input from '../UI/form/Input';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
-import { AuthError, User } from '@firebase/auth';
 import unifiedEmailPasswordAuth from '../../lib/firebaseAuth/unifiedEmailPasswordAuth';
-import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
-import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { useAuth } from '../../containers/AuthProvider';
 
 export const userPwdSchema = yup
@@ -22,11 +20,14 @@ interface IUserPwdForm extends Asserts<typeof userPwdSchema> {}
 
 interface IFirebaseEmailAuth {
   onAuthComplete: (user: User) => void;
+  setRequestError: Dispatch<string>;
 }
 
-const FirebaseEmailAuth = ({ onAuthComplete }: IFirebaseEmailAuth) => {
+const FirebaseEmailAuth = ({
+  onAuthComplete,
+  setRequestError,
+}: IFirebaseEmailAuth) => {
   const { auth, onAuth } = useAuth();
-  const [requestError, setRequestError] = useState('');
   const {
     control,
     handleSubmit,
@@ -55,17 +56,8 @@ const FirebaseEmailAuth = ({ onAuthComplete }: IFirebaseEmailAuth) => {
     });
   };
 
-  const onDismissAlert = () => setRequestError('');
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {requestError && (
-        <SimpleTextAlert
-          text={requestError}
-          type={SimpleTextAlertType.ERROR}
-          onDismissAlert={onDismissAlert}
-        />
-      )}
       <div>
         <Controller
           name="email"

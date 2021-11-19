@@ -2,6 +2,7 @@ import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import AdminLayout from '../../layouts/AdminLayout';
 import BaseTable, { TableColor } from '../../components/UI/tables/BaseTable';
+import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -135,5 +136,7 @@ const Products = (): JSX.Element => {
     </AdminLayout>
   );
 };
+
+export const getServerSideProps = withAuthServer();
 
 export default Products;

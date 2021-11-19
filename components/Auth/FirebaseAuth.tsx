@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { User } from '@firebase/auth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
@@ -22,6 +23,7 @@ const CREATE_USER = gql`
 const FirebaseAuth = () => {
   const { push } = useRouter();
   const { auth } = useAuth();
+  const [requestError, setRequestError] = useState('');
   const [createUser, { loading, error }] = useMutation(CREATE_USER);
   const onAuthComplete = async (user: User) => {
     const token = await user.getIdToken(true);
@@ -30,20 +32,28 @@ const FirebaseAuth = () => {
       variables: { userId: user.uid },
     }).then(() => push('/admin/dashboard'));
   };
+  const onDismissAlert = () => setRequestError('');
   return auth ? (
     <>
       {loading && <div>Authenticating</div>}
-      {error && (
+      {(requestError || error) && (
         <SimpleTextAlert
-          text={error.message}
+          text={requestError || error.message}
           type={SimpleTextAlertType.ERROR}
+          onDismissAlert={onDismissAlert}
         />
       )}
       <div>
         <div>
           <div className="mt-1 grid grid-cols-3 gap-3">
-            <FirebaseFacebookButton onAuthComplete={onAuthComplete} />
-            <FirebaseGoogleButton onAuthComplete={onAuthComplete} />
+            <FirebaseFacebookButton
+              onAuthComplete={onAuthComplete}
+              setRequestError={setRequestError}
+            />
+            <FirebaseGoogleButton
+              onAuthComplete={onAuthComplete}
+              setRequestError={setRequestError}
+            />
           </div>
         </div>
 
@@ -63,7 +73,10 @@ const FirebaseAuth = () => {
       </div>
 
       <div className="mt-6">
-        <FirebaseEmailAuth onAuthComplete={onAuthComplete} />
+        <FirebaseEmailAuth
+          onAuthComplete={onAuthComplete}
+          setRequestError={setRequestError}
+        />
       </div>
     </>
   ) : null;

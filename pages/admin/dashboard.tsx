@@ -1,6 +1,7 @@
 import React from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
 import PrimaryButton from '../../components/UI/buttons/PrimaryButton';
+import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
 
 const Dashboard = (): JSX.Element => (
   <AdminLayout>
@@ -9,5 +10,7 @@ const Dashboard = (): JSX.Element => (
     </div>
   </AdminLayout>
 );
+
+export const getServerSideProps = withAuthServer();
 
 export default Dashboard;

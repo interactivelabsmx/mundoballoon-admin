@@ -8,11 +8,17 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
 let apolloClient;
 
-function createApolloClient() {
+export interface ICreateApolloClient {
+  // Server URL (must be absolute)
+  graphQLUrl: string;
+  getToken: () => Promise<string> | string;
+}
+
+function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
   const setAuthorizationLink = setContext(async (_, { headers }) => {
     // This means we set the auth inline for create user
     if (headers?.authorization) return { headers };
-    const token = localStorage.getItem('ft');
+    const token = await getToken();
     if (token)
       return {
         headers: {
@@ -23,8 +29,9 @@ function createApolloClient() {
     return { headers };
   });
   const link = new HttpLink({
-    uri: 'https://localhost:5001/graphql/', // Server URL (must be absolute)
-    credentials: 'same-origin', // Additional fetch() options like `credentials` or `headers`
+    uri: graphQLUrl,
+    // Additional fetch() options like `credentials` or `headers`
+    credentials: 'same-origin',
   });
   const cache = new InMemoryCache({
     typePolicies: {
@@ -42,8 +49,8 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState) {
-  const _apolloClient = apolloClient ?? createApolloClient();
+export function initializeApollo(initialState, options: ICreateApolloClient) {
+  const _apolloClient = apolloClient ?? createApolloClient(options);
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
   // gets hydrated here
@@ -80,8 +87,8 @@ export function addApolloState(client, pageProps) {
   return pageProps;
 }
 
-export function useApollo(pageProps) {
+export function useApollo(pageProps, options: ICreateApolloClient) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
-  const store = initializeApollo(state);
+  const store = initializeApollo(state, options);
   return store;
 }

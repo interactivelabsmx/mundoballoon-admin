@@ -15,8 +15,10 @@ import {
   getAuth,
 } from '@firebase/auth';
 import { useRouter } from 'next/router';
+import { destroyCookie, setCookie } from 'nookies';
 
 import '../lib/firebaseAuth/firebaseClient';
+import { FI_COOKIE_OPTIONS } from '../lib/firebaseAuth/utils';
 
 interface IAuthContext {
   user?: User;
@@ -41,7 +43,7 @@ export function AuthProvider({ children }: IAuthProvider) {
 
   const onAuth = useCallback(
     async (user: User) => {
-      localStorage.setItem('ft', await user.getIdToken());
+      setCookie(null, 'fi', await user.getIdToken(), FI_COOKIE_OPTIONS);
       setUser(user);
     },
     [setUser]
@@ -49,7 +51,7 @@ export function AuthProvider({ children }: IAuthProvider) {
 
   const logout = useCallback(() => {
     setUser(null);
-    localStorage.setItem('ft', null);
+    destroyCookie(null, 'fi');
     signOut(auth).then(() => push('/'));
   }, [setUser, auth, push]);
 
