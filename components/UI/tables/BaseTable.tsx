@@ -1,55 +1,121 @@
 import React from 'react';
 import { useTable } from 'react-table';
 
-export enum TableColor {
-  LIGHT,
-  DARK,
-}
-
 export interface IBaseTable {
-  color?: TableColor;
   title: string;
   columns: any;
   data: any;
 }
 
-const BaseTable = ({
-  color = TableColor.LIGHT,
-  title,
-  columns,
-  data,
-}: IBaseTable): JSX.Element => {
+/* This example requires Tailwind CSS v2.0+ */
+const people = [
+  {
+    name: 'Jane Cooper',
+    title: 'Regional Paradigm Technician',
+    role: 'Admin',
+    email: 'jane.cooper@example.com',
+  },
+  {
+    name: 'Cody Fisher',
+    title: 'Product Directives Officer',
+    role: 'Owner',
+    email: 'cody.fisher@example.com',
+  },
+  // More people...
+];
+
+export function Example() {
+  return (
+    <div className="flex flex-col">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+          <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Name
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Title
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Email
+                  </th>
+                  <th
+                    scope="col"
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  >
+                    Role
+                  </th>
+                  <th scope="col" className="relative px-6 py-3">
+                    <span className="sr-only">Edit</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {people.map((person, personIdx) => (
+                  <tr
+                    key={person.email}
+                    className={personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                  >
+                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                      {person.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {person.title}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {person.email}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                      {person.role}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <a
+                        href="#"
+                        className="text-indigo-600 hover:text-indigo-900"
+                      >
+                        Edit
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+const BaseTable = ({ title, columns, data }: IBaseTable): JSX.Element => {
   const { getTableProps, getTableBodyProps, headers, rows, prepareRow } =
     useTable({ columns, data });
 
   return (
-    <div
-      className={
-        'relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded ' +
-        (color === TableColor.LIGHT ? 'bg-white' : 'bg-blueGray-700 text-white')
-      }
-    >
-      <div className="rounded-t mb-0 px-4 py-3 border-0">
-        <div className="flex flex-wrap items-center">
-          <div className="relative w-full px-4 max-w-full flex-grow flex-1">
-            {title && (
-              <h3
-                className={
-                  'font-semibold text-lg ' +
-                  (color === TableColor.LIGHT
-                    ? 'text-blueGray-700'
-                    : 'text-white')
-                }
-              >
-                {title}
-              </h3>
-            )}
+    <div>
+      {title && (
+        <div className="px-6 py-3">
+          <div className="flex flex-wrap items-center">
+            <h2 className="text-gray-500 text-2xl italic">{title}</h2>
           </div>
         </div>
-      </div>
-      <div className="block w-full overflow-x-auto">
+      )}
+
+      <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
         <table
-          className="items-center w-full bg-transparent border-collapse"
+          className="min-w-full divide-y divide-gray-200"
           {...getTableProps()}
         >
           <thead>
@@ -57,58 +123,37 @@ const BaseTable = ({
               {headers.map((column, i) => (
                 <th
                   key={i}
+                  scope="col"
                   {...column.getHeaderProps()}
-                  className={
-                    'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                    (color === TableColor.LIGHT
-                      ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                      : 'bg-blueGray-600 text-blueGray-200 border-blueGray-500')
-                  }
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                 >
                   {column.render('Header')}
                 </th>
               ))}
-              <th
-                className={
-                  'px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left ' +
-                  (color === TableColor.LIGHT
-                    ? 'bg-blueGray-50 text-blueGray-500 border-blueGray-100'
-                    : 'bg-blueGray-600 text-blueGray-200 border-blueGray-500')
-                }
-              ></th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
             </tr>
           </thead>
           <tbody {...getTableBodyProps()}>
-            {
-              // Loop over the table rows
-              rows.map((row, i) => {
-                // Prepare the row for display
-                prepareRow(row);
-                return (
-                  // Apply the row props
-                  <tr {...row.getRowProps()} key={i}>
-                    {
-                      // Loop over the rows cells
-                      row.cells.map((cell, j) => {
-                        // Apply the cell props
-                        return (
-                          <td
-                            {...cell.getCellProps()}
-                            key={j}
-                            className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"
-                          >
-                            {
-                              // Render the cell contents
-                              cell.render('Cell')
-                            }
-                          </td>
-                        );
-                      })
-                    }
-                  </tr>
-                );
-              })
-            }
+            {rows.map((row, i) => {
+              prepareRow(row);
+              return (
+                <tr
+                  key={i}
+                  {...row.getRowProps()}
+                  className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                >
+                  {row.cells.map((cell, j) => (
+                    <td
+                      key={j}
+                      {...cell.getCellProps()}
+                      className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                    >
+                      {cell.render('Cell')}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

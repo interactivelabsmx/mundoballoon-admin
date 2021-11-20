@@ -27,10 +27,11 @@ const FirebaseAuth = () => {
   const [createUser, { loading, error }] = useMutation(CREATE_USER);
   const onAuthComplete = async (user: User) => {
     const token = await user.getIdToken(true);
-    createUser({
+    await createUser({
       context: { headers: { authorization: `Bearer ${token}` } },
       variables: { userId: user.uid },
-    }).then(() => push('/admin/dashboard'));
+    });
+    push('/admin/dashboard');
   };
   const onDismissAlert = () => setRequestError('');
   return auth ? (

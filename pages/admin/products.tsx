@@ -1,8 +1,9 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import AdminLayout from '../../layouts/AdminLayout';
-import BaseTable, { TableColor } from '../../components/UI/tables/BaseTable';
+import BaseTable from '../../components/UI/tables/BaseTable';
 import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
+import SecundaryButton from '../../components/UI/buttons/SecundaryButton';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -109,27 +110,20 @@ const Products = (): JSX.Element => {
     <AdminLayout>
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <BaseTable
-            color={TableColor.DARK}
-            title="Products"
-            columns={columns}
-            data={nodes}
-          />
-          <div className="flex justify-between">
-            <button
-              color="blue"
+          <BaseTable title="Products" columns={columns} data={nodes} />
+          <div className="flex justify-between mt-4">
+            <SecundaryButton
               disabled={!pageInfo.hasPreviousPage}
               onClick={onClickPrevPage}
             >
               Prev Page
-            </button>
-            <button
-              color="blue"
+            </SecundaryButton>
+            <SecundaryButton
               disabled={!pageInfo.hasNextPage}
               onClick={onClickNextPage}
             >
               Next Page
-            </button>
+            </SecundaryButton>
           </div>
         </div>
       </div>

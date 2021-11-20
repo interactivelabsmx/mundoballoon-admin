@@ -8,12 +8,16 @@ const BaseButton = ({
   type = 'button',
   children,
   className,
-  onClick,
+  ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) => (
   <button
     type={type}
-    className={classNames(baseClassNames, className)}
-    onClick={onClick}
+    className={classNames(
+      baseClassNames,
+      className,
+      props.disabled && 'disabled:opacity-50'
+    )}
+    {...props}
   >
     {children}
   </button>
