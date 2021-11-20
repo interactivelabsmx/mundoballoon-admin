@@ -2,10 +2,11 @@ import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { initializeApp, cert } from 'firebase-admin/app';
 import { getAuth, UserRecord } from 'firebase-admin/auth';
 import { parseCookies } from 'nookies';
+import { cleanObject } from './utils';
 
 type IncomingGSSP<P> = (
   ctx: GetServerSidePropsContext,
-  user: UserRecord
+  user: Partial<UserRecord>
 ) => Promise<P>;
 
 type WithAuthServerSidePropsResult = GetServerSidePropsResult<{
@@ -31,18 +32,19 @@ export default function withAuthServer(
     const { req } = ctx;
     const cookies = parseCookies({ req });
     const auth = getAuth();
-    let user: UserRecord | null = null;
+    let userRecord: UserRecord | null = null;
     // No authcookie
     if (!cookies['fi'])
       return { redirect: { destination: '/login', permanent: false } };
 
     try {
       const decodedIdToken = await auth.verifyIdToken(cookies['fi']);
-      user = await auth.getUser(decodedIdToken.uid);
+      userRecord = await auth.getUser(decodedIdToken.uid);
     } catch {
       return { redirect: { destination: '/login', permanent: false } };
     }
 
+    const user: Partial<UserRecord> = cleanObject(userRecord);
     if (incomingGSSP) {
       const incomingGSSPResult = await incomingGSSP(ctx, user);
 
