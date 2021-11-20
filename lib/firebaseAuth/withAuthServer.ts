@@ -1,8 +1,8 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
-import { initializeApp, cert } from 'firebase-admin/app';
+import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getAuth, UserRecord } from 'firebase-admin/auth';
 import { parseCookies } from 'nookies';
-import { cleanObject } from './utils';
+import { cleanObject, FI } from './utils';
 
 type IncomingGSSP<P> = (
   ctx: GetServerSidePropsContext,
@@ -13,18 +13,20 @@ type WithAuthServerSidePropsResult = GetServerSidePropsResult<{
   [key: string]: any;
 }>;
 
-// type WithAuthServerSidePropsOptions = {
-//   any options you eventually would like to pass (required role...)
-// };
+type WithAuthServerSidePropsOptions = {
+  allowAll?: boolean;
+};
 
-initializeApp({
-  credential: cert(JSON.parse(process.env.FIREBASE_PRIVATE_KEY)),
-  projectId: 'mundoballoon-dev',
-});
+if (getApps().length < 1) {
+  initializeApp({
+    credential: cert(JSON.parse(process.env.FIREBASE_PRIVATE_KEY)),
+    projectId: 'mundoballoon-dev',
+  });
+}
 
 export default function withAuthServer(
-  incomingGSSP?: IncomingGSSP<WithAuthServerSidePropsResult> | null
-  // options?: WithAuthServerSidePropsOptions
+  incomingGSSP?: IncomingGSSP<WithAuthServerSidePropsResult> | null,
+  options?: WithAuthServerSidePropsOptions
 ) {
   return async (
     ctx: GetServerSidePropsContext
@@ -33,18 +35,31 @@ export default function withAuthServer(
     const cookies = parseCookies({ req });
     const auth = getAuth();
     let userRecord: UserRecord | null = null;
-    // No authcookie
-    if (!cookies['fi'])
+    const fi = cookies[FI];
+
+    // No authcookie and not allow all (login page allows all)
+    if (!fi && !options?.allowAll)
       return { redirect: { destination: '/login', permanent: false } };
 
-    try {
-      const decodedIdToken = await auth.verifyIdToken(cookies['fi']);
-      userRecord = await auth.getUser(decodedIdToken.uid);
-    } catch {
-      return { redirect: { destination: '/login', permanent: false } };
+    if (fi) {
+      try {
+        const decodedIdToken = await auth.verifyIdToken(cookies[FI]);
+        userRecord = await auth.getUser(decodedIdToken.uid);
+      } catch {
+        return { redirect: { destination: '/login', permanent: false } };
+      }
     }
 
-    const user: Partial<UserRecord> = cleanObject(userRecord);
+    // If allow all and already logged in go to dashboard
+    if (options?.allowAll && userRecord)
+      return {
+        redirect: { destination: '/admin/dashboard', permanent: false },
+      };
+
+    // No user record and allow all
+    const user: Partial<UserRecord> | null = userRecord
+      ? cleanObject(userRecord)
+      : null;
     if (incomingGSSP) {
       const incomingGSSPResult = await incomingGSSP(ctx, user);
 

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import FirebaseAuth from '../components/Auth/FirebaseAuth';
 import { useAuth } from '../containers/AuthProvider';
+import withAuthServer from '../lib/firebaseAuth/withAuthServer';
 
 const Login = (): JSX.Element => {
   const { user } = useAuth();
@@ -51,5 +52,7 @@ const Login = (): JSX.Element => {
     </>
   );
 };
+
+export const getServerSideProps = withAuthServer(null, { allowAll: true });
 
 export default Login;

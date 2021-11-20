@@ -9,9 +9,11 @@ export const FI_COOKIE_OPTIONS = {
   secure: true,
 };
 
+export const FI = 'fi';
+
 export const getCookieIdToken = () => {
   const cookies = parseCookies();
-  return cookies['fi'];
+  return cookies[FI];
 };
 
 export function cleanObject(object: any) {

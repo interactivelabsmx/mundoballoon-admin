@@ -6,7 +6,6 @@ import React, {
   ReactNode,
   useCallback,
 } from 'react';
-// import nookies from 'nookies';
 import {
   Auth,
   onAuthStateChanged,
@@ -16,9 +15,9 @@ import {
 } from '@firebase/auth';
 import { useRouter } from 'next/router';
 import { destroyCookie, setCookie } from 'nookies';
+import { FI, FI_COOKIE_OPTIONS } from '../lib/firebaseAuth/utils';
 
 import '../lib/firebaseAuth/firebaseClient';
-import { FI_COOKIE_OPTIONS } from '../lib/firebaseAuth/utils';
 
 interface IAuthContext {
   user?: User;
@@ -43,16 +42,16 @@ export function AuthProvider({ children }: IAuthProvider) {
 
   const onAuth = useCallback(
     async (user: User) => {
-      setCookie(null, 'fi', await user.getIdToken(), FI_COOKIE_OPTIONS);
+      setCookie({}, FI, await user.getIdToken(), FI_COOKIE_OPTIONS);
       setUser(user);
     },
     [setUser]
   );
 
   const logout = useCallback(() => {
-    setUser(null);
-    destroyCookie(null, 'fi');
     signOut(auth).then(() => push('/'));
+    destroyCookie(null, FI, { path: '/' });
+    setUser(null);
   }, [setUser, auth, push]);
 
   useEffect(() => {
