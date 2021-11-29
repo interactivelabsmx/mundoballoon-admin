@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup/dist/yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import ProductCategorySelector from './ProductCategorySelector';

@@ -4,6 +4,8 @@ import AdminLayout from '../../layouts/AdminLayout';
 import BaseTable from '../../components/UI/tables/BaseTable';
 import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
 import SecundaryButton from '../../components/UI/buttons/SecundaryButton';
+import PrimaryLinkButton from '../../components/UI/links/PrimaryLinkButton';
+import SectionHeader from '../../components/UI/SectionHeader';
 
 export const GET_PRODUCTS = gql`
   fragment categoryInfo on ProductCategory {
@@ -108,9 +110,10 @@ const Products = (): JSX.Element => {
     fetchMore({ variables: { before: pageInfo.startCursor } });
   return (
     <AdminLayout>
+      <SectionHeader text="Products" />
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <BaseTable title="Products" columns={columns} data={nodes} />
+          <BaseTable columns={columns} data={nodes} />
           <div className="flex justify-between mt-4">
             <SecundaryButton
               disabled={!pageInfo.hasPreviousPage}
@@ -124,6 +127,11 @@ const Products = (): JSX.Element => {
             >
               Next Page
             </SecundaryButton>
+          </div>
+          <div className="mt-4 text-right">
+            <PrimaryLinkButton href="/admin/addProduct">
+              Add New Product
+            </PrimaryLinkButton>
           </div>
         </div>
       </div>

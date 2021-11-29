@@ -1,13 +1,11 @@
 import React from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
-import PrimaryButton from '../../components/UI/buttons/PrimaryButton';
 import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
+import SectionHeader from '../../components/UI/SectionHeader';
 
 const Dashboard = (): JSX.Element => (
   <AdminLayout>
-    <div className="flex">
-      <PrimaryButton>Base Button</PrimaryButton>
-    </div>
+    <SectionHeader text="Dashbaord" />
   </AdminLayout>
 );
 

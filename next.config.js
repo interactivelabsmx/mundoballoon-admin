@@ -1,5 +1,5 @@
 module.exports = {
   images: {
-    domains: ['images.unsplash.com', 'tailwindui.com', 'graph.facebook.com'],
+    domains: ['images.unsplash.com', 'tailwindui.com', 'graph.facebook.com']
   },
 }

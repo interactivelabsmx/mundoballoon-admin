@@ -6,11 +6,11 @@
   "repository": "https://github.com/interactivelabsmx/mundoballoon-admin",
   "license": "MIT",
   "dependencies": {
-    "@apollo/client": "3.4.17",
+    "@apollo/client": "3.5.5",
     "@headlessui/react": "^1.4.2",
     "@heroicons/react": "^1.0.5",
     "@hookform/resolvers": "^2.8.3",
-    "@popperjs/core": "2.10.2",
+    "@popperjs/core": "2.11.0",
     "@tailwindcss/forms": "0.3.4",
     "@tailwindcss/ui": "^0.7.2",
     "firebase": "9.5.0",
@@ -21,7 +21,7 @@
     "nookies": "^2.5.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.20.1",
+    "react-hook-form": "^7.20.4",
     "react-scripts": "4.0.3",
     "react-table": "7.7.0",
     "tailwindcss": "2.2.19",
@@ -53,8 +53,8 @@
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.9",
-    "@types/react": "^17.0.35",
+    "@types/node": "^16.11.10",
+    "@types/react": "^17.0.37",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "autoprefixer": "10.4.0",
@@ -62,9 +62,9 @@
     "eslint-config-next": "^12.0.4",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.27.1",
-    "lint-staged": "^12.0.3",
-    "postcss": "8.3.11",
-    "prettier": "^2.4.1",
+    "lint-staged": "^12.1.2",
+    "postcss": "8.4.4",
+    "prettier": "^2.5.0",
     "typescript": "^4.5.2"
   }
 }
