@@ -50,7 +50,7 @@ const FirebasePhoneForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <Controller
           name="phoneNumber"
@@ -60,16 +60,20 @@ const FirebasePhoneForm = ({
               {...field}
               label="Phone Number"
               placeholder="(555) 555-5555"
-              type="phone"
-              autoComplete="phone"
+              type="tel"
+              autoComplete="tel"
               error={errors?.phoneNumber?.message}
             />
           )}
         />
       </div>
       <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-        <PrimaryButton type="submit">Get Code</PrimaryButton>
-        <SecundaryButton onClick={onCancel}>Cancel</SecundaryButton>
+        <PrimaryButton type="submit" className="mx-4">
+          Get Code
+        </PrimaryButton>
+        <SecundaryButton onClick={onCancel} className="mx-4">
+          Cancel
+        </SecundaryButton>
       </div>
     </form>
   );

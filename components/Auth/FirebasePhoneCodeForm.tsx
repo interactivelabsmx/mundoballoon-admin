@@ -54,7 +54,7 @@ const FirebasePhoneCodeForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      <div>
+      <div className="mb-8">
         <Controller
           name="code"
           control={control}
@@ -62,7 +62,7 @@ const FirebasePhoneCodeForm = ({
             <Input
               {...field}
               label="Code"
-              type="string"
+              type="text"
               placeholder=""
               error={errors?.code?.message}
             />

@@ -31,8 +31,8 @@ const FirebasePhoneAuth = ({
       <div id="recaptcha-verifier-container" />
       <Modal open={open} setOpen={setOpen}>
         <div className="sm:flex sm:items-start">
-          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-            <div className="mt-2">
+          <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+            <div className="mt-2 w-full">
               {!confirmationResult ? (
                 <FirebasePhoneForm
                   onCancel={closeModal}
