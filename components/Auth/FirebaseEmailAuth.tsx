@@ -1,7 +1,7 @@
 import { Dispatch } from 'react';
+import { AuthError, User } from '@firebase/auth';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { AuthError, User } from '@firebase/auth';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import Input from '../UI/form/Input';
@@ -36,9 +36,7 @@ const FirebaseEmailAuth = ({
     resolver: yupResolver(userPwdSchema),
   });
 
-  const onError = (error: AuthError) => {
-    setRequestError(error.message);
-  };
+  const onError = (error: AuthError) => setRequestError(error.message);
 
   const handleAuh = (user: User) => {
     onAuthComplete(user);

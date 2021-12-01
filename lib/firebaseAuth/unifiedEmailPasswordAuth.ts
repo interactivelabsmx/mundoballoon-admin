@@ -1,19 +1,14 @@
 import {
-  Auth,
-  AuthError,
   AuthErrorCodes,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   UserCredential,
-  User,
 } from '@firebase/auth';
+import { IBaeFunctionAuth } from './firebaseAuthTypes';
 
-interface IUnifiedEmailPasswordAuth {
-  auth: Auth;
+interface IUnifiedEmailPasswordAuth extends IBaeFunctionAuth {
   email: string;
   password: string;
-  onAuth: (user: User) => void;
-  onError?: (error: AuthError) => void;
 }
 
 const unifiedEmailPasswordAuth = ({

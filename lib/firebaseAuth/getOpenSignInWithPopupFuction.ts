@@ -1,16 +1,8 @@
-import {
-  User,
-  Auth,
-  AuthError,
-  AuthProvider,
-  signInWithPopup,
-} from '@firebase/auth';
+import { AuthProvider, signInWithPopup } from '@firebase/auth';
+import { IBaeFunctionAuth } from './firebaseAuthTypes';
 
-interface IGetOpenSignInWithPopupFuction {
-  auth: Auth;
+interface IGetOpenSignInWithPopupFuction extends IBaeFunctionAuth {
   provider: AuthProvider;
-  onAuth: (user: User) => void;
-  onError: (error: AuthError) => void;
 }
 
 const getOpenSignInWithPopupFuction =

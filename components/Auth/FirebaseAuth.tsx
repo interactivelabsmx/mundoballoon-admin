@@ -6,6 +6,7 @@ import { User } from '@firebase/auth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
+import FirebasePhoneAuth from './FirebasePhoneAuth';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import { useAuth } from '../../containers/AuthProvider';
@@ -52,6 +53,10 @@ const FirebaseAuth = () => {
               setRequestError={setRequestError}
             />
             <FirebaseGoogleButton
+              onAuthComplete={onAuthComplete}
+              setRequestError={setRequestError}
+            />
+            <FirebasePhoneAuth
               onAuthComplete={onAuthComplete}
               setRequestError={setRequestError}
             />
