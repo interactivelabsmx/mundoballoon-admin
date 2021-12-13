@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
+import { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { User } from '@firebase/auth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
@@ -10,6 +10,7 @@ import FirebasePhoneAuth from './FirebasePhoneAuth';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import { useAuth } from '../../containers/AuthProvider';
+import { setRecaptchaVerifier } from '../../lib/firebaseAuth/phoneAuth';
 
 const CREATE_USER = gql`
   mutation CreateUser($userId: String!) {
@@ -35,6 +36,10 @@ const FirebaseAuth = () => {
     push('/admin/dashboard');
   };
   const onDismissAlert = () => setRequestError('');
+  useEffect(() => {
+    if (auth) setRecaptchaVerifier();
+  }, [auth]);
+
   return auth ? (
     <>
       {loading && <div>Authenticating</div>}

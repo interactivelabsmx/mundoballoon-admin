@@ -4,7 +4,7 @@ interface ILabelBase {
 }
 
 const LabelBase = ({ htmlFor, label }: ILabelBase) => (
-  <label htmlFor={htmlFor} className="block text-sm font-medium text-gray-700">
+  <label htmlFor={htmlFor} className="block text-sm font-medium text-gray">
     {label}
   </label>
 );

@@ -1,8 +1,9 @@
 import React from 'react';
 import { gql, useQuery } from '@apollo/client';
 import { ControllerRenderProps } from 'react-hook-form';
-import LoadingText from '../UI/LoadingText';
+import LoadingText from '../UI/loading/LoadingText';
 import SelectNative from '../UI/form/SelectNative';
+import { INewProductForm } from './AddProductForm';
 
 export const GET_PRODUCT_CATEGORIES = gql`
   query {
@@ -14,7 +15,7 @@ export const GET_PRODUCT_CATEGORIES = gql`
 `;
 
 interface IProductCategorySelector {
-  field: ControllerRenderProps;
+  field: ControllerRenderProps<INewProductForm, 'productCategoryId'>;
   label: string;
   error: string;
 }

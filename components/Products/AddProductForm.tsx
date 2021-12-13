@@ -16,7 +16,7 @@ export const newProductSchema = yup
   })
   .required();
 
-interface INewProductForm extends Asserts<typeof newProductSchema> {}
+export interface INewProductForm extends Asserts<typeof newProductSchema> {}
 
 const AddProductForm = (): JSX.Element => {
   const {

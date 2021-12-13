@@ -34,9 +34,7 @@ const TabButtons = () => (
             key={tab.name}
             href={tab.href}
             className={classNames(
-              tab.current
-                ? 'text-gray-900'
-                : 'text-gray-500 hover:text-gray-700',
+              tab.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray',
               tabIdx === 0 ? 'rounded-l-lg' : '',
               tabIdx === tabs.length - 1 ? 'rounded-r-lg' : '',
               'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10'

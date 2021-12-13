@@ -13,7 +13,7 @@ const NavBarProfile = () => {
     ''
   ).slice(0, 13);
   return (
-    <div className="flex-shrink-0 flex bg-gray-700 p-4 justify-around">
+    <div className="flex-shrink-0 flex bg-gray p-4 justify-around">
       <a href="#" className="flex-shrink-0 group block">
         <div className="flex items-center">
           <div>
