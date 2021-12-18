@@ -70,10 +70,10 @@ const FirebasePhoneCodeForm = ({
         />
       </div>
       <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-        <PrimaryButton type="submit" className="my-4">
+        <PrimaryButton type="submit" className="mx-4">
           Confirm
         </PrimaryButton>
-        <SecundaryButton onClick={onCancel} className="my-4">
+        <SecundaryButton onClick={onCancel} className="mx-4">
           Cancel
         </SecundaryButton>
       </div>
