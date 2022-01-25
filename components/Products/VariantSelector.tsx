@@ -1,18 +1,9 @@
 import React, { useEffect } from 'react';
-import { gql, useQuery } from '@apollo/client';
 import { ControllerRenderProps } from 'react-hook-form';
 import LoadingText from '../UI/loading/LoadingText';
 import SelectNative from '../UI/form/SelectNative';
 import { INewProductVariantForm } from './AddProductVariant';
-
-export const GET_VARIANTS = gql`
-  query GetVariants {
-    variants {
-      variantId
-      name
-    }
-  }
-`;
+import { useGetVariantsQuery } from './graphql/VariantSelector.gql';
 
 interface IVariantSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantId'>;
@@ -25,7 +16,7 @@ const VariantSelector = ({
   label,
   error,
 }: IVariantSelector): JSX.Element => {
-  const { loading, error: loadError, data } = useQuery(GET_VARIANTS);
+  const { loading, error: loadError, data } = useGetVariantsQuery();
   useEffect(() => {
     if (!field.value && data?.variants && data?.variants.length > 0)
       field.onChange({

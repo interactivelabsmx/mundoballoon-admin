@@ -3,44 +3,74 @@ import * as Types from '../../../types/graphql';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type Unnamed_1_QueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetProductCategoriesQueryVariables = Types.Exact<{
+  [key: string]: never;
+}>;
 
+export type GetProductCategoriesQuery = {
+  __typename?: 'Query';
+  productCategories: Array<{
+    __typename?: 'ProductCategory';
+    productCategoryId: number;
+    name?: string | null | undefined;
+  }>;
+};
 
-export type Unnamed_1_Query = { __typename?: 'Query', productCategories: Array<{ __typename?: 'ProductCategory', productCategoryId: number, name?: string | null | undefined }> };
-
-
-export const Document = gql`
-    {
-  productCategories {
-    productCategoryId
-    name
+export const GetProductCategoriesDocument = gql`
+  query GetProductCategories {
+    productCategories {
+      productCategoryId
+      name
+    }
   }
-}
-    `;
+`;
 
 /**
- * __useQuery__
+ * __useGetProductCategoriesQuery__
  *
- * To run a query within a React component, call `useQuery` and pass it any options that fit your needs.
- * When your component renders, `useQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetProductCategoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductCategoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useQuery({
+ * const { data, loading, error } = useGetProductCategoriesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useQuery(baseOptions?: Apollo.QueryHookOptions<Query, QueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<Query, QueryVariables>(Document, options);
-      }
-export function useLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Query, QueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<Query, QueryVariables>(Document, options);
-        }
-export type QueryHookResult = ReturnType<typeof useQuery>;
-export type LazyQueryHookResult = ReturnType<typeof useLazyQuery>;
-export type QueryResult = Apollo.QueryResult<Query, QueryVariables>;
+export function useGetProductCategoriesQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetProductCategoriesQuery,
+    GetProductCategoriesQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<
+    GetProductCategoriesQuery,
+    GetProductCategoriesQueryVariables
+  >(GetProductCategoriesDocument, options);
+}
+export function useGetProductCategoriesLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetProductCategoriesQuery,
+    GetProductCategoriesQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<
+    GetProductCategoriesQuery,
+    GetProductCategoriesQueryVariables
+  >(GetProductCategoriesDocument, options);
+}
+export type GetProductCategoriesQueryHookResult = ReturnType<
+  typeof useGetProductCategoriesQuery
+>;
+export type GetProductCategoriesLazyQueryHookResult = ReturnType<
+  typeof useGetProductCategoriesLazyQuery
+>;
+export type GetProductCategoriesQueryResult = Apollo.QueryResult<
+  GetProductCategoriesQuery,
+  GetProductCategoriesQueryVariables
+>;

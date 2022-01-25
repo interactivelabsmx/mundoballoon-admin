@@ -3,20 +3,25 @@ import * as Types from '../../../types/graphql';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GetVariantsQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetVariantsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
-
-export type GetVariantsQuery = { __typename?: 'Query', variants: Array<{ __typename?: 'Variant', variantId: number, name?: string | null | undefined }> };
-
+export type GetVariantsQuery = {
+  __typename?: 'Query';
+  variants: Array<{
+    __typename?: 'Variant';
+    variantId: number;
+    name?: string | null | undefined;
+  }>;
+};
 
 export const GetVariantsDocument = gql`
-    query GetVariants {
-  variants {
-    variantId
-    name
+  query GetVariants {
+    variants {
+      variantId
+      name
+    }
   }
-}
-    `;
+`;
 
 /**
  * __useGetVariantsQuery__
@@ -33,14 +38,35 @@ export const GetVariantsDocument = gql`
  *   },
  * });
  */
-export function useGetVariantsQuery(baseOptions?: Apollo.QueryHookOptions<GetVariantsQuery, GetVariantsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetVariantsQuery, GetVariantsQueryVariables>(GetVariantsDocument, options);
-      }
-export function useGetVariantsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetVariantsQuery, GetVariantsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetVariantsQuery, GetVariantsQueryVariables>(GetVariantsDocument, options);
-        }
+export function useGetVariantsQuery(
+  baseOptions?: Apollo.QueryHookOptions<
+    GetVariantsQuery,
+    GetVariantsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetVariantsQuery, GetVariantsQueryVariables>(
+    GetVariantsDocument,
+    options
+  );
+}
+export function useGetVariantsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<
+    GetVariantsQuery,
+    GetVariantsQueryVariables
+  >
+) {
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetVariantsQuery, GetVariantsQueryVariables>(
+    GetVariantsDocument,
+    options
+  );
+}
 export type GetVariantsQueryHookResult = ReturnType<typeof useGetVariantsQuery>;
-export type GetVariantsLazyQueryHookResult = ReturnType<typeof useGetVariantsLazyQuery>;
-export type GetVariantsQueryResult = Apollo.QueryResult<GetVariantsQuery, GetVariantsQueryVariables>;
+export type GetVariantsLazyQueryHookResult = ReturnType<
+  typeof useGetVariantsLazyQuery
+>;
+export type GetVariantsQueryResult = Apollo.QueryResult<
+  GetVariantsQuery,
+  GetVariantsQueryVariables
+>;

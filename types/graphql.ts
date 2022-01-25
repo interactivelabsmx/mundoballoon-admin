@@ -1,8 +1,14 @@
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -36,7 +42,7 @@ export type AllProductsEdge = {
 
 export enum ApplyPolicy {
   AfterResolver = 'AFTER_RESOLVER',
-  BeforeResolver = 'BEFORE_RESOLVER'
+  BeforeResolver = 'BEFORE_RESOLVER',
 }
 
 export type Claim = {
@@ -111,16 +117,13 @@ export type Mutation = {
   createUser: CreateUserPayload;
 };
 
-
 export type MutationCreateProductArgs = {
   input: CreateProductRequestInput;
 };
 
-
 export type MutationCreateProductVariantArgs = {
   input: CreateProductVariantRequestInput;
 };
-
 
 export type MutationCreateUserArgs = {
   input: CreateUserRequestInput;
@@ -232,7 +235,6 @@ export type Query = {
   variants: Array<Variant>;
 };
 
-
 export type QueryAllProductsArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -241,11 +243,9 @@ export type QueryAllProductsArgs = {
   order?: InputMaybe<Array<ProductSortInput>>;
 };
 
-
 export type QueryProductByIdArgs = {
   productId: Scalars['Int'];
 };
-
 
 export type QueryVariantValuesArgs = {
   variantId: Scalars['Int'];
@@ -261,7 +261,7 @@ export type Site = {
 
 export enum SortEnumType {
   Asc = 'ASC',
-  Desc = 'DESC'
+  Desc = 'DESC',
 }
 
 export type User = {

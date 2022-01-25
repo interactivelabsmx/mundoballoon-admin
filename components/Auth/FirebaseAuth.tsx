@@ -1,6 +1,4 @@
-import gql from 'graphql-tag';
 import { useState, useEffect } from 'react';
-import { useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { User } from '@firebase/auth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
@@ -11,22 +9,13 @@ import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import { useAuth } from '../../containers/AuthProvider';
 import { setRecaptchaVerifier } from '../../lib/firebaseAuth/phoneAuth';
-
-const CREATE_USER = gql`
-  mutation CreateUser($userId: String!) {
-    createUser(input: { userId: $userId }) {
-      user {
-        id
-      }
-    }
-  }
-`;
+import { useCreateUserMutation } from './graphql/FirebaseAuth.gql';
 
 const FirebaseAuth = () => {
   const { push } = useRouter();
   const { auth } = useAuth();
   const [requestError, setRequestError] = useState('');
-  const [createUser, { loading, error }] = useMutation(CREATE_USER);
+  const [createUser, { loading, error }] = useCreateUserMutation();
   const onAuthComplete = async (user: User) => {
     const token = await user.getIdToken(true);
     await createUser({

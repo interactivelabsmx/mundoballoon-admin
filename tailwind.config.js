@@ -5,7 +5,5 @@ module.exports = {
     './layouts/**/*.tsx',
     './pages/**/*.tsx',
   ],
-  plugins: [
-    require('@tailwindcss/forms'),
-  ],
-}
+  plugins: [require('@tailwindcss/forms')],
+};

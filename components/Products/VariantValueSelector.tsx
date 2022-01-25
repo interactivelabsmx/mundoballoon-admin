@@ -3,7 +3,7 @@ import { ControllerRenderProps } from 'react-hook-form';
 import LoadingText from '../UI/loading/LoadingText';
 import SelectNative from '../UI/form/SelectNative';
 import { INewProductVariantForm } from './AddProductVariant';
-import { useGetVariantValuesQuery } from './VariantValueSelector.graphql';
+import { useGetVariantValuesQuery } from './graphql/VariantValueSelector.gql';
 
 interface IVariantValueSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantValueId'>;

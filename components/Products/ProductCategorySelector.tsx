@@ -1,18 +1,9 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
 import { ControllerRenderProps } from 'react-hook-form';
 import LoadingText from '../UI/loading/LoadingText';
 import SelectNative from '../UI/form/SelectNative';
 import { INewProductForm } from './AddProductForm';
-
-export const GET_PRODUCT_CATEGORIES = gql`
-  query {
-    productCategories {
-      productCategoryId
-      name
-    }
-  }
-`;
+import { useGetProductCategoriesQuery } from './graphql/ProductCategorySelector.gql';
 
 interface IProductCategorySelector {
   field: ControllerRenderProps<INewProductForm, 'productCategoryId'>;
@@ -25,7 +16,7 @@ const ProductCategorySelector = ({
   label,
   error,
 }: IProductCategorySelector): JSX.Element => {
-  const { loading, error: loadError, data } = useQuery(GET_PRODUCT_CATEGORIES);
+  const { loading, error: loadError, data } = useGetProductCategoriesQuery();
 
   if (loading) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;

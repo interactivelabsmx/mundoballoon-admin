@@ -1,17 +1,7 @@
 import { ControllerRenderProps } from 'react-hook-form';
-import { gql, useQuery } from '@apollo/client';
 import LoadingText from '../loading/LoadingText';
 import { IUserPhoneForm } from '../../Auth/FirebasePhoneForm';
-
-export const GET_PRODUCT_CATEGORIES = gql`
-  query GetCountryCodes {
-    countryCodes {
-      fifa
-      dial
-      officialNameEn
-    }
-  }
-`;
+import { useGetCountryCodesQuery } from './graphql/CountryCodeSelector.gql';
 
 interface ICountryCodeSelector {
   field: ControllerRenderProps<IUserPhoneForm, 'countryCode'>;
@@ -22,7 +12,7 @@ const CountryCodeSelector = ({
   field,
   label,
 }: ICountryCodeSelector): JSX.Element => {
-  const { loading, error: loadError, data } = useQuery(GET_PRODUCT_CATEGORIES);
+  const { loading, error: loadError, data } = useGetCountryCodesQuery();
 
   if (loading) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;
