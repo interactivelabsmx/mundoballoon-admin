@@ -4,7 +4,7 @@ import LoadingText from '../loading/LoadingText';
 import { IUserPhoneForm } from '../../Auth/FirebasePhoneForm';
 
 export const GET_PRODUCT_CATEGORIES = gql`
-  query {
+  query GetCountryCodes {
     countryCodes {
       fifa
       dial

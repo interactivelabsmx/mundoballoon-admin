@@ -1,79 +1,13 @@
 import React from 'react';
-import { gql, useQuery } from '@apollo/client';
 import AdminLayout from '../../layouts/AdminLayout';
 import BaseTable from '../../components/UI/tables/BaseTable';
 import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
 import SecundaryButton from '../../components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '../../components/UI/links/PrimaryLinkButton';
 import SectionHeader from '../../components/UI/SectionHeader';
+import { useAllProductsQuery } from './graphql/products.gql';
 
-export const GET_PRODUCTS = gql`
-  fragment categoryInfo on ProductCategory {
-    productCategoryId
-    name
-    description
-  }
-
-  fragment mediaInfo on ProductVariantMedium {
-    productVariantMediaId
-    mediaType
-    url
-    quality
-  }
-
-  fragment varitanInfo on ProductVariant {
-    productVariantId
-    sku
-    variantValueId
-    productId
-    name
-    description
-    price
-    compareAtPrice
-    weight
-    taxable
-    storeOnly
-    isBundle
-    variant {
-      value
-    }
-    media {
-      ...mediaInfo
-    }
-  }
-
-  fragment productInfo on Product {
-    productId
-    name
-    description
-    price
-    category {
-      ...categoryInfo
-    }
-    variants {
-      ...varitanInfo
-    }
-  }
-
-  query allProducts($first: Int = 5, $after: String) {
-    allProducts(first: $first, after: $after, order: [{ price: ASC }]) {
-      nodes {
-        ...productInfo
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-        hasPreviousPage
-        startCursor
-      }
-    }
-  }
-`;
-
-export const productsQueryVars = {
-  first: 5,
-  after: null,
-};
+export const productsQueryVars = { first: 5, after: null };
 
 const columns = [
   {
@@ -95,7 +29,7 @@ const columns = [
 ];
 
 const Products = (): JSX.Element => {
-  const { loading, error, data, fetchMore } = useQuery(GET_PRODUCTS, {
+  const { loading, error, data, fetchMore } = useAllProductsQuery({
     variables: productsQueryVars,
   });
 

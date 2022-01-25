@@ -5,46 +5,55 @@ import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
-import ProductCategorySelector from './ProductCategorySelector';
+import VariantSelector from './VariantSelector';
 import Input from '../UI/form/Input';
 import PrimaryButton from '../UI/buttons/PrimaryButton';
 import LoadingText from '../UI/loading/LoadingText';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
+import VariantValueSelector from './VariantValueSelector';
 
 const CREATE_PRODUCT = gql`
-  mutation CreateProduct($createProductPayload: CreateProductRequestInput!) {
-    createProduct(input: $createProductPayload) {
-      product {
-        productId
+  mutation CreateProductVariant(
+    $createProductVariantPayload: CreateProductVariantRequestInput!
+  ) {
+    createProductVariant(input: $createProductVariantPayload) {
+      productVariant {
+        productVariantId
       }
     }
   }
 `;
 
-export const newProductSchema = yup
+export const newProductVariantSchema = yup
   .object({
+    sku: yup.string().required(),
     name: yup.string().required(),
     description: yup.string().required(),
-    productCategoryId: yup.number().positive().required(),
     price: yup.number().positive().required(),
+    productId: yup.number().positive().required(),
+    variantId: yup.number().positive().required(),
+    variantValueId: yup.number().positive().required(),
   })
   .required();
 
-export interface INewProductForm extends Asserts<typeof newProductSchema> {}
+export interface INewProductVariantForm
+  extends Asserts<typeof newProductVariantSchema> {}
 
-const AddProductForm = (): JSX.Element => {
+const AddProductVariant = (): JSX.Element => {
   const {
     control,
+    register,
     handleSubmit,
+    getValues,
     formState: { errors },
-  } = useForm<INewProductForm>({
-    resolver: yupResolver(newProductSchema),
+  } = useForm<INewProductVariantForm>({
+    resolver: yupResolver(newProductVariantSchema),
   });
 
   const { push } = useRouter();
   const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT);
-  const onSubmit: SubmitHandler<INewProductForm> = async (data) => {
+  const onSubmit: SubmitHandler<INewProductVariantForm> = async (data) => {
     const result = await createProduct({
       variables: {
         createProductPayload: { ...data },
@@ -53,8 +62,26 @@ const AddProductForm = (): JSX.Element => {
     if (!result.errors) push('/admin/products');
   };
 
+  const variantId = getValues('variantId');
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="hidden" {...register('productId')} />
+      <div className="mb-8">
+        <Controller
+          name="sku"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Product SKU"
+              placeholder="The unique identifier for inventory"
+              error={errors?.sku?.message}
+            />
+          )}
+        />
+      </div>
       <div className="mb-8">
         <Controller
           name="name"
@@ -104,25 +131,42 @@ const AddProductForm = (): JSX.Element => {
       </div>
       <div className="mb-8">
         <Controller
-          name="productCategoryId"
+          name="variantId"
           control={control}
           defaultValue={undefined}
           render={({ field }) => (
-            <ProductCategorySelector
+            <VariantSelector
               field={field}
-              label="Product Category"
-              error={errors?.productCategoryId?.message}
+              label="Variants"
+              error={errors?.variantId?.message}
             />
           )}
         />
       </div>
+      {variantId && (
+        <div className="mb-8">
+          <Controller
+            name="variantValueId"
+            control={control}
+            defaultValue={undefined}
+            render={({ field }) => (
+              <VariantValueSelector
+                field={field}
+                variantId={variantId}
+                label="Variant Values"
+                error={errors?.variantValueId?.message}
+              />
+            )}
+          />
+        </div>
+      )}
       {error && (
         <SimpleTextAlert
           text={error.message}
           type={SimpleTextAlertType.ERROR}
         />
       )}
-      {loading && <LoadingText text="Creating product..." />}
+      {loading && <LoadingText text="Creating product variant..." />}
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>
           Save
@@ -132,4 +176,4 @@ const AddProductForm = (): JSX.Element => {
   );
 };
 
-export default AddProductForm;
+export default AddProductVariant;

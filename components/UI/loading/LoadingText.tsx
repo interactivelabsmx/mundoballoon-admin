@@ -1,8 +1,12 @@
 import LoadingSpinner from './LoadingSpinner';
 
-const LoadingText = () => (
+interface ILoadingText {
+  text?: string;
+}
+
+const LoadingText = ({ text = 'Loading...' }: ILoadingText) => (
   <div className="w-full flex align-middle p-2">
-    <LoadingSpinner /> Loading
+    <LoadingSpinner /> {text}
   </div>
 );
 
