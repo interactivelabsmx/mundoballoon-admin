@@ -3,7 +3,6 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import ProductCategorySelector from './ProductCategorySelector';
 import Input from '../UI/form/Input';
@@ -11,16 +10,7 @@ import PrimaryButton from '../UI/buttons/PrimaryButton';
 import LoadingText from '../UI/loading/LoadingText';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
-
-const CREATE_PRODUCT = gql`
-  mutation CreateProduct($createProductPayload: CreateProductRequestInput!) {
-    createProduct(input: $createProductPayload) {
-      product {
-        productId
-      }
-    }
-  }
-`;
+import { useCreateProductMutation } from './graphql/AddProductForm.gql';
 
 export const newProductSchema = yup
   .object({
@@ -43,7 +33,7 @@ const AddProductForm = (): JSX.Element => {
   });
 
   const { push } = useRouter();
-  const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT);
+  const [createProduct, { loading, error }] = useCreateProductMutation();
   const onSubmit: SubmitHandler<INewProductForm> = async (data) => {
     const result = await createProduct({
       variables: {

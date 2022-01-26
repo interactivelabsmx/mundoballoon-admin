@@ -12,6 +12,7 @@ import LoadingText from '../UI/loading/LoadingText';
 import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
 import VariantValueSelector from './VariantValueSelector';
+import { Product } from '../../types/graphql';
 
 const CREATE_PRODUCT = gql`
   mutation CreateProductVariant(
@@ -40,15 +41,25 @@ export const newProductVariantSchema = yup
 export interface INewProductVariantForm
   extends Asserts<typeof newProductVariantSchema> {}
 
-const AddProductVariant = (): JSX.Element => {
+export interface IAddProductVariant {
+  product: Product;
+}
+
+const AddProductVariant = ({ product }: IAddProductVariant): JSX.Element => {
   const {
+    watch,
     control,
     register,
     handleSubmit,
-    getValues,
     formState: { errors },
   } = useForm<INewProductVariantForm>({
     resolver: yupResolver(newProductVariantSchema),
+    defaultValues: {
+      productId: product.productId,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+    },
   });
 
   const { push } = useRouter();
@@ -62,7 +73,7 @@ const AddProductVariant = (): JSX.Element => {
     if (!result.errors) push('/admin/products');
   };
 
-  const variantId = getValues('variantId');
+  const variantId = watch('variantId');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

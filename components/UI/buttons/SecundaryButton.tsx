@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import classnames from 'classnames';
+import classNames from '../../../lib/utils/classnames';
 import BaseButton from './BaseButton';
 
 const secundaryClassNames =
@@ -8,7 +8,7 @@ const secundaryClassNames =
 const SecundaryButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
   <BaseButton
     {...props}
-    className={classnames(secundaryClassNames, props.className)}
+    className={classNames(secundaryClassNames, props.className)}
   />
 );
 

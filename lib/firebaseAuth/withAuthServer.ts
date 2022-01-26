@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from 'next';
 import { initializeApp, cert, getApps } from 'firebase-admin/app';
 import { getAuth, UserRecord } from 'firebase-admin/auth';
-import { parseCookies } from 'nookies';
+import { parseCookies, destroyCookie } from 'nookies';
 import { cleanObject, FI } from './utils';
 
 type IncomingGSSP<P> = (
@@ -45,7 +45,8 @@ export default function withAuthServer(
       try {
         const decodedIdToken = await auth.verifyIdToken(cookies[FI]);
         userRecord = await auth.getUser(decodedIdToken.uid);
-      } catch {
+      } catch (e) {
+        destroyCookie(ctx, FI);
         return { redirect: { destination: '/login', permanent: false } };
       }
     }

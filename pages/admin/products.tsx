@@ -6,6 +6,7 @@ import SecundaryButton from '../../components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '../../components/UI/links/PrimaryLinkButton';
 import SectionHeader from '../../components/UI/SectionHeader';
 import { useAllProductsQuery } from './graphql/products.gql';
+import DropdownActions from '../../components/UI/tables/DropdownActions';
 
 export const productsQueryVars = { first: 5, after: null };
 
@@ -25,6 +26,26 @@ const columns = [
   {
     Header: 'Price',
     accessor: 'price',
+  },
+  {
+    id: 'actions',
+    Header: () => null,
+    Cell: ({ row }) => {
+      const { productId } = row.original;
+      const items = [
+        {
+          id: `Edit${productId}`,
+          url: `/admin/products/edit/${productId}`,
+          label: 'Edit',
+        },
+        {
+          id: `Delete${productId}`,
+          url: `/admin/products/delete/${productId}`,
+          label: 'Delete',
+        },
+      ];
+      return <DropdownActions label="Actions" items={items} />;
+    },
   },
 ];
 
@@ -63,7 +84,7 @@ const Products = (): JSX.Element => {
             </SecundaryButton>
           </div>
           <div className="mt-4 text-right">
-            <PrimaryLinkButton href="/admin/addProduct">
+            <PrimaryLinkButton href="/admin/products/add">
               Add New Product
             </PrimaryLinkButton>
           </div>

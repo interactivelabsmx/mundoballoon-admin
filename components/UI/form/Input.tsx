@@ -1,5 +1,5 @@
 import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
-import classNames from 'classnames';
+import classNames from '../../../lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
 

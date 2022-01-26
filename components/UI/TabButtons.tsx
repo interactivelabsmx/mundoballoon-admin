@@ -1,4 +1,5 @@
-import classNames from 'classNames';
+import classNames from '../../lib/utils/classnames';
+
 const tabs = [
   { name: 'My Account', href: '#', current: true },
   { name: 'Company', href: '#', current: false },
