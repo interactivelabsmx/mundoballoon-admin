@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { Product } from 'types/graphql';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
@@ -10,7 +11,6 @@ import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { Product } from '@types/graphql';
 import VariantSelector from './VariantSelector';
 import VariantValueSelector from './VariantValueSelector';
 

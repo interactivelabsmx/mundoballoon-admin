@@ -7,7 +7,6 @@
     "^@components/(.*)$",
     "^@hooks/(.*)$",
     "^@containers/(.*)$",
-    "^@types/(.*)$",
     "^[./]"
   ]
 }
