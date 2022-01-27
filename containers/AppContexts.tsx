@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { useApollo } from 'lib/apolloClient';
-import { getCookieIdToken } from 'lib/firebaseAuth/utils';
+import { ReactNode } from 'react';
+import { useApollo } from '@lib/apolloClient';
+import { getCookieIdToken } from '@lib/firebaseAuth/utils';
 
 interface IAppContexts {
   children: ReactNode;

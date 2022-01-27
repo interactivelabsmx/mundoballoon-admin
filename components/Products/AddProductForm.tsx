@@ -1,15 +1,15 @@
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { useRouter } from 'next/router';
+import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
+import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
+import PrimaryButton from '@components/UI/buttons/PrimaryButton';
+import Input from '@components/UI/form/Input';
+import LoadingText from '@components/UI/loading/LoadingText';
 import ProductCategorySelector from './ProductCategorySelector';
-import Input from 'components/UI/form/Input';
-import PrimaryButton from 'components/UI/buttons/PrimaryButton';
-import LoadingText from 'components/UI/loading/LoadingText';
-import SimpleTextAlert from 'components/UI/alerts/SimpleTextAlert';
-import { SimpleTextAlertType } from 'components/UI/alerts/AlertConfigTypes';
 import { useCreateProductMutation } from './graphql/AddProductForm.gql';
 
 export const newProductSchema = yup

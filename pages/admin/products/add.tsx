@@ -1,8 +1,8 @@
+import AdminLayout from '@layouts/AdminLayout';
 import React from 'react';
-import AdminLayout from 'layouts/AdminLayout';
-import AddProductForm from 'components/Products/AddProductForm';
-import withAuthServer from 'lib/firebaseAuth/withAuthServer';
-import SectionHeader from 'components/UI/SectionHeader';
+import withAuthServer from '@lib/firebaseAuth/withAuthServer';
+import AddProductForm from '@components/Products/AddProductForm';
+import SectionHeader from '@components/UI/SectionHeader';
 
 const AddProduct = (): JSX.Element => (
   <AdminLayout>

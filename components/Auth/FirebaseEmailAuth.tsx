@@ -1,13 +1,13 @@
-import { Dispatch } from 'react';
 import { AuthError, User } from '@firebase/auth';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Dispatch } from 'react';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import Input from 'components/UI/form/Input';
-import PrimaryButton from 'components/UI/buttons/PrimaryButton';
-import unifiedEmailPasswordAuth from 'lib/firebaseAuth/unifiedEmailPasswordAuth';
-import { useAuth } from 'containers/AuthProvider';
+import unifiedEmailPasswordAuth from '@lib/firebaseAuth/unifiedEmailPasswordAuth';
+import PrimaryButton from '@components/UI/buttons/PrimaryButton';
+import Input from '@components/UI/form/Input';
+import { useAuth } from '@containers/AuthProvider';
 
 export const userPwdSchema = yup
   .object({

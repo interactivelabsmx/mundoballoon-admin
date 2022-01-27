@@ -1,10 +1,10 @@
-import { Dispatch, useState } from 'react';
 import { ConfirmationResult, User } from '@firebase/auth';
-import SecundaryButton from 'components/UI/buttons/SecundaryButton';
 import { PhoneIcon } from '@heroicons/react/solid';
-import Modal from 'components/UI/modal/Modal';
-import FirebasePhoneForm from './FirebasePhoneForm';
+import { Dispatch, useState } from 'react';
+import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import Modal from '@components/UI/modal/Modal';
 import FirebasePhoneCodeForm from './FirebasePhoneCodeForm';
+import FirebasePhoneForm from './FirebasePhoneForm';
 
 interface IFirebasePhoneAuth {
   onAuthComplete: (user: User) => void;

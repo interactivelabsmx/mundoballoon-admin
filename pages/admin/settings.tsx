@@ -1,6 +1,6 @@
+import AdminLayout from '@layouts/AdminLayout';
 import React from 'react';
-import AdminLayout from 'layouts/AdminLayout';
-import withAuthServer from 'lib/firebaseAuth/withAuthServer';
+import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 
 const Settings = (): JSX.Element => (
   <AdminLayout>

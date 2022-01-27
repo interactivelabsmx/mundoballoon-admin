@@ -1,18 +1,18 @@
+import { gql, useMutation } from '@apollo/client';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { gql, useMutation } from '@apollo/client';
-import { useRouter } from 'next/router';
+import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
+import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
+import PrimaryButton from '@components/UI/buttons/PrimaryButton';
+import Input from '@components/UI/form/Input';
+import LoadingText from '@components/UI/loading/LoadingText';
+import { Product } from '@types/graphql';
 import VariantSelector from './VariantSelector';
-import Input from 'components/UI/form/Input';
-import PrimaryButton from 'components/UI/buttons/PrimaryButton';
-import LoadingText from 'components/UI/loading/LoadingText';
-import SimpleTextAlert from 'components/UI/alerts/SimpleTextAlert';
-import { SimpleTextAlertType } from 'components/UI/alerts/AlertConfigTypes';
 import VariantValueSelector from './VariantValueSelector';
-import { Product } from 'types/graphql';
 
 const CREATE_PRODUCT = gql`
   mutation CreateProductVariant(

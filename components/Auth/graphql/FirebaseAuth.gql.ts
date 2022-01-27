@@ -1,7 +1,7 @@
-import * as Types from 'types/graphql';
-
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import * as Types from '@types/graphql';
+
 const defaultOptions = {} as const;
 export type CreateUserMutationVariables = Types.Exact<{
   userId: Types.Scalars['String'];

@@ -1,15 +1,15 @@
-import { Dispatch } from 'react';
 import { AuthError, ConfirmationResult } from '@firebase/auth';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Dispatch } from 'react';
+import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { useAuth } from 'containers/AuthProvider';
-import SecundaryButton from 'components/UI/buttons/SecundaryButton';
-import PrimaryButton from 'components/UI/buttons/PrimaryButton';
-import { phoneCodeRequest } from 'lib/firebaseAuth/phoneAuth';
-import ErrorText from 'components/UI/form/ErrorText';
-import CountryCodeSelector from 'components/UI/phoneNumber/CountryCodeSelector';
+import { phoneCodeRequest } from '@lib/firebaseAuth/phoneAuth';
+import PrimaryButton from '@components/UI/buttons/PrimaryButton';
+import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import ErrorText from '@components/UI/form/ErrorText';
+import { useAuth } from '@containers/AuthProvider';
+import CountryCodeSelector from './CountryCodeSelector';
 
 export const userPhoneSchema = yup
   .object({

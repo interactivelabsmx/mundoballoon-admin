@@ -1,5 +1,5 @@
-import { ControllerRenderProps, FieldPath, FieldValues } from 'react-hook-form';
 import { useEffect } from 'react';
+import { ControllerRenderProps, FieldPath, FieldValues } from 'react-hook-form';
 
 interface IUseAutoSelectFirst<
   T,

@@ -1,12 +1,12 @@
+import { Menu, Transition } from '@headlessui/react';
+import { ChevronDownIcon } from '@heroicons/react/solid';
+import Link from 'next/link';
 import {
   Fragment,
   FunctionComponent,
   MouseEventHandler,
   SVGProps,
 } from 'react';
-import { Menu, Transition } from '@headlessui/react';
-import { ChevronDownIcon } from '@heroicons/react/solid';
-import Link from 'next/link';
 
 interface IDropdownActionsItem {
   id: string;

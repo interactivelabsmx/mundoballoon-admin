@@ -1,11 +1,11 @@
-import React, { useState, ReactNode, FunctionComponent, SVGProps } from 'react';
-import SideBar from 'components/Sidebar/SideBar';
-import { MenuIcon } from '@heroicons/react/solid';
 import {
   HomeIcon,
   ShoppingCartIcon,
   UserGroupIcon,
 } from '@heroicons/react/outline';
+import { MenuIcon } from '@heroicons/react/solid';
+import React, { useState, ReactNode, FunctionComponent, SVGProps } from 'react';
+import SideBar from '@components/Sidebar/SideBar';
 
 interface IAdminLayout {
   children: ReactNode;

@@ -1,9 +1,9 @@
-import { Dispatch, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
+import { INavigationOption } from '@layouts/AdminLayout';
 import Image from 'next/image';
-import NavBarProfile from 'components/User/NavBarProfile';
-import { INavigationOption } from 'layouts/AdminLayout';
+import { Dispatch, Fragment } from 'react';
+import NavBarProfile from '@components/User/NavBarProfile';
 import SideBarOptions from './SideBarOptions';
 
 interface ISideBar {

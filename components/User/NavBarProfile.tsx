@@ -1,8 +1,8 @@
 import { LogoutIcon } from '@heroicons/react/outline';
 import Image from 'next/image';
-import { useAuth } from 'containers/AuthProvider';
-import SecundaryButton from 'components/UI/buttons/SecundaryButton';
-import AvatarDefault from 'components/UI/Icons/AvatarDefault';
+import AvatarDefault from '@components/UI/Icons/AvatarDefault';
+import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import { useAuth } from '@containers/AuthProvider';
 
 const NavBarProfile = () => {
   const { logout, user } = useAuth();

@@ -1,4 +1,13 @@
 {
   "semi": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "<THIRD_PARTY_MODULES>",
+    "^@lib/(.*)$",
+    "^@components/(.*)$",
+    "^@hooks/(.*)$",
+    "^@containers/(.*)$",
+    "^@types/(.*)$",
+    "^[./]"
+  ]
 }

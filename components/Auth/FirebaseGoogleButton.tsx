@@ -1,6 +1,6 @@
-import { Dispatch } from 'react';
 import { GoogleAuthProvider, User } from '@firebase/auth';
-import GoogleIcon from 'components/UI/Icons/GoogleIcon';
+import { Dispatch } from 'react';
+import GoogleIcon from '@components/UI/Icons/GoogleIcon';
 import FirebaseSocialButton, {
   IFirebaseSocialButton,
 } from './FirebaseSoccialButton';

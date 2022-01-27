@@ -1,8 +1,8 @@
 import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import LoadingText from 'components/UI/loading/LoadingText';
-import SelectNative from 'components/UI/form/SelectNative';
-import useAutoSelectFirst from 'hooks/useAutoSelectFirst';
+import SelectNative from '@components/UI/form/SelectNative';
+import LoadingText from '@components/UI/loading/LoadingText';
+import useAutoSelectFirst from '@hooks/useAutoSelectFirst';
 import { INewProductVariantForm } from './AddProductVariant';
 import {
   GetVariantsQuery,

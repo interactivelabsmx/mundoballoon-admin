@@ -1,6 +1,6 @@
-import { Dispatch } from 'react';
 import { FacebookAuthProvider, User } from '@firebase/auth';
-import FacebookIcon from 'components/UI/Icons/FacebookIcon';
+import { Dispatch } from 'react';
+import FacebookIcon from '@components/UI/Icons/FacebookIcon';
 import FirebaseSocialButton, {
   IFirebaseSocialButton,
 } from './FirebaseSoccialButton';

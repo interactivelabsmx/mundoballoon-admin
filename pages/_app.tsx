@@ -1,10 +1,9 @@
-import React from 'react';
-import Head from 'next/head';
 import { AppProps } from 'next/dist/shared/lib/router/router';
-import AppContexts from 'containers/AppContexts';
-import { AuthProvider } from 'containers/AuthProvider';
-
+import Head from 'next/head';
+import React from 'react';
 import 'styles/index.css';
+import AppContexts from '@containers/AppContexts';
+import { AuthProvider } from '@containers/AuthProvider';
 
 const App = ({ Component, pageProps }: AppProps): JSX.Element => (
   <AuthProvider>

@@ -1,10 +1,10 @@
+import AdminLayout from '@layouts/AdminLayout';
 import React from 'react';
-import AdminLayout from 'layouts/AdminLayout';
-import BaseTable from 'components/UI/tables/BaseTable';
-import withAuthServer from 'lib/firebaseAuth/withAuthServer';
-import SecundaryButton from 'components/UI/buttons/SecundaryButton';
-import PrimaryLinkButton from 'components/UI/links/PrimaryLinkButton';
-import SectionHeader from 'components/UI/SectionHeader';
+import withAuthServer from '@lib/firebaseAuth/withAuthServer';
+import SectionHeader from '@components/UI/SectionHeader';
+import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
+import BaseTable from '@components/UI/tables/BaseTable';
 import { useAllProductsQuery } from './graphql/products.gql';
 import { getColumns } from './products/columns';
 

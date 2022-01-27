@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
-import LoadingText from 'components/UI/loading/LoadingText';
-import SelectNative from 'components/UI/form/SelectNative';
+import SelectNative from '@components/UI/form/SelectNative';
+import LoadingText from '@components/UI/loading/LoadingText';
 import { INewProductVariantForm } from './AddProductVariant';
 import { useGetVariantValuesQuery } from './graphql/VariantValueSelector.gql';
 
