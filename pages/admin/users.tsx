@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLayout from '../../layouts/AdminLayout';
+import AdminLayout from 'layouts/AdminLayout';
 import withAuthServer from 'lib/firebaseAuth/withAuthServer';
 
 const Users = (): JSX.Element => (

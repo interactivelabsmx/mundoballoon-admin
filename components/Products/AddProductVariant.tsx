@@ -12,7 +12,7 @@ import LoadingText from 'components/UI/loading/LoadingText';
 import SimpleTextAlert from 'components/UI/alerts/SimpleTextAlert';
 import { SimpleTextAlertType } from 'components/UI/alerts/AlertConfigTypes';
 import VariantValueSelector from './VariantValueSelector';
-import { Product } from '../../types/graphql';
+import { Product } from 'types/graphql';
 
 const CREATE_PRODUCT = gql`
   mutation CreateProductVariant(

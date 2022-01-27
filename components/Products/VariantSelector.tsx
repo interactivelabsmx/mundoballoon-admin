@@ -2,12 +2,12 @@ import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import LoadingText from 'components/UI/loading/LoadingText';
 import SelectNative from 'components/UI/form/SelectNative';
+import useAutoSelectFirst from 'hooks/useAutoSelectFirst';
 import { INewProductVariantForm } from './AddProductVariant';
 import {
   GetVariantsQuery,
   useGetVariantsQuery,
 } from './graphql/VariantSelector.gql';
-import useAutoSelectFirst from '../../hooks/useAutoSelectFirst';
 
 interface IVariantSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantId'>;

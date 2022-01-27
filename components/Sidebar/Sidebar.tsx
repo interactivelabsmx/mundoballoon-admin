@@ -2,9 +2,9 @@ import { Dispatch, Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/solid';
 import Image from 'next/image';
+import NavBarProfile from 'components/User/NavBarProfile';
+import { INavigationOption } from 'layouts/AdminLayout';
 import SideBarOptions from './SideBarOptions';
-import NavBarProfile from '../User/NavBarProfile';
-import { INavigationOption } from '../../layouts/AdminLayout';
 
 interface ISideBar {
   sidebarOpen: boolean;

@@ -1,5 +1,5 @@
 import React, { useState, ReactNode, FunctionComponent, SVGProps } from 'react';
-import SideBar from '../components/Sidebar/SideBar';
+import SideBar from 'components/Sidebar/SideBar';
 import { MenuIcon } from '@heroicons/react/solid';
 import {
   HomeIcon,

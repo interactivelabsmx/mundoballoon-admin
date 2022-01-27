@@ -3,7 +3,7 @@ import {
   PlusCircleIcon,
   TrashIcon,
 } from '@heroicons/react/solid';
-import DropdownActions from '../../../components/UI/tables/DropdownActions';
+import DropdownActions from 'components/UI/tables/DropdownActions';
 
 export const getItems = (
   productId: number,
