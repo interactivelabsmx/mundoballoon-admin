@@ -4,7 +4,13 @@ import {
   UserGroupIcon,
 } from '@heroicons/react/outline';
 import { MenuIcon } from '@heroicons/react/solid';
-import React, { useState, ReactNode, FunctionComponent, SVGProps } from 'react';
+import React, {
+  useState,
+  ReactNode,
+  FunctionComponent,
+  SVGProps,
+  useCallback,
+} from 'react';
 import SideBar from '@components/Sidebar/SideBar';
 
 interface IAdminLayout {
@@ -36,6 +42,9 @@ const navigation: INavigationOption[] = [
 
 const AdminLayout = ({ children }: IAdminLayout): JSX.Element => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const onOpenSidebar = useCallback(() => {
+    setSidebarOpen(true);
+  }, [setSidebarOpen]);
   return (
     <div className="h-full">
       <SideBar
@@ -48,7 +57,7 @@ const AdminLayout = ({ children }: IAdminLayout): JSX.Element => {
           <button
             type="button"
             className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500"
-            onClick={() => setSidebarOpen(true)}
+            onClick={onOpenSidebar}
           >
             <span className="sr-only">Open sidebar</span>
             <MenuIcon className="h-6 w-6" aria-hidden="true" />
