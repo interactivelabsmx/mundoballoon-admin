@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react';
-import classNames from '../../../lib/utils/classnames';
+import classNames from 'lib/utils/classnames';
 import BaseButton from './BaseButton';
 
 const secundaryClassNames =

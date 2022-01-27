@@ -1,8 +1,8 @@
 import { Dispatch, useState } from 'react';
 import { ConfirmationResult, User } from '@firebase/auth';
-import SecundaryButton from '../UI/buttons/SecundaryButton';
+import SecundaryButton from 'components/UI/buttons/SecundaryButton';
 import { PhoneIcon } from '@heroicons/react/solid';
-import Modal from '../UI/modal/Modal';
+import Modal from 'components/UI/modal/Modal';
 import FirebasePhoneForm from './FirebasePhoneForm';
 import FirebasePhoneCodeForm from './FirebasePhoneCodeForm';
 

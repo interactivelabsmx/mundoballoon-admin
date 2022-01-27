@@ -1,4 +1,4 @@
-import * as Types from '../../../types/graphql';
+import * as Types from 'types/graphql';
 
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
@@ -39,9 +39,7 @@ export type AllProductsQuery = {
                     name?: string | null | undefined;
                     description?: string | null | undefined;
                     price: number;
-                    compareAtPrice?: number | null | undefined;
                     weight?: number | null | undefined;
-                    taxable?: boolean | null | undefined;
                     storeOnly?: boolean | null | undefined;
                     isBundle?: boolean | null | undefined;
                     variant?:
@@ -100,9 +98,7 @@ export const AllProductsDocument = gql`
           name
           description
           price
-          compareAtPrice
           weight
-          taxable
           storeOnly
           isBundle
           variant {

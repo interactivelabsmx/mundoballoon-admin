@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { INavigationOption } from '../../layouts/AdminLayout';
-import classNames from '../../lib/utils/classnames';
+import classNames from 'lib/utils/classnames';
 
 interface ISideBarOptions {
   navigationOptions: INavigationOption[];

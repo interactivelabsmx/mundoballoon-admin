@@ -15,9 +15,9 @@ import {
 } from '@firebase/auth';
 import { useRouter } from 'next/router';
 import { destroyCookie, setCookie } from 'nookies';
-import { FI, FI_COOKIE_OPTIONS } from '../lib/firebaseAuth/utils';
+import { FI, FI_COOKIE_OPTIONS } from 'lib/firebaseAuth/utils';
 
-import '../lib/firebaseAuth/firebaseClient';
+import 'lib/firebaseAuth/firebaseClient';
 
 interface IAuthContext {
   user?: User;

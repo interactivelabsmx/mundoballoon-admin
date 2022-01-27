@@ -6,8 +6,8 @@ import SimpleTextAlert from '../../../../../components/UI/alerts/SimpleTextAlert
 import LoadingText from '../../../../../components/UI/loading/LoadingText';
 import SectionHeader from '../../../../../components/UI/SectionHeader';
 import AdminLayout from '../../../../../layouts/AdminLayout';
-import withAuthServer from '../../../../../lib/firebaseAuth/withAuthServer';
-import { Product } from '../../../../../types/graphql';
+import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
+import { Product } from '../../types/graphql';
 import { useGetProductByIdQuery } from './graphql/productById.gql';
 
 const AddProduct = (): JSX.Element => {

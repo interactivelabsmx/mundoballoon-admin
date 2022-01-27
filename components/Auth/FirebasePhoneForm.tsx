@@ -4,12 +4,12 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { useAuth } from '../../containers/AuthProvider';
-import SecundaryButton from '../UI/buttons/SecundaryButton';
-import PrimaryButton from '../UI/buttons/PrimaryButton';
-import { phoneCodeRequest } from '../../lib/firebaseAuth/phoneAuth';
-import ErrorText from '../UI/form/ErrorText';
-import CountryCodeSelector from '../UI/phoneNumber/CountryCodeSelector';
+import { useAuth } from 'containers/AuthProvider';
+import SecundaryButton from 'components/UI/buttons/SecundaryButton';
+import PrimaryButton from 'components/UI/buttons/PrimaryButton';
+import { phoneCodeRequest } from 'lib/firebaseAuth/phoneAuth';
+import ErrorText from 'components/UI/form/ErrorText';
+import CountryCodeSelector from 'components/UI/phoneNumber/CountryCodeSelector';
 
 export const userPhoneSchema = yup
   .object({

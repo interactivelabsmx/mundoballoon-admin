@@ -11,7 +11,7 @@ const BaseTable = ({ columns, data }: IBaseTable): JSX.Element => {
     useTable({ columns, data });
 
   return (
-    <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+    <div className="shadow border-b border-gray-200 sm:rounded-lg">
       <table
         className="min-w-full divide-y divide-gray-200"
         {...getTableProps()}

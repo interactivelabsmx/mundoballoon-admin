@@ -4,10 +4,10 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { useAuth } from '../../containers/AuthProvider';
-import SecundaryButton from '../UI/buttons/SecundaryButton';
-import PrimaryButton from '../UI/buttons/PrimaryButton';
-import Input from '../UI/form/Input';
+import { useAuth } from 'containers/AuthProvider';
+import SecundaryButton from 'components/UI/buttons/SecundaryButton';
+import PrimaryButton from 'components/UI/buttons/PrimaryButton';
+import Input from 'components/UI/form/Input';
 
 export const userCodeSchema = yup
   .object({ code: yup.string().required() })

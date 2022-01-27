@@ -6,11 +6,11 @@ import type { Asserts } from 'yup';
 import { gql, useMutation } from '@apollo/client';
 import { useRouter } from 'next/router';
 import VariantSelector from './VariantSelector';
-import Input from '../UI/form/Input';
-import PrimaryButton from '../UI/buttons/PrimaryButton';
-import LoadingText from '../UI/loading/LoadingText';
-import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
-import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
+import Input from 'components/UI/form/Input';
+import PrimaryButton from 'components/UI/buttons/PrimaryButton';
+import LoadingText from 'components/UI/loading/LoadingText';
+import SimpleTextAlert from 'components/UI/alerts/SimpleTextAlert';
+import { SimpleTextAlertType } from 'components/UI/alerts/AlertConfigTypes';
 import VariantValueSelector from './VariantValueSelector';
 import { Product } from '../../types/graphql';
 

@@ -4,10 +4,10 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import Input from '../UI/form/Input';
-import PrimaryButton from '../UI/buttons/PrimaryButton';
-import unifiedEmailPasswordAuth from '../../lib/firebaseAuth/unifiedEmailPasswordAuth';
-import { useAuth } from '../../containers/AuthProvider';
+import Input from 'components/UI/form/Input';
+import PrimaryButton from 'components/UI/buttons/PrimaryButton';
+import unifiedEmailPasswordAuth from 'lib/firebaseAuth/unifiedEmailPasswordAuth';
+import { useAuth } from 'containers/AuthProvider';
 
 export const userPwdSchema = yup
   .object({

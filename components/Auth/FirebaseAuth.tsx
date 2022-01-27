@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { User } from '@firebase/auth';
+import { User } from 'firebase/auth';
+import SimpleTextAlert from 'components/UI/alerts/SimpleTextAlert';
+import { SimpleTextAlertType } from 'components/UI/alerts/AlertConfigTypes';
+import { useAuth } from 'containers/AuthProvider';
+import { setRecaptchaVerifier } from 'lib/firebaseAuth/phoneAuth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
 import FirebasePhoneAuth from './FirebasePhoneAuth';
-import SimpleTextAlert from '../UI/alerts/SimpleTextAlert';
-import { SimpleTextAlertType } from '../UI/alerts/AlertConfigTypes';
-import { useAuth } from '../../containers/AuthProvider';
-import { setRecaptchaVerifier } from '../../lib/firebaseAuth/phoneAuth';
 import { useCreateUserMutation } from './graphql/FirebaseAuth.gql';
 
 const FirebaseAuth = () => {

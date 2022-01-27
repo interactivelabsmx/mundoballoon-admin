@@ -1,4 +1,4 @@
-import withAuthServer from '../lib/firebaseAuth/withAuthServer';
+import withAuthServer from 'lib/firebaseAuth/withAuthServer';
 import Login from './login';
 
 const Index = Login;

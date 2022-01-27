@@ -88,7 +88,6 @@ export type CreateProductVariantPayload = {
 };
 
 export type CreateProductVariantRequestInput = {
-  compareAtPrice?: InputMaybe<Scalars['Float']>;
   description?: InputMaybe<Scalars['String']>;
   isBundle?: InputMaybe<Scalars['Boolean']>;
   name?: InputMaybe<Scalars['String']>;
@@ -96,7 +95,6 @@ export type CreateProductVariantRequestInput = {
   productId: Scalars['Int'];
   sku?: InputMaybe<Scalars['String']>;
   storeOnly?: InputMaybe<Scalars['Boolean']>;
-  taxable?: InputMaybe<Scalars['Boolean']>;
   variantValueId: Scalars['Int'];
   weight?: InputMaybe<Scalars['Float']>;
 };
@@ -198,7 +196,6 @@ export type ProductSortInput = {
 
 export type ProductVariant = {
   __typename?: 'ProductVariant';
-  compareAtPrice?: Maybe<Scalars['Float']>;
   description?: Maybe<Scalars['String']>;
   isBundle?: Maybe<Scalars['Boolean']>;
   media?: Maybe<Array<ProductVariantMedium>>;
@@ -208,7 +205,6 @@ export type ProductVariant = {
   productVariantId: Scalars['Int'];
   sku?: Maybe<Scalars['String']>;
   storeOnly?: Maybe<Scalars['Boolean']>;
-  taxable?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<VariantValue>;
   variantValueId: Scalars['Int'];
   weight?: Maybe<Scalars['Float']>;

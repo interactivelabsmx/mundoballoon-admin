@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import FirebaseAuth from '../components/Auth/FirebaseAuth';
 import { useAuth } from '../containers/AuthProvider';
-import withAuthServer from '../lib/firebaseAuth/withAuthServer';
+import withAuthServer from 'lib/firebaseAuth/withAuthServer';
 
 const Login = (): JSX.Element => {
   const { user } = useAuth();

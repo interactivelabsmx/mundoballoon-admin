@@ -1,53 +1,14 @@
 import React from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
 import BaseTable from '../../components/UI/tables/BaseTable';
-import withAuthServer from '../../lib/firebaseAuth/withAuthServer';
+import withAuthServer from 'lib/firebaseAuth/withAuthServer';
 import SecundaryButton from '../../components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '../../components/UI/links/PrimaryLinkButton';
 import SectionHeader from '../../components/UI/SectionHeader';
 import { useAllProductsQuery } from './graphql/products.gql';
-import DropdownActions from '../../components/UI/tables/DropdownActions';
+import { getColumns } from './products/columns';
 
 export const productsQueryVars = { first: 5, after: null };
-
-const columns = [
-  {
-    Header: 'Name',
-    accessor: 'name',
-  },
-  {
-    Header: 'Description',
-    accessor: 'description',
-  },
-  {
-    Header: 'Category',
-    accessor: 'category.name',
-  },
-  {
-    Header: 'Price',
-    accessor: 'price',
-  },
-  {
-    id: 'actions',
-    Header: () => null,
-    Cell: ({ row }) => {
-      const { productId } = row.original;
-      const items = [
-        {
-          id: `Edit${productId}`,
-          url: `/admin/products/edit/${productId}`,
-          label: 'Edit',
-        },
-        {
-          id: `Delete${productId}`,
-          url: `/admin/products/delete/${productId}`,
-          label: 'Delete',
-        },
-      ];
-      return <DropdownActions label="Actions" items={items} />;
-    },
-  },
-];
 
 const Products = (): JSX.Element => {
   const { loading, error, data, fetchMore } = useAllProductsQuery({
@@ -56,6 +17,9 @@ const Products = (): JSX.Element => {
 
   if (error) return <div>Error loading</div>;
   if (loading) return <div>Loading</div>;
+
+  const onClickDelete = (productId: number) => console.log(productId);
+  const columns = getColumns(onClickDelete);
 
   const { allProducts } = data;
   const { nodes, pageInfo } = allProducts;

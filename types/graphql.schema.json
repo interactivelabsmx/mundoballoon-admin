@@ -509,18 +509,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "compareAtPrice",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "description",
             "description": null,
             "type": {
@@ -602,18 +590,6 @@
           },
           {
             "name": "storeOnly",
-            "description": null,
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxable",
             "description": null,
             "type": {
               "kind": "SCALAR",
@@ -1430,18 +1406,6 @@
         "description": null,
         "fields": [
           {
-            "name": "compareAtPrice",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Float",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "description",
             "description": null,
             "args": [],
@@ -1559,18 +1523,6 @@
           },
           {
             "name": "storeOnly",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "Boolean",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "taxable",
             "description": null,
             "args": [],
             "type": {
