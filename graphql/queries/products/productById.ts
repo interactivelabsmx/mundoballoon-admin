@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './productById.graphql';
 
 const defaultOptions = {} as const;
 export type GetProductByIdQueryVariables = Types.Exact<{
@@ -20,17 +20,6 @@ export type GetProductByIdQuery = {
     | null
     | undefined;
 };
-
-export const GetProductByIdDocument = gql`
-  query GetProductById($productId: Int!) {
-    productById(productId: $productId) {
-      productId
-      name
-      description
-      price
-    }
-  }
-`;
 
 /**
  * __useGetProductByIdQuery__
@@ -56,7 +45,7 @@ export function useGetProductByIdQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<GetProductByIdQuery, GetProductByIdQueryVariables>(
-    GetProductByIdDocument,
+    Operations.GetProductById,
     options
   );
 }
@@ -68,7 +57,7 @@ export function useGetProductByIdLazyQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useLazyQuery<GetProductByIdQuery, GetProductByIdQueryVariables>(
-    GetProductByIdDocument,
+    Operations.GetProductById,
     options
   );
 }

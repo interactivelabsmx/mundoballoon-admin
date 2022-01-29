@@ -9,8 +9,8 @@ import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import LoadingText from '@components/UI/loading/LoadingText';
+import { useCreateProductMutation } from '@graphql/mutations/products/createProduct';
 import ProductCategorySelector from './ProductCategorySelector';
-import { useCreateProductMutation } from './graphql/AddProductForm.gql';
 
 export const newProductSchema = yup
   .object({

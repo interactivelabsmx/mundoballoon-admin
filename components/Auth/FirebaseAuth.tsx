@@ -5,11 +5,11 @@ import { setRecaptchaVerifier } from '@lib/firebaseAuth/phoneAuth';
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import { useAuth } from '@containers/AuthProvider';
+import { useCreateUserMutation } from '@graphql/mutations/user/createUser';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';
 import FirebasePhoneAuth from './FirebasePhoneAuth';
-import { useCreateUserMutation } from './graphql/FirebaseAuth.gql';
 
 const FirebaseAuth = () => {
   const { push } = useRouter();

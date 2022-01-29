@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
+import useAutoSelectFirst from '@hooks/useAutoSelectFirst';
+import {
+  GetVariantValuesQuery,
+  useGetVariantValuesQuery,
+} from '@graphql/queries/collections/variantValues';
 import { INewProductVariantForm } from './AddProductVariant';
-import { useGetVariantValuesQuery } from './graphql/VariantValueSelector.gql';
 
 interface IVariantValueSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantValueId'>;
@@ -23,12 +27,16 @@ const VariantValueSelector = ({
     error: loadError,
     data,
   } = useGetVariantValuesQuery({ variables: { variantId } });
-  useEffect(() => {
-    if (!field.value && data?.variantValues && data?.variantValues.length > 0)
-      field.onChange({
-        target: { value: data?.variantValues[0].variantValueId },
-      });
-  }, [data, field]);
+  useAutoSelectFirst<
+    GetVariantValuesQuery,
+    INewProductVariantForm,
+    'variantValueId'
+  >({
+    field,
+    data,
+    list: 'variantValues',
+    prop: 'variantValueId',
+  });
 
   if (loading) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;

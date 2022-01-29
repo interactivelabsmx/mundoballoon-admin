@@ -1,9 +1,7 @@
-import { gql, useMutation } from '@apollo/client';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { Product } from 'types/graphql';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
@@ -11,20 +9,10 @@ import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import LoadingText from '@components/UI/loading/LoadingText';
+import { Product } from '@graphql/graphql';
+import { useCreateProductVariantMutation } from '@graphql/mutations/products/createProductVariant';
 import VariantSelector from './VariantSelector';
 import VariantValueSelector from './VariantValueSelector';
-
-const CREATE_PRODUCT = gql`
-  mutation CreateProductVariant(
-    $createProductVariantPayload: CreateProductVariantRequestInput!
-  ) {
-    createProductVariant(input: $createProductVariantPayload) {
-      productVariant {
-        productVariantId
-      }
-    }
-  }
-`;
 
 export const newProductVariantSchema = yup
   .object({
@@ -63,12 +51,11 @@ const AddProductVariant = ({ product }: IAddProductVariant): JSX.Element => {
   });
 
   const { push } = useRouter();
-  const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT);
-  const onSubmit: SubmitHandler<INewProductVariantForm> = async (data) => {
+  const [createProduct, { loading, error }] = useCreateProductVariantMutation();
+  const onSubmit: SubmitHandler<INewProductVariantForm> = async (formData) => {
+    delete formData.variantId;
     const result = await createProduct({
-      variables: {
-        createProductPayload: { ...data },
-      },
+      variables: { createProductVariantPayload: formData },
     });
     if (!result.errors) push('/admin/products');
   };

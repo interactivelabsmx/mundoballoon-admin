@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './countryCodes.graphql';
 
 const defaultOptions = {} as const;
 export type GetCountryCodesQueryVariables = Types.Exact<{
@@ -16,16 +16,6 @@ export type GetCountryCodesQuery = {
     officialNameEn?: string | null | undefined;
   }>;
 };
-
-export const GetCountryCodesDocument = gql`
-  query GetCountryCodes {
-    countryCodes {
-      fifa
-      dial
-      officialNameEn
-    }
-  }
-`;
 
 /**
  * __useGetCountryCodesQuery__
@@ -50,7 +40,7 @@ export function useGetCountryCodesQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<GetCountryCodesQuery, GetCountryCodesQueryVariables>(
-    GetCountryCodesDocument,
+    Operations.GetCountryCodes,
     options
   );
 }
@@ -64,7 +54,7 @@ export function useGetCountryCodesLazyQuery(
   return Apollo.useLazyQuery<
     GetCountryCodesQuery,
     GetCountryCodesQueryVariables
-  >(GetCountryCodesDocument, options);
+  >(Operations.GetCountryCodes, options);
 }
 export type GetCountryCodesQueryHookResult = ReturnType<
   typeof useGetCountryCodesQuery

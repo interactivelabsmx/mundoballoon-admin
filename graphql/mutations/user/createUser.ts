@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './createUser.graphql';
 
 const defaultOptions = {} as const;
 export type CreateUserMutationVariables = Types.Exact<{
@@ -15,15 +15,6 @@ export type CreateUserMutation = {
   };
 };
 
-export const CreateUserDocument = gql`
-  mutation CreateUser($userId: String!) {
-    createUser(input: { userId: $userId }) {
-      user {
-        id
-      }
-    }
-  }
-`;
 export type CreateUserMutationFn = Apollo.MutationFunction<
   CreateUserMutation,
   CreateUserMutationVariables
@@ -54,7 +45,7 @@ export function useCreateUserMutation(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useMutation<CreateUserMutation, CreateUserMutationVariables>(
-    CreateUserDocument,
+    Operations.CreateUser,
     options
   );
 }

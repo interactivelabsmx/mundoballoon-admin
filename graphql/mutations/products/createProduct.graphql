@@ -1,0 +1,7 @@
+mutation CreateProduct($createProductPayload: CreateProductRequestInput!) {
+  createProduct(input: $createProductPayload) {
+    product {
+      productId
+    }
+  }
+}

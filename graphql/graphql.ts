@@ -61,6 +61,7 @@ export type CountryCode = {
   fifa?: Maybe<Scalars['String']>;
   geonameId?: Maybe<Scalars['Int']>;
   ioc?: Maybe<Scalars['String']>;
+  isDeleted: Scalars['Boolean'];
   itu?: Maybe<Scalars['String']>;
   languages?: Maybe<Scalars['String']>;
   officialNameEn?: Maybe<Scalars['String']>;
@@ -113,6 +114,7 @@ export type Mutation = {
   createProduct: CreateProductPayload;
   createProductVariant: CreateProductVariantPayload;
   createUser: CreateUserPayload;
+  deleteProduct?: Maybe<Scalars['Boolean']>;
 };
 
 export type MutationCreateProductArgs = {
@@ -125,6 +127,10 @@ export type MutationCreateProductVariantArgs = {
 
 export type MutationCreateUserArgs = {
   input: CreateUserRequestInput;
+};
+
+export type MutationDeleteProductArgs = {
+  productId: Scalars['Int'];
 };
 
 export type OcassionCartDetail = {

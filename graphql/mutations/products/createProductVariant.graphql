@@ -1,0 +1,9 @@
+mutation CreateProductVariant(
+  $createProductVariantPayload: CreateProductVariantRequestInput!
+) {
+  createProductVariant(input: $createProductVariantPayload) {
+    productVariant {
+      productVariantId
+    }
+  }
+}

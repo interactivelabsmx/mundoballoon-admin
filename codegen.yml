@@ -1,19 +1,26 @@
 overwrite: true
 schema: 'http://localhost:5000/graphql'
-documents: '**/*.tsx'
+documents: '**/*.{tsx,graphql}'
 generates:
-  ./types/graphql.ts:
+  ./graphql/graphql.ts:
     plugins:
-      - 'typescript'
+      - typescript
+    config:
+      dedupeFragments: true
   ./:
     preset: near-operation-file
     presetConfig:
-      extension: .gql.ts
-      baseTypesPath: /types/graphql.ts
-      folder: graphql
+      extension: .ts
+      baseTypesPath: /graphql/graphql.ts
     plugins:
-      - 'typescript-operations'
-      - 'typescript-react-apollo'
-  ./types/graphql.schema.json:
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      documentMode: external
+      importDocumentNodeExternallyFrom: near-operation-file
+  ./@types/graphql.d.ts:
     plugins:
-      - 'introspection'
+      - typescript-graphql-files-modules
+  ./graphql/graphql.schema.json:
+    plugins:
+      - introspection

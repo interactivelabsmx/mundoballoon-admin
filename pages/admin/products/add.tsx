@@ -1,6 +1,6 @@
-import AdminLayout from '@layouts/AdminLayout';
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
+import AdminLayout from '@layouts/AdminLayout';
 import AddProductForm from '@components/Products/AddProductForm';
 import SectionHeader from '@components/UI/SectionHeader';
 

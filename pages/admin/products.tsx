@@ -1,11 +1,12 @@
-import AdminLayout from '@layouts/AdminLayout';
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
+import AdminLayout from '@layouts/AdminLayout';
 import SectionHeader from '@components/UI/SectionHeader';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import BaseTable from '@components/UI/tables/BaseTable';
-import { useAllProductsQuery } from './graphql/products.gql';
+import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
+import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
 import { getColumns } from './products/columns';
 
 export const productsQueryVars = { first: 5, after: null };
@@ -14,11 +15,13 @@ const Products = (): JSX.Element => {
   const { loading, error, data, fetchMore } = useAllProductsQuery({
     variables: productsQueryVars,
   });
+  const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
+    useDeleteProductMutation();
+  if (error || deleteError) return <div>Error loading</div>;
+  if (loading || deleteLoading) return <div>Loading</div>;
 
-  if (error) return <div>Error loading</div>;
-  if (loading) return <div>Loading</div>;
-
-  const onClickDelete = (productId: number) => console.log(productId);
+  const onClickDelete = (productId: number) =>
+    deleteProduct({ variables: { productId } });
   const columns = getColumns(onClickDelete);
 
   const { allProducts } = data;

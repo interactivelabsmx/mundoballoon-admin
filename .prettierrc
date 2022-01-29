@@ -4,9 +4,11 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
     "^@lib/(.*)$",
+    "^@layouts/(.*)$",
     "^@components/(.*)$",
-    "^@hooks/(.*)$",
     "^@containers/(.*)$",
+    "^@hooks/(.*)$",
+    "^@graphql/(.*)$",
     "^[./]"
   ]
 }

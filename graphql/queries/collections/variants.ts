@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './variants.graphql';
 
 const defaultOptions = {} as const;
 export type GetVariantsQueryVariables = Types.Exact<{ [key: string]: never }>;
@@ -13,15 +13,6 @@ export type GetVariantsQuery = {
     name?: string | null | undefined;
   }>;
 };
-
-export const GetVariantsDocument = gql`
-  query GetVariants {
-    variants {
-      variantId
-      name
-    }
-  }
-`;
 
 /**
  * __useGetVariantsQuery__
@@ -46,7 +37,7 @@ export function useGetVariantsQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<GetVariantsQuery, GetVariantsQueryVariables>(
-    GetVariantsDocument,
+    Operations.GetVariants,
     options
   );
 }
@@ -58,7 +49,7 @@ export function useGetVariantsLazyQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useLazyQuery<GetVariantsQuery, GetVariantsQueryVariables>(
-    GetVariantsDocument,
+    Operations.GetVariants,
     options
   );
 }

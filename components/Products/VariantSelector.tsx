@@ -3,11 +3,11 @@ import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
 import useAutoSelectFirst from '@hooks/useAutoSelectFirst';
-import { INewProductVariantForm } from './AddProductVariant';
 import {
   GetVariantsQuery,
   useGetVariantsQuery,
-} from './graphql/VariantSelector.gql';
+} from '@graphql/queries/collections/variants';
+import { INewProductVariantForm } from './AddProductVariant';
 
 interface IVariantSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantId'>;

@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './createProductVariant.graphql';
 
 const defaultOptions = {} as const;
 export type CreateProductVariantMutationVariables = Types.Exact<{
@@ -15,17 +15,6 @@ export type CreateProductVariantMutation = {
   };
 };
 
-export const CreateProductVariantDocument = gql`
-  mutation CreateProductVariant(
-    $createProductVariantPayload: CreateProductVariantRequestInput!
-  ) {
-    createProductVariant(input: $createProductVariantPayload) {
-      productVariant {
-        productVariantId
-      }
-    }
-  }
-`;
 export type CreateProductVariantMutationFn = Apollo.MutationFunction<
   CreateProductVariantMutation,
   CreateProductVariantMutationVariables
@@ -58,7 +47,7 @@ export function useCreateProductVariantMutation(
   return Apollo.useMutation<
     CreateProductVariantMutation,
     CreateProductVariantMutationVariables
-  >(CreateProductVariantDocument, options);
+  >(Operations.CreateProductVariant, options);
 }
 export type CreateProductVariantMutationHookResult = ReturnType<
   typeof useCreateProductVariantMutation

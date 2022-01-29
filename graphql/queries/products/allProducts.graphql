@@ -1,0 +1,42 @@
+query AllProducts($first: Int = 5, $after: String) {
+  allProducts(first: $first, after: $after, order: [{ price: ASC }]) {
+    nodes {
+      productId
+      name
+      description
+      price
+      category {
+        productCategoryId
+        name
+        description
+      }
+      variants {
+        productVariantId
+        sku
+        variantValueId
+        productId
+        name
+        description
+        price
+        weight
+        storeOnly
+        isBundle
+        variant {
+          value
+        }
+        media {
+          productVariantMediaId
+          mediaType
+          url
+          quality
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

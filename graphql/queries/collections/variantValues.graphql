@@ -1,0 +1,6 @@
+query GetVariantValues($variantId: Int!) {
+  variantValues(variantId: $variantId) {
+    variantValueId
+    value
+  }
+}

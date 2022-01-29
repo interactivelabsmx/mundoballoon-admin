@@ -1,6 +1,6 @@
-import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import * as Types from '@types/graphql';
+import * as Types from '../../graphql';
+import * as Operations from './allProducts.graphql';
 
 const defaultOptions = {} as const;
 export type AllProductsQueryVariables = Types.Exact<{
@@ -77,51 +77,6 @@ export type AllProductsQuery = {
     | undefined;
 };
 
-export const AllProductsDocument = gql`
-  query allProducts($first: Int = 5, $after: String) {
-    allProducts(first: $first, after: $after, order: [{ price: ASC }]) {
-      nodes {
-        productId
-        name
-        description
-        price
-        category {
-          productCategoryId
-          name
-          description
-        }
-        variants {
-          productVariantId
-          sku
-          variantValueId
-          productId
-          name
-          description
-          price
-          weight
-          storeOnly
-          isBundle
-          variant {
-            value
-          }
-          media {
-            productVariantMediaId
-            mediaType
-            url
-            quality
-          }
-        }
-      }
-      pageInfo {
-        hasNextPage
-        endCursor
-        hasPreviousPage
-        startCursor
-      }
-    }
-  }
-`;
-
 /**
  * __useAllProductsQuery__
  *
@@ -147,7 +102,7 @@ export function useAllProductsQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<AllProductsQuery, AllProductsQueryVariables>(
-    AllProductsDocument,
+    Operations.AllProducts,
     options
   );
 }
@@ -159,7 +114,7 @@ export function useAllProductsLazyQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useLazyQuery<AllProductsQuery, AllProductsQueryVariables>(
-    AllProductsDocument,
+    Operations.AllProducts,
     options
   );
 }
