@@ -18,7 +18,7 @@ const Products = (): JSX.Element => {
   const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
     useDeleteProductMutation();
   if (error || deleteError) return <div>Error loading</div>;
-  if (loading || deleteLoading) return <div>Loading</div>;
+  if (loading || deleteLoading || !data) return <div>Loading</div>;
 
   const onClickDelete = (productId: number) =>
     deleteProduct({ variables: { productId } });

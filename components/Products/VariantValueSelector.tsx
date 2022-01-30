@@ -12,7 +12,7 @@ import { INewProductVariantForm } from './AddProductVariant';
 interface IVariantValueSelector {
   field: ControllerRenderProps<INewProductVariantForm, 'variantValueId'>;
   label: string;
-  error: string;
+  error?: string;
   variantId: number;
 }
 
@@ -38,10 +38,9 @@ const VariantValueSelector = ({
     prop: 'variantValueId',
   });
 
-  if (loading) return <LoadingText />;
+  const variantValues = data?.variantValues;
+  if (loading || !variantValues) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;
-
-  const { variantValues } = data;
 
   return (
     <SelectNative

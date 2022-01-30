@@ -4,10 +4,18 @@
     "plugin:@typescript-eslint/recommended",
     "next"
   ],
+  "plugins": ["testing-library"],
   "rules": {
     "@typescript-eslint/no-empty-interface": 0,
     "@typescript-eslint/no-explicit-any": 1,
     "@typescript-eslint/no-unused-vars": 2,
     "no-console": 2
-  }
+  },
+  "overrides": [
+    // Only uses Testing Library lint rules in test files
+    {
+      "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[t]s?(x)"],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }

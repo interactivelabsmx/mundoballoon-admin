@@ -7,7 +7,7 @@ interface IUseAutoSelectFirst<
   TName extends FieldPath<TFieldValues>
 > {
   field: ControllerRenderProps<TFieldValues, TName>;
-  data: T;
+  data?: T;
   list: keyof T;
   prop: TName;
 }

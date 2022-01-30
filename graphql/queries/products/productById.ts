@@ -13,8 +13,8 @@ export type GetProductByIdQuery = {
     | {
         __typename?: 'Product';
         productId: number;
-        name?: string | null | undefined;
-        description?: string | null | undefined;
+        name: string;
+        description: string;
         price: number;
       }
     | null

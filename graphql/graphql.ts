@@ -47,28 +47,28 @@ export enum ApplyPolicy {
 
 export type Claim = {
   __typename?: 'Claim';
-  claim1?: Maybe<Scalars['String']>;
+  claim1: Scalars['String'];
   claimId: Scalars['Int'];
 };
 
 export type CountryCode = {
   __typename?: 'CountryCode';
-  capital?: Maybe<Scalars['String']>;
-  continent?: Maybe<Scalars['String']>;
+  capital: Scalars['String'];
+  continent: Scalars['String'];
   createdAt?: Maybe<Scalars['DateTime']>;
-  dial?: Maybe<Scalars['String']>;
-  ds?: Maybe<Scalars['String']>;
-  fifa?: Maybe<Scalars['String']>;
-  geonameId?: Maybe<Scalars['Int']>;
-  ioc?: Maybe<Scalars['String']>;
+  dial: Scalars['String'];
+  ds: Scalars['String'];
+  fifa: Scalars['String'];
+  geonameId: Scalars['Int'];
+  ioc: Scalars['String'];
   isDeleted: Scalars['Boolean'];
-  itu?: Maybe<Scalars['String']>;
-  languages?: Maybe<Scalars['String']>;
-  officialNameEn?: Maybe<Scalars['String']>;
-  officialNameEs?: Maybe<Scalars['String']>;
-  supported?: Maybe<Scalars['Boolean']>;
+  itu: Scalars['String'];
+  languages: Scalars['String'];
+  officialNameEn: Scalars['String'];
+  officialNameEs: Scalars['String'];
+  supported: Scalars['Boolean'];
   updatedAt?: Maybe<Scalars['DateTime']>;
-  wmo?: Maybe<Scalars['String']>;
+  wmo: Scalars['String'];
 };
 
 export type CreateProductPayload = {
@@ -135,22 +135,22 @@ export type MutationDeleteProductArgs = {
 
 export type OcassionCartDetail = {
   __typename?: 'OcassionCartDetail';
-  label?: Maybe<Scalars['String']>;
+  label: Scalars['String'];
   occasionCartId: Scalars['Int'];
   price: Scalars['Float'];
   productVariantId: Scalars['Int'];
   quantity: Scalars['Float'];
-  sku?: Maybe<Scalars['String']>;
+  sku: Scalars['String'];
   variant?: Maybe<ProductVariant>;
 };
 
 export type OccasionCart = {
   __typename?: 'OccasionCart';
   cartDetails?: Maybe<Array<OcassionCartDetail>>;
-  description?: Maybe<Scalars['String']>;
-  dropOffStage?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
+  dropOffStage: Scalars['String'];
   occasionCartId: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
+  title: Scalars['String'];
   userOccasionId: Scalars['Int'];
 };
 
@@ -170,8 +170,8 @@ export type PageInfo = {
 export type Product = {
   __typename?: 'Product';
   category?: Maybe<ProductCategory>;
-  description?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
+  name: Scalars['String'];
   price: Scalars['Float'];
   productCategoryId: Scalars['Int'];
   productId: Scalars['Int'];
@@ -180,8 +180,8 @@ export type Product = {
 
 export type ProductCategory = {
   __typename?: 'ProductCategory';
-  description?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  description: Scalars['String'];
+  name: Scalars['String'];
   productCategoryId: Scalars['Int'];
 };
 
@@ -202,27 +202,27 @@ export type ProductSortInput = {
 
 export type ProductVariant = {
   __typename?: 'ProductVariant';
-  description?: Maybe<Scalars['String']>;
-  isBundle?: Maybe<Scalars['Boolean']>;
+  description: Scalars['String'];
+  isBundle: Scalars['Boolean'];
   media?: Maybe<Array<ProductVariantMedium>>;
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
-  sku?: Maybe<Scalars['String']>;
-  storeOnly?: Maybe<Scalars['Boolean']>;
+  sku: Scalars['String'];
+  storeOnly: Scalars['Boolean'];
   variant?: Maybe<VariantValue>;
   variantValueId: Scalars['Int'];
-  weight?: Maybe<Scalars['Float']>;
+  weight: Scalars['Float'];
 };
 
 export type ProductVariantMedium = {
   __typename?: 'ProductVariantMedium';
-  mediaType?: Maybe<Scalars['String']>;
+  mediaType: Scalars['String'];
   productVariantId: Scalars['Int'];
   productVariantMediaId: Scalars['Int'];
-  quality?: Maybe<Scalars['String']>;
-  url?: Maybe<Scalars['String']>;
+  quality: Scalars['String'];
+  url: Scalars['String'];
 };
 
 export type Query = {
@@ -270,37 +270,37 @@ export type User = {
   __typename?: 'User';
   addreses?: Maybe<Array<UserAddrese>>;
   carts?: Maybe<Array<UserCart>>;
-  email?: Maybe<Scalars['String']>;
+  email: Scalars['String'];
   emailVerified?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
-  image?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
+  image: Scalars['String'];
+  name: Scalars['String'];
   occasions?: Maybe<Array<UserOccasion>>;
   profile?: Maybe<UserProfile>;
   userClaims?: Maybe<Array<UserClaim>>;
-  userId?: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
 };
 
 export type UserAddrese = {
   __typename?: 'UserAddrese';
-  address1?: Maybe<Scalars['String']>;
-  address2?: Maybe<Scalars['String']>;
-  city?: Maybe<Scalars['String']>;
-  country?: Maybe<Scalars['String']>;
-  isBilling?: Maybe<Scalars['Boolean']>;
-  isShipping?: Maybe<Scalars['Boolean']>;
-  state?: Maybe<Scalars['String']>;
+  address1: Scalars['String'];
+  address2: Scalars['String'];
+  city: Scalars['String'];
+  country: Scalars['String'];
+  isBilling: Scalars['Boolean'];
+  isShipping: Scalars['Boolean'];
+  state: Scalars['String'];
   userAddresesId: Scalars['Int'];
-  userId?: Maybe<Scalars['Int']>;
-  zipcode?: Maybe<Scalars['String']>;
+  userId: Scalars['Int'];
+  zipcode: Scalars['String'];
 };
 
 export type UserCart = {
   __typename?: 'UserCart';
   price: Scalars['Float'];
-  productVariantId?: Maybe<Scalars['Int']>;
+  productVariantId: Scalars['Int'];
   quantity: Scalars['Float'];
-  sku?: Maybe<Scalars['String']>;
+  sku: Scalars['String'];
   userId: Scalars['Int'];
   variant?: Maybe<ProductVariant>;
 };
@@ -310,38 +310,38 @@ export type UserClaim = {
   claim?: Maybe<Claim>;
   claimId: Scalars['Int'];
   userClaimsId: Scalars['Int'];
-  userId?: Maybe<Scalars['String']>;
+  userId: Scalars['String'];
 };
 
 export type UserOccasion = {
   __typename?: 'UserOccasion';
   carts?: Maybe<Array<OccasionCart>>;
   date?: Maybe<Scalars['DateTime']>;
-  details?: Maybe<Scalars['String']>;
-  name?: Maybe<Scalars['String']>;
-  userId?: Maybe<Scalars['Int']>;
+  details: Scalars['String'];
+  name: Scalars['String'];
+  userId: Scalars['Int'];
   userOccasionId: Scalars['Int'];
 };
 
 export type UserProfile = {
   __typename?: 'UserProfile';
-  picture?: Maybe<Scalars['String']>;
-  processorId?: Maybe<Scalars['String']>;
-  userId?: Maybe<Scalars['Int']>;
+  picture: Scalars['String'];
+  processorId: Scalars['String'];
+  userId: Scalars['Int'];
   userProfileId: Scalars['Int'];
 };
 
 export type Variant = {
   __typename?: 'Variant';
-  name?: Maybe<Scalars['String']>;
-  type?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
+  type: Scalars['String'];
   variantId: Scalars['Int'];
   variantValues?: Maybe<Array<VariantValue>>;
 };
 
 export type VariantValue = {
   __typename?: 'VariantValue';
-  value?: Maybe<Scalars['String']>;
+  value: Scalars['String'];
   variant?: Maybe<Variant>;
   variantId: Scalars['Int'];
   variantValueId: Scalars['Int'];

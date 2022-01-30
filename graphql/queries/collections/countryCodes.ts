@@ -11,9 +11,9 @@ export type GetCountryCodesQuery = {
   __typename?: 'Query';
   countryCodes: Array<{
     __typename?: 'CountryCode';
-    fifa?: string | null | undefined;
-    dial?: string | null | undefined;
-    officialNameEn?: string | null | undefined;
+    fifa: string;
+    dial: string;
+    officialNameEn: string;
   }>;
 };
 

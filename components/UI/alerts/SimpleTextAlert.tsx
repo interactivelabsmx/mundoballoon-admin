@@ -5,7 +5,7 @@ import {
 import DismissAlertButton from './DismissAlertButton';
 
 interface ISimpleTextAlert {
-  text: string;
+  text?: string;
   type: SimpleTextAlertType;
   onDismissAlert?: () => void;
 }

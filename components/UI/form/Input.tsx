@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
+import { forwardRef, InputHTMLAttributes, LegacyRef, ReactNode } from 'react';
 import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
@@ -11,10 +11,10 @@ type IInput = InputHTMLAttributes<HTMLInputElement> & {
 
 const Input = (
   { label, error, leading, type = 'text', ...input }: IInput,
-  ref
+  ref: LegacyRef<HTMLInputElement> | undefined
 ): JSX.Element => (
   <>
-    <LabelBase label={label} htmlFor={input.name} />
+    <LabelBase label={label} htmlFor={input.name || ''} />
     <div className="mt-1 relative">
       {leading && (
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -32,7 +32,7 @@ const Input = (
         ref={ref}
       />
     </div>
-    {error && <ErrorText text={error} fieldName={input.name} />}
+    {error && <ErrorText text={error} fieldName={input.name || ''} />}
   </>
 );
 

@@ -34,7 +34,7 @@ const FirebaseAuth = () => {
       {loading && <div>Authenticating</div>}
       {(requestError || error) && (
         <SimpleTextAlert
-          text={requestError || error.message}
+          text={requestError || error?.message}
           type={SimpleTextAlertType.ERROR}
           onDismissAlert={onDismissAlert}
         />

@@ -17,15 +17,15 @@ export type AllProductsQuery = {
           | Array<{
               __typename?: 'Product';
               productId: number;
-              name?: string | null | undefined;
-              description?: string | null | undefined;
+              name: string;
+              description: string;
               price: number;
               category?:
                 | {
                     __typename?: 'ProductCategory';
                     productCategoryId: number;
-                    name?: string | null | undefined;
-                    description?: string | null | undefined;
+                    name: string;
+                    description: string;
                   }
                 | null
                 | undefined;
@@ -33,29 +33,26 @@ export type AllProductsQuery = {
                 | Array<{
                     __typename?: 'ProductVariant';
                     productVariantId: number;
-                    sku?: string | null | undefined;
+                    sku: string;
                     variantValueId: number;
                     productId: number;
-                    name?: string | null | undefined;
-                    description?: string | null | undefined;
+                    name: string;
+                    description: string;
                     price: number;
-                    weight?: number | null | undefined;
-                    storeOnly?: boolean | null | undefined;
-                    isBundle?: boolean | null | undefined;
+                    weight: number;
+                    storeOnly: boolean;
+                    isBundle: boolean;
                     variant?:
-                      | {
-                          __typename?: 'VariantValue';
-                          value?: string | null | undefined;
-                        }
+                      | { __typename?: 'VariantValue'; value: string }
                       | null
                       | undefined;
                     media?:
                       | Array<{
                           __typename?: 'ProductVariantMedium';
                           productVariantMediaId: number;
-                          mediaType?: string | null | undefined;
-                          url?: string | null | undefined;
-                          quality?: string | null | undefined;
+                          mediaType: string;
+                          url: string;
+                          quality: string;
                         }>
                       | null
                       | undefined;

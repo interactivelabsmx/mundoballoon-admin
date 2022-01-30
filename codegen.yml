@@ -16,6 +16,7 @@ generates:
       - typescript-operations
       - typescript-react-apollo
     config:
+      dedupeFragments: true
       documentMode: external
       importDocumentNodeExternallyFrom: near-operation-file
   ./@types/graphql.d.ts:

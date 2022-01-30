@@ -1,4 +1,4 @@
-import { forwardRef, InputHTMLAttributes } from 'react';
+import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
 import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
@@ -13,10 +13,10 @@ type ISelectNative = InputHTMLAttributes<HTMLSelectElement> & {
 
 const SelectNative = (
   { label, error, options, optionLabel, optionValue, ...input }: ISelectNative,
-  ref
+  ref: LegacyRef<HTMLSelectElement> | undefined
 ): JSX.Element => (
   <>
-    <LabelBase label={label} htmlFor={input.name} />
+    <LabelBase label={label} htmlFor={input.name || ''} />
     <div className="mt-1">
       <select
         {...input}
@@ -33,7 +33,7 @@ const SelectNative = (
         ))}
       </select>
     </div>
-    {error && <ErrorText text={error} fieldName={input.name} />}
+    {error && <ErrorText text={error} fieldName={input.name || ''} />}
   </>
 );
 

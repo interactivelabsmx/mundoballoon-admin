@@ -7,11 +7,7 @@ export type GetVariantsQueryVariables = Types.Exact<{ [key: string]: never }>;
 
 export type GetVariantsQuery = {
   __typename?: 'Query';
-  variants: Array<{
-    __typename?: 'Variant';
-    variantId: number;
-    name?: string | null | undefined;
-  }>;
+  variants: Array<{ __typename?: 'Variant'; variantId: number; name: string }>;
 };
 
 /**

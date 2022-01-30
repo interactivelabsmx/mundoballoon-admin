@@ -12,7 +12,7 @@ import { INewProductForm } from './AddProductForm';
 interface IProductCategorySelector {
   field: ControllerRenderProps<INewProductForm, 'productCategoryId'>;
   label: string;
-  error: string;
+  error?: string;
 }
 
 const ProductCategorySelector = ({
@@ -31,12 +31,9 @@ const ProductCategorySelector = ({
     list: 'productCategories',
     prop: 'productCategoryId',
   });
-
-  if (loading) return <LoadingText />;
+  const productCategories = data?.productCategories;
+  if (loading || !productCategories) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;
-
-  const { productCategories } = data;
-
   return (
     <SelectNative
       label={label}

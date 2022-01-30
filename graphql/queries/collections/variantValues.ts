@@ -12,7 +12,7 @@ export type GetVariantValuesQuery = {
   variantValues: Array<{
     __typename?: 'VariantValue';
     variantValueId: number;
-    value?: string | null | undefined;
+    value: string;
   }>;
 };
 
