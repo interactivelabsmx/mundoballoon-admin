@@ -1,6 +1,6 @@
-import IBaseIcon from './IBaseIcon';
+import { FC, SVGProps } from 'react';
 
-const FacebookIcon = ({ height = 20 }: IBaseIcon) => (
+const FacebookIcon: FC<SVGProps<SVGSVGElement>> = ({ height = 20 }) => (
   <svg
     height={height}
     className="w-5 h-5"

@@ -6,7 +6,7 @@ import { cleanObject, FI } from './utils';
 
 type IncomingGSSP<P> = (
   ctx: GetServerSidePropsContext,
-  user: Partial<UserRecord>
+  user: Partial<UserRecord> | null
 ) => Promise<P>;
 
 type WithAuthServerSidePropsResult = GetServerSidePropsResult<{
@@ -19,7 +19,7 @@ type WithAuthServerSidePropsOptions = {
 
 if (getApps().length < 1) {
   initializeApp({
-    credential: cert(JSON.parse(process.env.FIREBASE_PRIVATE_KEY)),
+    credential: cert(JSON.parse(process.env.FIREBASE_PRIVATE_KEY || '{}')),
     projectId: 'mundoballoon-dev',
   });
 }

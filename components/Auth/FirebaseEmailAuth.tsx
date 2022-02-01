@@ -7,6 +7,7 @@ import type { Asserts } from 'yup';
 import unifiedEmailPasswordAuth from '@lib/firebaseAuth/unifiedEmailPasswordAuth';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
+import LoadingText from '@components/UI/loading/LoadingText';
 import { useAuth } from '@containers/AuthProvider';
 
 export const userPwdSchema = yup
@@ -43,6 +44,7 @@ const FirebaseEmailAuth = ({
     onAuth(user);
   };
 
+  if (!auth) return <LoadingText text="Loading Login..." />;
   const onSubmit: SubmitHandler<IUserPwdForm> = ({ email, password }) => {
     setRequestError('');
     unifiedEmailPasswordAuth({

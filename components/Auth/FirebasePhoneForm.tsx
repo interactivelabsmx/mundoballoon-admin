@@ -8,6 +8,7 @@ import { phoneCodeRequest } from '@lib/firebaseAuth/phoneAuth';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import ErrorText from '@components/UI/form/ErrorText';
+import LoadingText from '@components/UI/loading/LoadingText';
 import { useAuth } from '@containers/AuthProvider';
 import CountryCodeSelector from './CountryCodeSelector';
 
@@ -43,6 +44,7 @@ const FirebasePhoneForm = ({
 
   const onError = (error: AuthError) => setRequestError(error.message);
 
+  if (!auth) return <LoadingText text="Loading Login..." />;
   const onSubmit: SubmitHandler<IUserPhoneForm> = ({
     countryCode,
     phoneNumber,
@@ -83,7 +85,7 @@ const FirebasePhoneForm = ({
       </div>
       {errors?.phoneNumber && (
         <ErrorText
-          text={errors?.phoneNumber?.message}
+          text={errors?.phoneNumber?.message || ''}
           fieldName="phoneNumber"
         />
       )}

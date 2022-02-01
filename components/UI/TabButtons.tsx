@@ -18,7 +18,7 @@ const TabButtons = () => (
         id="tabs"
         name="tabs"
         className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-        defaultValue={tabs.find((tab) => tab.current).name}
+        defaultValue={tabs.find((tab) => tab.current)?.name}
       >
         {tabs.map((tab) => (
           <option key={tab.name}>{tab.name}</option>

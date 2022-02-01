@@ -1,4 +1,9 @@
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import {
+  ApolloClient,
+  HttpLink,
+  InMemoryCache,
+  NormalizedCacheObject,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { relayStylePagination } from '@apollo/client/utilities';
 import merge from 'deepmerge';
@@ -6,7 +11,7 @@ import isEqual from 'lodash.isequal';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
-let apolloClient;
+let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 export interface ICreateApolloClient {
   // Server URL (must be absolute)
@@ -35,11 +40,7 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
   });
   const cache = new InMemoryCache({
     typePolicies: {
-      Query: {
-        fields: {
-          allProducts: relayStylePagination(),
-        },
-      },
+      Query: { fields: { allProducts: relayStylePagination() } },
     },
   });
   return new ApolloClient({
@@ -49,7 +50,10 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
   });
 }
 
-export function initializeApollo(initialState, options: ICreateApolloClient) {
+export function initializeApollo(
+  initialState: any,
+  options: ICreateApolloClient
+) {
   const _apolloClient = apolloClient ?? createApolloClient(options);
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
@@ -80,14 +84,17 @@ export function initializeApollo(initialState, options: ICreateApolloClient) {
   return _apolloClient;
 }
 
-export function addApolloState(client, pageProps) {
+export function addApolloState(
+  client: ApolloClient<NormalizedCacheObject>,
+  pageProps: any
+) {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
   }
   return pageProps;
 }
 
-export function useApollo(pageProps, options: ICreateApolloClient) {
+export function useApollo(pageProps: any, options: ICreateApolloClient) {
   const state = pageProps[APOLLO_STATE_PROP_NAME];
   const store = initializeApollo(state, options);
   return store;

@@ -4,9 +4,10 @@ import { JsonFileLoader } from '@graphql-tools/json-file-loader';
 import { loadSchema } from '@graphql-tools/load';
 import { addMocksToSchema } from '@graphql-tools/mock';
 import { render as rtlRender } from '@testing-library/react';
+import { ReactNode } from 'react';
 
 export default async function renderWithGraphql(
-  component,
+  component: ReactNode,
   { mocks = {} } = {}
 ) {
   const schema = await loadSchema('graphql/graphql.schema.json', {

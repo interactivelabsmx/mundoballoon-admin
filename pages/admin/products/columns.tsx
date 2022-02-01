@@ -3,6 +3,7 @@ import {
   PlusCircleIcon,
   TrashIcon,
 } from '@heroicons/react/solid';
+import { MouseEvent } from 'react';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 
 export const getItems = (
@@ -16,12 +17,11 @@ export const getItems = (
     Icon: PencilAltIcon,
   },
   {
-    onClick: (evt) => {
+    onClick: (evt: MouseEvent<HTMLAnchorElement>) => {
       evt.preventDefault();
       onClickDelete(productId);
     },
     id: `Delete${productId}`,
-    url: `/admin/products/delete/${productId}`,
     label: 'Delete',
     Icon: TrashIcon,
   },
@@ -53,7 +53,7 @@ export const getColumns = (onClickDelete: (productId: number) => void) => [
   {
     id: 'actions',
     Header: () => null,
-    Cell: ({ row }) => {
+    Cell: ({ row }: { row: any }) => {
       const { productId } = row.original;
       const items = getItems(productId, onClickDelete);
       return <DropdownActions label="Actions" items={items} />;

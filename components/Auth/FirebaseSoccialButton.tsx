@@ -1,7 +1,8 @@
 import { User, AuthError, AuthProvider } from '@firebase/auth';
-import { Dispatch, FunctionComponent, SVGProps } from 'react';
+import { Dispatch, FC, SVGProps } from 'react';
 import getOpenSignInWithPopupFuction from '@lib/firebaseAuth/getOpenSignInWithPopupFuction';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import LoadingText from '@components/UI/loading/LoadingText';
 import { useAuth } from '@containers/AuthProvider';
 
 export interface IFirebaseSocialButton {
@@ -9,7 +10,7 @@ export interface IFirebaseSocialButton {
   setRequestError: Dispatch<string>;
   provider: AuthProvider;
   label: string;
-  Icon?: FunctionComponent<SVGProps<SVGSVGElement>>;
+  Icon?: FC<SVGProps<SVGSVGElement>>;
 }
 
 const FirebaseSocialButton = ({
@@ -27,6 +28,7 @@ const FirebaseSocialButton = ({
   const onError = (error: AuthError) => {
     setRequestError(error.message);
   };
+  if (!auth) return <LoadingText text="Loading Login..." />;
   const openSignInWithPopup = getOpenSignInWithPopupFuction({
     auth,
     provider,

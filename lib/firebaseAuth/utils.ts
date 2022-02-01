@@ -18,7 +18,7 @@ export const getCookieIdToken = () => {
 
 export function cleanObject(object: any) {
   const newObject = Object.keys(object).reduce((acc, key) => {
-    const _acc = acc;
+    const _acc: any = acc;
     if (object[key] === undefined) return _acc;
     if (typeof object[key] === 'object') {
       _acc[key] = cleanObject(object[key]);

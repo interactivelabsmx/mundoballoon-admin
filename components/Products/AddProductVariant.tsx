@@ -21,7 +21,7 @@ export const newProductVariantSchema = yup
     description: yup.string().required(),
     price: yup.number().positive().required(),
     productId: yup.number().positive().required(),
-    variantId: yup.number().positive().required(),
+    variantId: yup.number().positive().optional(),
     variantValueId: yup.number().positive().required(),
   })
   .required();

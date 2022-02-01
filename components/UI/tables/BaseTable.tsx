@@ -20,10 +20,10 @@ const BaseTable = ({ columns, data }: IBaseTable): JSX.Element => {
           <tr>
             {headers.map((column, i) => (
               <th
-                key={i}
-                scope="col"
                 {...column.getHeaderProps()}
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                scope="col"
+                key={i}
               >
                 {column.render('Header')}
               </th>
@@ -35,15 +35,15 @@ const BaseTable = ({ columns, data }: IBaseTable): JSX.Element => {
             prepareRow(row);
             return (
               <tr
-                key={i}
                 {...row.getRowProps()}
                 className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50'}
+                key={i}
               >
                 {row.cells.map((cell, j) => (
                   <td
-                    key={j}
                     {...cell.getCellProps()}
                     className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                    key={j}
                   >
                     {cell.render('Cell')}
                   </td>

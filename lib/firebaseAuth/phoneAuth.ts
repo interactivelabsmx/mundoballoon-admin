@@ -16,6 +16,7 @@ declare global {
 interface IPhoneAuth extends IBaeFunctionAuth {
   phoneNumber: string;
   onCodeSent: (confirmationResult: ConfirmationResult) => void;
+  onError: (error: AuthError) => void;
 }
 
 export const setRecaptchaVerifier = () => {

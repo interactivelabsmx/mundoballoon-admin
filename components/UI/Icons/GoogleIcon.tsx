@@ -1,6 +1,6 @@
-import IBaseIcon from './IBaseIcon';
+import { FC, SVGProps } from 'react';
 
-const GoogleIcon = ({ height = 20 }: IBaseIcon) => (
+const GoogleIcon: FC<SVGProps<SVGSVGElement>> = ({ height = 20 }) => (
   <svg
     height={height}
     aria-hidden="true"

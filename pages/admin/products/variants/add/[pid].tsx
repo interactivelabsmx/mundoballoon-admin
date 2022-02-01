@@ -12,7 +12,7 @@ import { useGetProductByIdQuery } from '@graphql/queries/products/productById';
 
 const AddProduct = (): JSX.Element => {
   const router = useRouter();
-  const { pid } = router.query;
+  const { pid = 0 } = router.query;
   const { loading, error, data } = useGetProductByIdQuery({
     variables: { productId: +pid },
   });

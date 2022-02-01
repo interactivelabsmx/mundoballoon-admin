@@ -25,6 +25,7 @@ const Products = (): JSX.Element => {
   const columns = getColumns(onClickDelete);
 
   const { allProducts } = data;
+  if (!allProducts?.nodes) return <div>Loading</div>;
   const { nodes, pageInfo } = allProducts;
   const onClickNextPage = () =>
     fetchMore({ variables: { after: pageInfo.endCursor } });
