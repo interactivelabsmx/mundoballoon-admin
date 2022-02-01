@@ -1,19 +1,20 @@
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
-import Link from 'next/link';
 import {
   Fragment,
   FunctionComponent,
   MouseEventHandler,
   SVGProps,
 } from 'react';
+import DropdownActionButton from './DropdownActionButton';
+import DropdownActionLink from './DropdownActionLink';
 
-interface IDropdownActionsItem {
+export interface IDropdownActionsItem {
   id: string;
   url?: string;
   label: string;
   Icon: FunctionComponent<SVGProps<SVGSVGElement>>;
-  onClick?: MouseEventHandler<HTMLAnchorElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface IDropdownActions {
@@ -43,23 +44,11 @@ const DropdownActions = ({ label, items }: IDropdownActions) => (
         <div className="py-1">
           {items.map((item) => (
             <Menu.Item key={item.id}>
-              {() => {
-                const Wrapper = item.url ? Link : Fragment;
-                return (
-                  <Wrapper href={item.url || ''}>
-                    <a
-                      className="group flex items-center px-4 py-2 text-sm"
-                      onClick={item.onClick}
-                    >
-                      <item.Icon
-                        className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-500"
-                        aria-hidden="true"
-                      />
-                      {item.label}
-                    </a>
-                  </Wrapper>
-                );
-              }}
+              {!item.onClick ? (
+                <DropdownActionLink {...item} />
+              ) : (
+                <DropdownActionButton {...item} />
+              )}
             </Menu.Item>
           ))}
         </div>

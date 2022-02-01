@@ -17,7 +17,7 @@ export const getItems = (
     Icon: PencilAltIcon,
   },
   {
-    onClick: (evt: MouseEvent<HTMLAnchorElement>) => {
+    onClick: (evt: MouseEvent<HTMLButtonElement>) => {
       evt.preventDefault();
       onClickDelete(productId);
     },
