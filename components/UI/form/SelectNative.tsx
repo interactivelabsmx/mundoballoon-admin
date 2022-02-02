@@ -1,19 +1,28 @@
-import { forwardRef, InputHTMLAttributes, LegacyRef } from 'react';
+import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
 import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
 
-type ISelectNative = InputHTMLAttributes<HTMLSelectElement> & {
+type Base = { [key: string]: string | number };
+
+type ISelectNative<T> = InputHTMLAttributes<HTMLSelectElement> & {
   label: string;
   error?: string;
-  options: any[];
-  optionLabel: string;
-  optionValue: string;
+  options: Readonly<T[]>;
+  optionLabel: keyof T;
+  optionValue: keyof T;
 };
 
-const SelectNative = (
-  { label, error, options, optionLabel, optionValue, ...input }: ISelectNative,
-  ref: LegacyRef<HTMLSelectElement> | undefined
+const SelectNative = <T extends Base>(
+  {
+    label,
+    error,
+    options,
+    optionLabel,
+    optionValue,
+    ...input
+  }: ISelectNative<T>,
+  ref: ForwardedRef<HTMLSelectElement>
 ): JSX.Element => (
   <>
     <LabelBase label={label} htmlFor={input.name || ''} />
@@ -37,4 +46,6 @@ const SelectNative = (
   </>
 );
 
-export default forwardRef<HTMLSelectElement, ISelectNative>(SelectNative);
+export default forwardRef(SelectNative) as <T>(
+  props: ISelectNative<T> & { ref: ForwardedRef<HTMLSelectElement> }
+) => JSX.Element;
