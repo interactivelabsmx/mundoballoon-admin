@@ -1,7 +1,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { FunctionComponent, SVGProps } from 'react';
 import classNames from '@lib/utils/classnames';
-import { INavigationOption } from '@layouts/AdminLayout';
+
+export interface INavigationOption {
+  name: string;
+  href: string;
+  icon: FunctionComponent<SVGProps<SVGSVGElement>>;
+  current: boolean;
+}
 
 interface ISideBarOptions {
   navigationOptions: INavigationOption[];

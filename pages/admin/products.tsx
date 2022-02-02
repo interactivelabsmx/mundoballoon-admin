@@ -4,6 +4,8 @@ import AdminLayout from '@layouts/AdminLayout';
 import SectionHeader from '@components/UI/SectionHeader';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
+import ErrorSection from '@components/UI/pages/ErrorSection';
+import LoadingSection from '@components/UI/pages/LoadingSection';
 import BaseTable from '@components/UI/tables/BaseTable';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
 import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
@@ -17,15 +19,16 @@ const Products = (): JSX.Element => {
   });
   const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
     useDeleteProductMutation();
-  if (error || deleteError) return <div>Error loading</div>;
-  if (loading || deleteLoading || !data) return <div>Loading</div>;
+  if (error || deleteError)
+    return <ErrorSection text="Error loading products" />;
+  if (loading || deleteLoading || !data) return <LoadingSection />;
 
   const onClickDelete = (productId: number) =>
     deleteProduct({ variables: { productId } });
   const columns = getColumns(onClickDelete);
 
   const { allProducts } = data;
-  if (!allProducts?.nodes) return <div>Loading</div>;
+  if (!allProducts?.nodes) return <LoadingSection />;
   const { nodes, pageInfo } = allProducts;
   const onClickNextPage = () =>
     fetchMore({ variables: { after: pageInfo.endCursor } });

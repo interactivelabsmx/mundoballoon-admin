@@ -4,7 +4,9 @@ import {
   TrashIcon,
 } from '@heroicons/react/solid';
 import { MouseEvent } from 'react';
+import { Row } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
+import { Product } from '@graphql/graphql';
 
 export const getItems = (
   productId: number,
@@ -53,7 +55,7 @@ export const getColumns = (onClickDelete: (productId: number) => void) => [
   {
     id: 'actions',
     Header: () => null,
-    Cell: ({ row }: { row: any }) => {
+    Cell: ({ row }: { row: Row<Product> }) => {
       const { productId } = row.original;
       const items = getItems(productId, onClickDelete);
       return <DropdownActions label="Actions" items={items} />;

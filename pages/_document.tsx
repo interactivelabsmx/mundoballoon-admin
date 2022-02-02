@@ -14,7 +14,6 @@ class MyDocument extends Document {
             sizes="76x76"
             href="/img/brand/apple-icon.png"
           />
-          <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
         </Head>
         <body className="h-full">
           <Main />
