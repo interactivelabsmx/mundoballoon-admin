@@ -1,14 +1,18 @@
 import React from 'react';
-import { useTable } from 'react-table';
+import { Column, useTable } from 'react-table';
+import { Base } from '@lib/utils/baseType';
 
-export interface IBaseTable {
-  columns: any;
-  data: any;
+export interface IBaseTable<T extends Base> {
+  columns: Readonly<Column<any>[]>;
+  data: Readonly<T[]>;
 }
 
-const BaseTable = ({ columns, data }: IBaseTable): JSX.Element => {
+const BaseTable = <T extends Base>({
+  columns,
+  data,
+}: IBaseTable<T>): JSX.Element => {
   const { getTableProps, getTableBodyProps, headers, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable<T>({ columns, data });
 
   return (
     <div className="shadow border-b border-gray-200 sm:rounded-lg">

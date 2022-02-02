@@ -3,6 +3,7 @@ import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
 import useAutoSelectFirst from '@hooks/useAutoSelectFirst';
+import { VariantValue } from '@graphql/graphql';
 import {
   GetVariantValuesQuery,
   useGetVariantValuesQuery,
@@ -43,11 +44,11 @@ const VariantValueSelector = ({
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;
 
   return (
-    <SelectNative
+    <SelectNative<VariantValue>
       label={label}
       {...field}
       error={error}
-      options={variantValues}
+      options={variantValues as VariantValue[]}
       optionValue="variantValueId"
       optionLabel="value"
     />

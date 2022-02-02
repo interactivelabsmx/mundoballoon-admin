@@ -1,9 +1,8 @@
 import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
+import { Base } from '@lib/utils/baseType';
 import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
-
-type Base = { [key: string]: string | number };
 
 type ISelectNative<T> = InputHTMLAttributes<HTMLSelectElement> & {
   label: string;

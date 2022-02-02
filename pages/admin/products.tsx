@@ -7,6 +7,7 @@ import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import ErrorSection from '@components/UI/pages/ErrorSection';
 import LoadingSection from '@components/UI/pages/LoadingSection';
 import BaseTable from '@components/UI/tables/BaseTable';
+import { Product } from '@graphql/graphql';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
 import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
 import { getColumns } from './products/columns';
@@ -39,7 +40,7 @@ const Products = (): JSX.Element => {
       <SectionHeader text="Products" />
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <BaseTable columns={columns} data={nodes} />
+          <BaseTable<Product> columns={columns} data={nodes as Product[]} />
           <div className="flex justify-between mt-4">
             <SecundaryButton
               disabled={!pageInfo.hasPreviousPage}

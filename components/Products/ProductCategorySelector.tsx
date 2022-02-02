@@ -3,6 +3,7 @@ import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
 import useAutoSelectFirst from '@hooks/useAutoSelectFirst';
+import { ProductCategory } from '@graphql/graphql';
 import {
   GetProductCategoriesQuery,
   useGetProductCategoriesQuery,
@@ -35,11 +36,11 @@ const ProductCategorySelector = ({
   if (loading || !productCategories) return <LoadingText />;
   if (loadError) return <div className="mt-1 text-red-500">Error loading</div>;
   return (
-    <SelectNative
+    <SelectNative<ProductCategory>
       label={label}
       {...field}
       error={error}
-      options={productCategories}
+      options={productCategories as ProductCategory[]}
       optionValue="productCategoryId"
       optionLabel="name"
     />
