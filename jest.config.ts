@@ -10,14 +10,30 @@ const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
-    '^@lib/(.*)$': '<rootDir>/lib/$1',
-    '^@layouts/(.*)$': '<rootDir>/layouts/$1',
     '^@components/(.*)$': '<rootDir>/components/$1',
     '^@containers/(.*)$': '<rootDir>/containers/$1',
-    '^@hooks/(.*)$': '<rootDir>/hooks/$1',
     '^@graphql/(.*)$': '<rootDir>/graphql/$1',
+    '^@hooks/(.*)$': '<rootDir>/hooks/$1',
+    '^@layouts/(.*)$': '<rootDir>/layouts/$1',
+    '^@lib/(.*)$': '<rootDir>/lib/$1',
+    '^@pages/(.*)$': '<rootDir>/pages/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
+  collectCoverage: true,
+  collectCoverageFrom: [
+    '**/*.{ts,tsx}',
+    '!**/node_modules/**',
+    '!**/__tests__/**',
+    '!jest.config.ts',
+  ],
+  coverageThreshold: {
+    global: {
+      lines: 70,
+      branches: 70,
+      functions: 70,
+      statements: 70,
+    },
+  },
   transform: {
     '\\.(gql|graphql)$': 'jest-transform-graphql',
   },

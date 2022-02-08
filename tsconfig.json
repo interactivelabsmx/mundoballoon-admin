@@ -21,7 +21,8 @@
       "@graphql/*": ["graphql/*"],
       "@hooks/*": ["hooks/*"],
       "@layouts/*": ["layouts/*"],
-      "@lib/*": ["lib/*"]
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["pages/*"]
     }
   },
   "exclude": ["node_modules", ".next", "out"],
