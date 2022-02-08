@@ -5,6 +5,7 @@ import { loadSchema } from '@graphql-tools/load';
 import { addMocksToSchema } from '@graphql-tools/mock';
 import { render as rtlRender } from '@testing-library/react';
 import { ReactNode } from 'react';
+import { AuthProvider } from '@containers/AuthProvider';
 
 export default async function renderWithGraphql(
   component: ReactNode,
@@ -24,6 +25,8 @@ export default async function renderWithGraphql(
   });
 
   return rtlRender(
-    <ApolloProvider client={client}>{component}</ApolloProvider>
+    <AuthProvider>
+      <ApolloProvider client={client}>{component}</ApolloProvider>
+    </AuthProvider>
   );
 }

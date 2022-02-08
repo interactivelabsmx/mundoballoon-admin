@@ -1,4 +1,4 @@
-import { User } from 'firebase/auth';
+import { User } from '@firebase/auth';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { setRecaptchaVerifier } from '@lib/firebaseAuth/phoneAuth';

@@ -5,6 +5,7 @@ import LabelBase from './LabeBase';
 
 type IInput = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
+  name: string;
   error?: string;
   leading?: ReactNode;
 };
@@ -24,10 +25,11 @@ const Input = (
       <input
         {...input}
         type={type}
+        aria-labelledby={label}
         className={classNames(
-          leading && 'pl-7',
-          'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md',
-          input.className
+          input.className,
+          (leading && 'pl-7') || '',
+          'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md'
         )}
         ref={ref}
       />

@@ -60,9 +60,7 @@ export function AuthProvider({ children }: IAuthProvider) {
   useEffect(() => {
     if (auth) {
       onAuthStateChanged(auth, (user) => {
-        if (user) {
-          onAuth(user);
-        }
+        if (user) onAuth(user);
       });
     }
   }, [auth, logout, onAuth]);

@@ -7,7 +7,7 @@ const createJestConfig = nextJest({
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   moduleNameMapper: {
     // Handle module aliases (this will be automatically configured for you soon)
     '^@components/(.*)$': '<rootDir>/components/$1',
@@ -17,6 +17,7 @@ const customJestConfig = {
     '^@layouts/(.*)$': '<rootDir>/layouts/$1',
     '^@lib/(.*)$': '<rootDir>/lib/$1',
     '^@pages/(.*)$': '<rootDir>/pages/$1',
+    '^firebase-admin/(.*)$': '<rootDir>/node_modules/firebase-admin/lib/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
@@ -25,6 +26,8 @@ const customJestConfig = {
     '!**/node_modules/**',
     '!**/__tests__/**',
     '!jest.config.ts',
+    '!pages/_app.tsx',
+    '!pages/_document.tsx',
   ],
   coverageThreshold: {
     global: {
