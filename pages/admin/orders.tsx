@@ -1,10 +1,11 @@
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
+import SectionHeader from '@components/UI/headers/SectionHeader';
 
 const Orders = (): JSX.Element => (
   <AdminLayout>
-    <div>Orders</div>
+    <SectionHeader text="Orders Page" />
   </AdminLayout>
 );
 

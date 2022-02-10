@@ -12,9 +12,8 @@ import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProd
 import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
 import { getProductColumns } from './products/columns';
 
-export const productsQueryVars = { first: 5, after: null };
-
 const Products = (): JSX.Element => {
+  const productsQueryVars = { first: 5, after: null };
   const { loading, error, data, fetchMore } = useAllProductsQuery({
     variables: productsQueryVars,
   });

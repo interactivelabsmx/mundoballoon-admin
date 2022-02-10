@@ -5,7 +5,7 @@ import SectionHeader from '@components/UI/headers/SectionHeader';
 
 const Dashboard = (): JSX.Element => (
   <AdminLayout>
-    <SectionHeader text="Dashbaord" />
+    <SectionHeader text="Dashboard Page" />
   </AdminLayout>
 );
 
