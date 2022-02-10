@@ -8,7 +8,7 @@ import { Row } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 import { Product } from '@graphql/graphql';
 
-export const getItems = (
+export const getProductItems = (
   productId: number,
   onClickDelete: (productId: number) => void
 ) => [
@@ -35,7 +35,9 @@ export const getItems = (
   },
 ];
 
-export const getColumns = (onClickDelete: (productId: number) => void) => [
+export const getProductColumns = (
+  onClickDelete: (productId: number) => void
+) => [
   {
     Header: 'Name',
     accessor: 'name',
@@ -57,7 +59,7 @@ export const getColumns = (onClickDelete: (productId: number) => void) => [
     Header: () => null,
     Cell: ({ row }: { row: Row<Product> }) => {
       const { productId } = row.original;
-      const items = getItems(productId, onClickDelete);
+      const items = getProductItems(productId, onClickDelete);
       return <DropdownActions label="Actions" items={items} />;
     },
   },

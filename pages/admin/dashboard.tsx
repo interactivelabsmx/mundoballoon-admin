@@ -1,7 +1,7 @@
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
-import SectionHeader from '@components/UI/SectionHeader';
+import SectionHeader from '@components/UI/headers/SectionHeader';
 
 const Dashboard = (): JSX.Element => (
   <AdminLayout>

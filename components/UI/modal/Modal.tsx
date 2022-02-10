@@ -2,7 +2,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { Dispatch, Fragment, ReactNode } from 'react';
 
-interface IModal {
+export interface IModal {
   open: boolean;
   setOpen: Dispatch<boolean>;
   title?: string;
