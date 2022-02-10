@@ -1,6 +1,6 @@
 import React from 'react';
 import AdminLayout from '@layouts/AdminLayout';
-import LoadingText from '../loading/LoadingText';
+import LoadingText from '@components/UI/loading/LoadingText';
 
 interface ILoadingSection {
   text?: string;

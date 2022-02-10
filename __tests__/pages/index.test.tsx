@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 import Index from '@pages/index';
-import renderWithGraphql from '@lib/utils/renderWithGraphql';
+import renderWithGraphql from '@lib/test/renderWithGraphql';
 
 describe('Index', () => {
   it('should render index', async () => {

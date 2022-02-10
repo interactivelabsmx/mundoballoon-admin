@@ -1,11 +1,11 @@
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
+import ErrorSection from '@layouts/ErrorSection';
+import LoadingSection from '@layouts/LoadingSection';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
-import ErrorSection from '@components/UI/pages/ErrorSection';
-import LoadingSection from '@components/UI/pages/LoadingSection';
 import BaseTable from '@components/UI/tables/BaseTable';
 import { Product } from '@graphql/graphql';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';

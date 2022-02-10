@@ -5,7 +5,7 @@ import { Dispatch, Fragment, useCallback } from 'react';
 import NavBarProfile from '@components/User/NavBarProfile';
 import SideBarOptions, { INavigationOption } from './SideBarOptions';
 
-interface ISideBar {
+export interface ISideBar {
   sidebarOpen: boolean;
   setSidebarOpen: Dispatch<boolean>;
   navigationOptions: INavigationOption[];

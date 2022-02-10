@@ -1,7 +1,7 @@
 import React from 'react';
 import AdminLayout from '@layouts/AdminLayout';
-import { SimpleTextAlertType } from '../alerts/AlertConfigTypes';
-import SimpleTextAlert from '../alerts/SimpleTextAlert';
+import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
+import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 
 interface IErrorSection {
   text?: string;

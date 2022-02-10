@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import { getProductColumns } from '@pages/admin/products/columns';
 import BaseTable from '@components/UI/tables/BaseTable';
 import { Product } from '@graphql/graphql';
-import { getFixtureProducts } from '../../../fixtures/products';
+import { getFixtureProducts } from '../../../../lib/test/fixtures/products';
 
 describe('Modal', () => {
   it('Renders modal', async () => {
