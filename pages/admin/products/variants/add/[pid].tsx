@@ -10,7 +10,7 @@ import LoadingText from '@components/UI/loading/LoadingText';
 import { Product } from '@graphql/graphql';
 import { useGetProductByIdQuery } from '@graphql/queries/products/productById';
 
-const AddProduct = (): JSX.Element => {
+const AddProductVariantRoute = (): JSX.Element => {
   const router = useRouter();
   const { pid = 0 } = router.query;
   const { loading, error, data } = useGetProductByIdQuery({
@@ -33,4 +33,4 @@ const AddProduct = (): JSX.Element => {
 
 export const getServerSideProps = withAuthServer();
 
-export default AddProduct;
+export default AddProductVariantRoute;
