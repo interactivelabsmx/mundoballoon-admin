@@ -1,0 +1,12 @@
+fragment ProductDetails on Product {
+  productId
+  name
+  description
+  price
+  category {
+    ...Category
+  }
+  variants {
+    ...VariantDetails
+  }
+}

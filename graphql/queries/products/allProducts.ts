@@ -10,68 +10,45 @@ export type AllProductsQueryVariables = Types.Exact<{
 
 export type AllProductsQuery = {
   __typename?: 'Query';
-  allProducts?:
-    | {
-        __typename?: 'AllProductsConnection';
-        nodes?:
-          | Array<{
-              __typename?: 'Product';
-              productId: number;
-              name: string;
-              description: string;
-              price: number;
-              category?:
-                | {
-                    __typename?: 'ProductCategory';
-                    productCategoryId: number;
-                    name: string;
-                    description: string;
-                  }
-                | null
-                | undefined;
-              variants?:
-                | Array<{
-                    __typename?: 'ProductVariant';
-                    productVariantId: number;
-                    sku: string;
-                    variantValueId: number;
-                    productId: number;
-                    name: string;
-                    description: string;
-                    price: number;
-                    weight: number;
-                    storeOnly: boolean;
-                    isBundle: boolean;
-                    variant?:
-                      | { __typename?: 'VariantValue'; value: string }
-                      | null
-                      | undefined;
-                    media?:
-                      | Array<{
-                          __typename?: 'ProductVariantMedium';
-                          productVariantMediaId: number;
-                          mediaType: string;
-                          url: string;
-                          quality: string;
-                        }>
-                      | null
-                      | undefined;
-                  }>
-                | null
-                | undefined;
-            }>
-          | null
-          | undefined;
-        pageInfo: {
-          __typename?: 'PageInfo';
-          hasNextPage: boolean;
-          endCursor?: string | null | undefined;
-          hasPreviousPage: boolean;
-          startCursor?: string | null | undefined;
-        };
-      }
-    | null
-    | undefined;
+  allProducts?: {
+    __typename?: 'AllProductsConnection';
+    nodes?: Array<{
+      __typename?: 'Product';
+      productId: number;
+      name: string;
+      description: string;
+      price: number;
+      category?: {
+        __typename?: 'ProductCategory';
+        productCategoryId: number;
+        name: string;
+        description: string;
+      } | null;
+      variants?: Array<{
+        __typename?: 'ProductVariant';
+        productVariantId: number;
+        sku: string;
+        name: string;
+        description: string;
+        price: number;
+        variant?: { __typename?: 'VariantValue'; value: string } | null;
+        media?: Array<{
+          __typename?: 'ProductVariantMedium';
+          productVariantMediaId: number;
+          mediaType: string;
+          quality: string;
+          url: string;
+        }> | null;
+      }> | null;
+    }> | null;
+    pageInfo: {
+      __typename?: 'PageInfo';
+      hasNextPage: boolean;
+      endCursor?: string | null;
+      hasPreviousPage: boolean;
+      startCursor?: string | null;
+    };
+  } | null;
 };
 
 /**

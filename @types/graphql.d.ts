@@ -1,4 +1,40 @@
 
+declare module '*/CategoryFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Category: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/MediaFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Media: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ProductDetailsFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProductDetails: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/VariantDetailsFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const VariantDetails: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/createProduct.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

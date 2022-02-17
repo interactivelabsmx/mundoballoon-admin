@@ -1,0 +1,5 @@
+fragment Category on ProductCategory {
+  productCategoryId
+  name
+  description
+}

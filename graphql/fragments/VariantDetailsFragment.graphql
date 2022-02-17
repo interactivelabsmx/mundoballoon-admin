@@ -1,0 +1,13 @@
+fragment VariantDetails on ProductVariant {
+  productVariantId
+  sku
+  name
+  description
+  price
+  variant {
+    value
+  }
+  media {
+    ...Media
+  }
+}

@@ -9,7 +9,7 @@ export type DeleteProductMutationVariables = Types.Exact<{
 
 export type DeleteProductMutation = {
   __typename?: 'Mutation';
-  deleteProduct?: boolean | null | undefined;
+  deleteProduct?: boolean | null;
 };
 
 export type DeleteProductMutationFn = Apollo.MutationFunction<

@@ -9,16 +9,13 @@ export type GetProductByIdQueryVariables = Types.Exact<{
 
 export type GetProductByIdQuery = {
   __typename?: 'Query';
-  productById?:
-    | {
-        __typename?: 'Product';
-        productId: number;
-        name: string;
-        description: string;
-        price: number;
-      }
-    | null
-    | undefined;
+  productById?: {
+    __typename?: 'Product';
+    productId: number;
+    name: string;
+    description: string;
+    price: number;
+  } | null;
 };
 
 /**
