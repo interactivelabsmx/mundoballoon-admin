@@ -1,13 +1,13 @@
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
-import AddProductForm from '@components/Products/AddProductForm';
 import SectionHeader from '@components/UI/headers/SectionHeader';
+import AddProductContainer from '@containers/Products/AddProductContainer';
 
-const AddProduct = (): JSX.Element => (
+const AddProduct = () => (
   <AdminLayout>
     <SectionHeader text="Add Product" />
-    <AddProductForm />
+    <AddProductContainer />
   </AdminLayout>
 );
 

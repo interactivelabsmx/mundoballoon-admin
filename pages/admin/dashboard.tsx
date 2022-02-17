@@ -3,7 +3,7 @@ import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 
-const Dashboard = (): JSX.Element => (
+const Dashboard = () => (
   <AdminLayout>
     <SectionHeader text="Dashboard Page" />
   </AdminLayout>

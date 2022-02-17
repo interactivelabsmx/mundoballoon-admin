@@ -13,7 +13,7 @@ type IInput = InputHTMLAttributes<HTMLInputElement> & {
 const Input = (
   { label, error, leading, type = 'text', ...input }: IInput,
   ref: LegacyRef<HTMLInputElement> | undefined
-): JSX.Element => (
+) => (
   <>
     <LabelBase label={label} htmlFor={input.name || ''} />
     <div className="mt-1 relative">

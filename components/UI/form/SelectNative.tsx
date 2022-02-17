@@ -22,7 +22,7 @@ const SelectNative = <T extends Base>(
     ...input
   }: ISelectNative<T>,
   ref: ForwardedRef<HTMLSelectElement>
-): JSX.Element => (
+) => (
   <>
     <LabelBase label={label} htmlFor={input.name || ''} />
     <div className="mt-1">

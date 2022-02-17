@@ -7,7 +7,7 @@ interface IAdminLayout {
   children: ReactNode;
 }
 
-const AdminLayout = ({ children }: IAdminLayout): JSX.Element => {
+const AdminLayout = ({ children }: IAdminLayout) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const onOpenSidebar = useCallback(() => {
     setSidebarOpen(true);

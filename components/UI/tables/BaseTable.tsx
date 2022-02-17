@@ -7,10 +7,7 @@ export interface IBaseTable<T extends Base> {
   data: Readonly<T[]>;
 }
 
-const BaseTable = <T extends Base>({
-  columns,
-  data,
-}: IBaseTable<T>): JSX.Element => {
+const BaseTable = <T extends Base>({ columns, data }: IBaseTable<T>) => {
   const { getTableProps, getTableBodyProps, headers, rows, prepareRow } =
     useTable<T>({ columns, data });
 

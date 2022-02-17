@@ -5,7 +5,7 @@ import 'styles/index.css';
 import AppContexts from '@containers/AppContexts';
 import { AuthProvider } from '@containers/AuthProvider';
 
-const App = ({ Component, pageProps }: AppProps): JSX.Element => (
+const App = ({ Component, pageProps }: AppProps) => (
   <AuthProvider>
     <AppContexts pageProps={pageProps}>
       <Head>

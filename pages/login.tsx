@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
-import FirebaseAuth from '@components/Auth/FirebaseAuth';
+import FirebaseAuth from '@containers/Auth/FirebaseAuth';
 import { useAuth } from '@containers/AuthProvider';
 
-const Login = (): JSX.Element => {
+const Login = () => {
   const { user } = useAuth();
   const { push } = useRouter();
   useEffect(() => {

@@ -8,10 +8,7 @@ interface ICountryCodeSelector {
   label: string;
 }
 
-const CountryCodeSelector = ({
-  field,
-  label,
-}: ICountryCodeSelector): JSX.Element => {
+const CountryCodeSelector = ({ field, label }: ICountryCodeSelector) => {
   const { loading, error: loadError, data } = useGetCountryCodesQuery();
 
   if (loading) return <LoadingText />;

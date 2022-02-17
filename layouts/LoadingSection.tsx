@@ -6,7 +6,7 @@ interface ILoadingSection {
   text?: string;
 }
 
-const LoadingSection = ({ text }: ILoadingSection): JSX.Element => (
+const LoadingSection = ({ text }: ILoadingSection) => (
   <AdminLayout>
     <LoadingText text={text} />
   </AdminLayout>

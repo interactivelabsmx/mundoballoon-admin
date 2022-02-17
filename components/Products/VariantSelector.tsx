@@ -8,21 +8,17 @@ import {
   GetVariantsQuery,
   useGetVariantsQuery,
 } from '@graphql/queries/collections/variants';
-import { INewProductVariantForm } from './AddProductVariant';
+import { IProductVariantFormSchema } from './ProductVariantForm';
 
 interface IVariantSelector {
-  field: ControllerRenderProps<INewProductVariantForm, 'variantId'>;
+  field: ControllerRenderProps<IProductVariantFormSchema, 'variantId'>;
   label: string;
   error?: string;
 }
 
-const VariantSelector = ({
-  field,
-  label,
-  error,
-}: IVariantSelector): JSX.Element => {
+const VariantSelector = ({ field, label, error }: IVariantSelector) => {
   const { loading, error: loadError, data } = useGetVariantsQuery();
-  useAutoSelectFirst<GetVariantsQuery, INewProductVariantForm, 'variantId'>({
+  useAutoSelectFirst<GetVariantsQuery, IProductVariantFormSchema, 'variantId'>({
     field,
     data,
     list: 'variants',

@@ -1,10 +1,10 @@
 import { screen } from '@testing-library/react';
 import renderWithGraphql from '@lib/test/renderWithGraphql';
-import AddProductForm from '@components/Products/AddProductForm';
+import AddProductContainer from '@containers/Products/AddProductContainer';
 
 describe('Add Product', () => {
   it('should render the Add Product Form', async () => {
-    await renderWithGraphql(<AddProductForm />);
+    await renderWithGraphql(<AddProductContainer />);
     expect(screen.getByText('Product Name')).not.toBeNull();
   });
 });

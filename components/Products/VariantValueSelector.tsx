@@ -8,10 +8,10 @@ import {
   GetVariantValuesQuery,
   useGetVariantValuesQuery,
 } from '@graphql/queries/collections/variantValues';
-import { INewProductVariantForm } from './AddProductVariant';
+import { IProductVariantFormSchema } from './ProductVariantForm';
 
 interface IVariantValueSelector {
-  field: ControllerRenderProps<INewProductVariantForm, 'variantValueId'>;
+  field: ControllerRenderProps<IProductVariantFormSchema, 'variantValueId'>;
   label: string;
   error?: string;
   variantId: number;
@@ -22,7 +22,7 @@ const VariantValueSelector = ({
   label,
   error,
   variantId,
-}: IVariantValueSelector): JSX.Element => {
+}: IVariantValueSelector) => {
   const {
     loading,
     error: loadError,
@@ -30,7 +30,7 @@ const VariantValueSelector = ({
   } = useGetVariantValuesQuery({ variables: { variantId } });
   useAutoSelectFirst<
     GetVariantValuesQuery,
-    INewProductVariantForm,
+    IProductVariantFormSchema,
     'variantValueId'
   >({
     field,

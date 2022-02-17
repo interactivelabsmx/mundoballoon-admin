@@ -8,10 +8,10 @@ import {
   GetProductCategoriesQuery,
   useGetProductCategoriesQuery,
 } from '@graphql/queries/collections/productCategories';
-import { INewProductForm } from './AddProductForm';
+import { IProductFormSchema } from './ProductForm';
 
 interface IProductCategorySelector {
-  field: ControllerRenderProps<INewProductForm, 'productCategoryId'>;
+  field: ControllerRenderProps<IProductFormSchema, 'productCategoryId'>;
   label: string;
   error?: string;
 }
@@ -20,11 +20,11 @@ const ProductCategorySelector = ({
   field,
   label,
   error,
-}: IProductCategorySelector): JSX.Element => {
+}: IProductCategorySelector) => {
   const { loading, error: loadError, data } = useGetProductCategoriesQuery();
   useAutoSelectFirst<
     GetProductCategoriesQuery,
-    INewProductForm,
+    IProductFormSchema,
     'productCategoryId'
   >({
     field,

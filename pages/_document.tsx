@@ -2,7 +2,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
 class MyDocument extends Document {
-  render(): JSX.Element {
+  render() {
     return (
       <Html lang="en" className="h-full bg-gray-100">
         <Head>

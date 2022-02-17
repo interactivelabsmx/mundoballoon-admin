@@ -7,7 +7,7 @@ interface IErrorSection {
   text?: string;
 }
 
-const ErrorSection = ({ text }: IErrorSection): JSX.Element => (
+const ErrorSection = ({ text }: IErrorSection) => (
   <AdminLayout>
     <SimpleTextAlert type={SimpleTextAlertType.ERROR} text={text} />
   </AdminLayout>

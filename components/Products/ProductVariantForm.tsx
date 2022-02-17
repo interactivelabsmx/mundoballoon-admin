@@ -1,50 +1,77 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/router';
 import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
-import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
-import LoadingText from '@components/UI/loading/LoadingText';
-import { useCreateProductMutation } from '@graphql/mutations/products/createProduct';
-import ProductCategorySelector from './ProductCategorySelector';
+import { Product } from '@graphql/graphql';
+import VariantSelector from './VariantSelector';
+import VariantValueSelector from './VariantValueSelector';
 
-export const newProductSchema = yup
+export const productVariantFormSchema = yup
   .object({
+    productVariantId: yup.number().optional(),
+    sku: yup.string().required(),
     name: yup.string().required(),
     description: yup.string().required(),
-    productCategoryId: yup.number().positive().required(),
     price: yup.number().positive().required(),
+    productId: yup.number().positive().required(),
+    variantId: yup.number().positive().optional(),
+    variantValueId: yup.number().positive().required(),
   })
   .required();
 
-export interface INewProductForm extends Asserts<typeof newProductSchema> {}
+export interface IProductVariantFormSchema
+  extends Asserts<typeof productVariantFormSchema> {}
 
-const AddProductForm = (): JSX.Element => {
+export interface IProductVariantForm {
+  product: Product;
+  loading: boolean;
+  onSubmit: SubmitHandler<IProductVariantFormSchema>;
+}
+
+const ProductVariantForm = ({
+  product,
+  onSubmit,
+  loading,
+}: IProductVariantForm) => {
   const {
+    watch,
     control,
+    register,
     handleSubmit,
     formState: { errors },
-  } = useForm<INewProductForm>({
-    resolver: yupResolver(newProductSchema),
+  } = useForm<IProductVariantFormSchema>({
+    resolver: yupResolver(productVariantFormSchema),
+    defaultValues: {
+      productId: product.productId,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+    },
   });
 
-  const { push } = useRouter();
-  const [createProduct, { loading, error }] = useCreateProductMutation();
-  const onSubmit: SubmitHandler<INewProductForm> = async (data) => {
-    const result = await createProduct({
-      variables: {
-        createProductPayload: { ...data },
-      },
-    });
-    if (!result.errors) push('/admin/products');
-  };
+  const variantId = watch('variantId');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="hidden" {...register('productId')} />
+      <div className="mb-8">
+        <Controller
+          name="sku"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Product SKU"
+              placeholder="The unique identifier for inventory"
+              error={errors?.sku?.message}
+            />
+          )}
+        />
+      </div>
       <div className="mb-8">
         <Controller
           name="name"
@@ -94,25 +121,35 @@ const AddProductForm = (): JSX.Element => {
       </div>
       <div className="mb-8">
         <Controller
-          name="productCategoryId"
+          name="variantId"
           control={control}
           defaultValue={undefined}
           render={({ field }) => (
-            <ProductCategorySelector
+            <VariantSelector
               field={field}
-              label="Product Category"
-              error={errors?.productCategoryId?.message}
+              label="Variants"
+              error={errors?.variantId?.message}
             />
           )}
         />
       </div>
-      {error && (
-        <SimpleTextAlert
-          text={error.message}
-          type={SimpleTextAlertType.ERROR}
-        />
+      {variantId && (
+        <div className="mb-8">
+          <Controller
+            name="variantValueId"
+            control={control}
+            defaultValue={undefined}
+            render={({ field }) => (
+              <VariantValueSelector
+                field={field}
+                variantId={variantId}
+                label="Variant Values"
+                error={errors?.variantValueId?.message}
+              />
+            )}
+          />
+        </div>
       )}
-      {loading && <LoadingText text="Creating product..." />}
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>
           Save
@@ -122,4 +159,4 @@ const AddProductForm = (): JSX.Element => {
   );
 };
 
-export default AddProductForm;
+export default ProductVariantForm;
