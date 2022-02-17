@@ -1,6 +1,6 @@
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import * as Types from '../../graphql';
-import * as Operations from './deleteProduct.graphql';
 
 const defaultOptions = {} as const;
 export type DeleteProductMutationVariables = Types.Exact<{
@@ -12,6 +12,11 @@ export type DeleteProductMutation = {
   deleteProduct?: boolean | null;
 };
 
+export const DeleteProductDocument = gql`
+  mutation DeleteProduct($productId: Int!) {
+    deleteProduct(productId: $productId)
+  }
+`;
 export type DeleteProductMutationFn = Apollo.MutationFunction<
   DeleteProductMutation,
   DeleteProductMutationVariables
@@ -44,7 +49,7 @@ export function useDeleteProductMutation(
   return Apollo.useMutation<
     DeleteProductMutation,
     DeleteProductMutationVariables
-  >(Operations.DeleteProduct, options);
+  >(DeleteProductDocument, options);
 }
 export type DeleteProductMutationHookResult = ReturnType<
   typeof useDeleteProductMutation

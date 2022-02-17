@@ -1,6 +1,7 @@
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import { ProductDetailsFragmentDoc } from '../../fragments/ProductDetailsFragment';
 import * as Types from '../../graphql';
-import * as Operations from './allProducts.graphql';
 
 const defaultOptions = {} as const;
 export type AllProductsQueryVariables = Types.Exact<{
@@ -51,6 +52,23 @@ export type AllProductsQuery = {
   } | null;
 };
 
+export const AllProductsDocument = gql`
+  query AllProducts($first: Int = 5, $after: String) {
+    allProducts(first: $first, after: $after, order: [{ price: ASC }]) {
+      nodes {
+        ...ProductDetails
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+        hasPreviousPage
+        startCursor
+      }
+    }
+  }
+  ${ProductDetailsFragmentDoc}
+`;
+
 /**
  * __useAllProductsQuery__
  *
@@ -76,7 +94,7 @@ export function useAllProductsQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useQuery<AllProductsQuery, AllProductsQueryVariables>(
-    Operations.AllProducts,
+    AllProductsDocument,
     options
   );
 }
@@ -88,7 +106,7 @@ export function useAllProductsLazyQuery(
 ) {
   const options = { ...defaultOptions, ...baseOptions };
   return Apollo.useLazyQuery<AllProductsQuery, AllProductsQueryVariables>(
-    Operations.AllProducts,
+    AllProductsDocument,
     options
   );
 }

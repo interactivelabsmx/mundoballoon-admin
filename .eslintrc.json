@@ -16,6 +16,12 @@
     {
       "files": ["**/__tests__/**/*.[jt]s?(x)", "**/?(*.)+(test).[t]s?(x)"],
       "extends": ["plugin:testing-library/react"]
+    },
+    {
+      "files": ["graphql/fragments/**/*.ts"],
+      "rules": {
+        "@typescript-eslint/no-unused-vars": 0
+      }
     }
   ]
 }

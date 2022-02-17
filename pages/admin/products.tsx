@@ -7,7 +7,7 @@ import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import BaseTable from '@components/UI/tables/BaseTable';
-import { Product } from '@graphql/graphql';
+import { ProductDetailsFragment } from '@graphql/fragments/ProductDetailsFragment';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
 import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
 import { getProductColumns } from './products/columns';
@@ -39,7 +39,10 @@ const Products = (): JSX.Element => {
       <SectionHeader text="Products" />
       <div className="flex flex-wrap mt-4">
         <div className="w-full mb-12 px-4">
-          <BaseTable<Product> columns={columns} data={nodes as Product[]} />
+          <BaseTable<ProductDetailsFragment>
+            data={nodes as ProductDetailsFragment[]}
+            columns={columns}
+          />
           <div className="flex justify-between mt-4">
             <SecundaryButton
               disabled={!pageInfo.hasPreviousPage}

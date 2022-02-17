@@ -5,8 +5,6 @@ generates:
   ./graphql/graphql.ts:
     plugins:
       - typescript
-    config:
-      dedupeFragments: true
   ./:
     preset: near-operation-file
     presetConfig:
@@ -15,10 +13,6 @@ generates:
     plugins:
       - typescript-operations
       - typescript-react-apollo
-    config:
-      dedupeFragments: true
-      documentMode: external
-      importDocumentNodeExternallyFrom: near-operation-file
   ./@types/graphql.d.ts:
     plugins:
       - typescript-graphql-files-modules

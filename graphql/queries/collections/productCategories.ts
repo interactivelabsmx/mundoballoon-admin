@@ -1,6 +1,6 @@
+import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 import * as Types from '../../graphql';
-import * as Operations from './productCategories.graphql';
 
 const defaultOptions = {} as const;
 export type GetProductCategoriesQueryVariables = Types.Exact<{
@@ -15,6 +15,15 @@ export type GetProductCategoriesQuery = {
     name: string;
   }>;
 };
+
+export const GetProductCategoriesDocument = gql`
+  query GetProductCategories {
+    productCategories {
+      productCategoryId
+      name
+    }
+  }
+`;
 
 /**
  * __useGetProductCategoriesQuery__
@@ -41,7 +50,7 @@ export function useGetProductCategoriesQuery(
   return Apollo.useQuery<
     GetProductCategoriesQuery,
     GetProductCategoriesQueryVariables
-  >(Operations.GetProductCategories, options);
+  >(GetProductCategoriesDocument, options);
 }
 export function useGetProductCategoriesLazyQuery(
   baseOptions?: Apollo.LazyQueryHookOptions<
@@ -53,7 +62,7 @@ export function useGetProductCategoriesLazyQuery(
   return Apollo.useLazyQuery<
     GetProductCategoriesQuery,
     GetProductCategoriesQueryVariables
-  >(Operations.GetProductCategories, options);
+  >(GetProductCategoriesDocument, options);
 }
 export type GetProductCategoriesQueryHookResult = ReturnType<
   typeof useGetProductCategoriesQuery
