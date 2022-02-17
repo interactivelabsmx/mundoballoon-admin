@@ -33,11 +33,7 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
       };
     return { headers };
   });
-  const link = new HttpLink({
-    uri: graphQLUrl,
-    // Additional fetch() options like `credentials` or `headers`
-    credentials: 'same-origin',
-  });
+  const link = new HttpLink({ uri: graphQLUrl, credentials: 'same-origin' });
   const cache = new InMemoryCache({
     typePolicies: {
       Query: { fields: { allProducts: relayStylePagination() } },
