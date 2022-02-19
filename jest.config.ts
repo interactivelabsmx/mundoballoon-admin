@@ -31,7 +31,6 @@ const customJestConfig = {
     // Increase to 70 on coverage
     global: {
       lines: 65,
-      functions: 65,
       statements: 65,
     },
   },

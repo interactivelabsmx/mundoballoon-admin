@@ -1,8 +1,8 @@
 import React from 'react';
-import ErrorSection from '@layouts/ErrorSection';
-import LoadingSection from '@layouts/LoadingSection';
+import SimpleTextError from '@components/UI/alerts/SimpleTextError';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
+import LoadingText from '@components/UI/loading/LoadingText';
 import BaseTable from '@components/UI/tables/BaseTable';
 import { ProductDetailsFragment } from '@graphql/fragments/ProductDetailsFragment';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
@@ -17,15 +17,15 @@ const ProductsTableContainer = () => {
   const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
     useDeleteProductMutation();
   if (error || deleteError)
-    return <ErrorSection text="Error loading products" />;
-  if (loading || deleteLoading || !data) return <LoadingSection />;
+    return <SimpleTextError text="Error loading products" />;
+  if (loading || deleteLoading || !data) return <LoadingText />;
 
   const onClickDelete = (productId: number) =>
     deleteProduct({ variables: { productId } });
   const columns = getProductColumns(onClickDelete);
 
   const { allProducts } = data;
-  if (!allProducts?.nodes) return <LoadingSection />;
+  if (!allProducts?.nodes) return <LoadingText />;
   const { nodes, pageInfo } = allProducts;
   const onClickNextPage = () =>
     fetchMore({ variables: { after: pageInfo.endCursor } });
