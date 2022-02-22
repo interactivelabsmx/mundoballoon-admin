@@ -1,0 +1,7 @@
+fragment ProductEntity on ProductEntity {
+  productId
+  productCategoryId
+  name
+  price
+  description
+}

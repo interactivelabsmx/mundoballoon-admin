@@ -3,8 +3,10 @@ import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import removeTypename from '@lib/utils/removeTypename';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import ProductCategorySelector from './ProductCategorySelector';
 
 export const productFormSchema = yup
@@ -21,20 +23,25 @@ export interface IProductFormSchema extends Asserts<typeof productFormSchema> {}
 
 export interface IProductForm {
   loading: boolean;
+  product?: ProductEntityFragment;
   onSubmit: SubmitHandler<IProductFormSchema>;
 }
 
-const ProductForm = ({ onSubmit, loading }: IProductForm) => {
+const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
   const {
     control,
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm<IProductFormSchema>({
     resolver: yupResolver(productFormSchema),
+    defaultValues:
+      (product && removeTypename<ProductEntityFragment>(product)) || {},
   });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="hidden" {...register('productId')} />
       <div className="mb-8">
         <Controller
           name="name"

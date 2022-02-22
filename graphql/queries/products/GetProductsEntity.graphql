@@ -1,0 +1,13 @@
+query GetProductsEntity($first: Int = 5, $after: String) {
+  productsEntity(first: $first, after: $after, order: [{ price: ASC }]) {
+    nodes {
+      ...ProductEntity
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

@@ -1,8 +1,5 @@
 fragment ProductDetails on Product {
-  productId
-  name
-  description
-  price
+  ...ProductOwnFields
   category {
     ...Category
   }

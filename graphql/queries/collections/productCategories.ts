@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import { CategoryFragmentDoc } from '../../fragments/CategoryFragment';
 import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
@@ -13,16 +14,17 @@ export type GetProductCategoriesQuery = {
     __typename?: 'ProductCategory';
     productCategoryId: number;
     name: string;
+    description: string;
   }>;
 };
 
 export const GetProductCategoriesDocument = gql`
   query GetProductCategories {
     productCategories {
-      productCategoryId
-      name
+      ...Category
     }
   }
+  ${CategoryFragmentDoc}
 `;
 
 /**

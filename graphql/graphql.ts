@@ -115,6 +115,7 @@ export type Mutation = {
   createProductVariant: CreateProductVariantPayload;
   createUser: CreateUserPayload;
   deleteProduct?: Maybe<Scalars['Boolean']>;
+  updateProduct: UpdateProductPayload;
 };
 
 export type MutationCreateProductArgs = {
@@ -131,6 +132,10 @@ export type MutationCreateUserArgs = {
 
 export type MutationDeleteProductArgs = {
   productId: Scalars['Int'];
+};
+
+export type MutationUpdateProductArgs = {
+  input: UpdateProductRequestInput;
 };
 
 export type OcassionCartDetail = {
@@ -191,6 +196,23 @@ export type ProductCategorySortInput = {
   productCategoryId?: InputMaybe<SortEnumType>;
 };
 
+export type ProductEntity = {
+  __typename?: 'ProductEntity';
+  description: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productCategoryId: Scalars['Int'];
+  productId: Scalars['Int'];
+};
+
+export type ProductEntitySortInput = {
+  description?: InputMaybe<SortEnumType>;
+  name?: InputMaybe<SortEnumType>;
+  price?: InputMaybe<SortEnumType>;
+  productCategoryId?: InputMaybe<SortEnumType>;
+  productId?: InputMaybe<SortEnumType>;
+};
+
 export type ProductSortInput = {
   category?: InputMaybe<ProductCategorySortInput>;
   description?: InputMaybe<SortEnumType>;
@@ -225,6 +247,26 @@ export type ProductVariantMedium = {
   url: Scalars['String'];
 };
 
+/** A connection to a list of items. */
+export type ProductsEntityConnection = {
+  __typename?: 'ProductsEntityConnection';
+  /** A list of edges. */
+  edges?: Maybe<Array<ProductsEntityEdge>>;
+  /** A flattened list of the nodes. */
+  nodes?: Maybe<Array<ProductEntity>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type ProductsEntityEdge = {
+  __typename?: 'ProductsEntityEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: ProductEntity;
+};
+
 export type Query = {
   __typename?: 'Query';
   allProducts?: Maybe<AllProductsConnection>;
@@ -232,6 +274,7 @@ export type Query = {
   loggedInUser?: Maybe<User>;
   productById?: Maybe<Product>;
   productCategories: Array<ProductCategory>;
+  productsEntity?: Maybe<ProductsEntityConnection>;
   site: Site;
   variantValues: Array<VariantValue>;
   variants: Array<Variant>;
@@ -247,6 +290,14 @@ export type QueryAllProductsArgs = {
 
 export type QueryProductByIdArgs = {
   productId: Scalars['Int'];
+};
+
+export type QueryProductsEntityArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<ProductEntitySortInput>>;
 };
 
 export type QueryVariantValuesArgs = {
@@ -265,6 +316,19 @@ export enum SortEnumType {
   Asc = 'ASC',
   Desc = 'DESC',
 }
+
+export type UpdateProductPayload = {
+  __typename?: 'UpdateProductPayload';
+  product: Product;
+};
+
+export type UpdateProductRequestInput = {
+  description?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  price: Scalars['Float'];
+  productCategoryId: Scalars['Int'];
+  productId: Scalars['Int'];
+};
 
 export type User = {
   __typename?: 'User';

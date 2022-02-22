@@ -4,9 +4,9 @@ import {
   randFloat,
   randNumber,
 } from '@ngneat/falso';
-import { Product } from '@graphql/graphql';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
-export const getFixtureProduct = (): Product => ({
+export const getFixtureProduct = (): ProductEntityFragment => ({
   description: randProductDescription(),
   name: randProductName(),
   price: randFloat(),
@@ -14,8 +14,8 @@ export const getFixtureProduct = (): Product => ({
   productId: randNumber(),
 });
 
-export const getFixtureProducts = (count = 5): Product[] => {
-  const products: Product[] = [];
+export const getFixtureProducts = (count = 5): ProductEntityFragment[] => {
+  const products: ProductEntityFragment[] = [];
   for (let index = 0; index < count; index++) {
     products.push(getFixtureProduct());
   }

@@ -6,7 +6,7 @@ import {
 import { MouseEvent } from 'react';
 import { Row } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
-import { Product } from '@graphql/graphql';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
 export const getProductItems = (
   productId: number,
@@ -57,7 +57,7 @@ export const getProductColumns = (
   {
     id: 'actions',
     Header: () => null,
-    Cell: ({ row }: { row: Row<Product> }) => {
+    Cell: ({ row }: { row: Row<ProductEntityFragment> }) => {
       const { productId } = row.original;
       const items = getProductItems(productId, onClickDelete);
       return <DropdownActions label="Actions" items={items} />;

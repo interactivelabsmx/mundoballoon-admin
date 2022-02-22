@@ -7,12 +7,12 @@ import ProductVariantForm, {
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { Product } from '@graphql/graphql';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import { useCreateProductVariantMutation } from '@graphql/mutations/products/createProductVariant';
-import { AllProductsDocument } from '@graphql/queries/products/allProducts';
+import { GetProductsEntityDocument } from '@graphql/queries/products/GetProductsEntity';
 
 export interface IAddProductVariantContainer {
-  product: Product;
+  product: ProductEntityFragment;
 }
 
 const AddProductVariantContainer = ({
@@ -20,7 +20,7 @@ const AddProductVariantContainer = ({
 }: IAddProductVariantContainer) => {
   const { push } = useRouter();
   const [createProduct, { loading, error }] = useCreateProductVariantMutation({
-    refetchQueries: [{ query: AllProductsDocument }],
+    refetchQueries: [{ query: GetProductsEntityDocument }],
   });
   const onSubmit: SubmitHandler<IProductVariantFormSchema> = async (
     formData

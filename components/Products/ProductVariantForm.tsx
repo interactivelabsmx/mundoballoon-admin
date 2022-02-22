@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
-import { Product } from '@graphql/graphql';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import VariantSelector from './VariantSelector';
 import VariantValueSelector from './VariantValueSelector';
 
@@ -26,7 +26,7 @@ export interface IProductVariantFormSchema
   extends Asserts<typeof productVariantFormSchema> {}
 
 export interface IProductVariantForm {
-  product: Product;
+  product: ProductEntityFragment;
   loading: boolean;
   onSubmit: SubmitHandler<IProductVariantFormSchema>;
 }
@@ -44,18 +44,14 @@ const ProductVariantForm = ({
     formState: { errors },
   } = useForm<IProductVariantFormSchema>({
     resolver: yupResolver(productVariantFormSchema),
-    defaultValues: {
-      productId: product.productId,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-    },
+    defaultValues: product,
   });
 
   const variantId = watch('variantId');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      <input type="hidden" {...register('productVariantId')} />
       <input type="hidden" {...register('productId')} />
       <div className="mb-8">
         <Controller

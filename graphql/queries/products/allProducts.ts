@@ -16,9 +16,10 @@ export type AllProductsQuery = {
     nodes?: Array<{
       __typename?: 'Product';
       productId: number;
+      productCategoryId: number;
       name: string;
-      description: string;
       price: number;
+      description: string;
       category?: {
         __typename?: 'ProductCategory';
         productCategoryId: number;

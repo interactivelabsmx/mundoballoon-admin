@@ -1,0 +1,7 @@
+mutation UpdateProduct($updateProductPayload: UpdateProductRequestInput!) {
+  updateProduct(input: $updateProductPayload) {
+    product {
+      ...ProductOwnFields
+    }
+  }
+}

@@ -4,18 +4,23 @@ import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import LoadingText from '@components/UI/loading/LoadingText';
 import BaseTable from '@components/UI/tables/BaseTable';
-import { ProductDetailsFragment } from '@graphql/fragments/ProductDetailsFragment';
+import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
-import { useAllProductsQuery } from '@graphql/queries/products/allProducts';
+import {
+  GetProductsEntityDocument,
+  useGetProductsEntityQuery,
+} from '@graphql/queries/products/GetProductsEntity';
 import { getProductColumns } from './columns';
 
 const ProductsTableContainer = () => {
   const productsQueryVars = { first: 5, after: null };
-  const { loading, error, data, fetchMore } = useAllProductsQuery({
+  const { loading, error, data, fetchMore } = useGetProductsEntityQuery({
     variables: productsQueryVars,
   });
   const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
-    useDeleteProductMutation();
+    useDeleteProductMutation({
+      refetchQueries: [{ query: GetProductsEntityDocument }],
+    });
   if (error || deleteError)
     return <SimpleTextError text="Error loading products" />;
   if (loading || deleteLoading || !data) return <LoadingText />;
@@ -24,9 +29,9 @@ const ProductsTableContainer = () => {
     deleteProduct({ variables: { productId } });
   const columns = getProductColumns(onClickDelete);
 
-  const { allProducts } = data;
-  if (!allProducts?.nodes) return <LoadingText />;
-  const { nodes, pageInfo } = allProducts;
+  const { productsEntity } = data;
+  if (!productsEntity?.nodes) return <LoadingText />;
+  const { nodes, pageInfo } = productsEntity;
   const onClickNextPage = () =>
     fetchMore({ variables: { after: pageInfo.endCursor } });
   const onClickPrevPage = () =>
@@ -34,8 +39,8 @@ const ProductsTableContainer = () => {
   return (
     <div className="flex flex-wrap mt-4">
       <div className="w-full mb-12 px-4">
-        <BaseTable<ProductDetailsFragment>
-          data={nodes as ProductDetailsFragment[]}
+        <BaseTable<ProductEntityFragment>
+          data={nodes as ProductEntityFragment[]}
           columns={columns}
         />
         <div className="flex justify-between mt-4">

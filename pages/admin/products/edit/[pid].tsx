@@ -6,11 +6,11 @@ import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import LoadingText from '@components/UI/loading/LoadingText';
-import AddProductVariantContainer from '@containers/Products/AddProductVariantContainer';
+import EditProductContainer from '@containers/Products/EditProductContainer';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import { useGetProductByIdQuery } from '@graphql/queries/products/productById';
 
-const AddProductVariantRoute = () => {
+const EditProduct = () => {
   const router = useRouter();
   const { pid = 0 } = router.query;
   const { loading, error, data } = useGetProductByIdQuery({
@@ -26,15 +26,11 @@ const AddProductVariantRoute = () => {
           type={SimpleTextAlertType.ERROR}
         />
       )}
-      {loading ? (
-        <LoadingText />
-      ) : (
-        <AddProductVariantContainer product={product} />
-      )}
+      {loading ? <LoadingText /> : <EditProductContainer product={product} />}
     </AdminLayout>
   );
 };
 
 export const getServerSideProps = withAuthServer();
 
-export default AddProductVariantRoute;
+export default EditProduct;

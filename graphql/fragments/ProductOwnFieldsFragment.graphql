@@ -1,0 +1,7 @@
+fragment ProductOwnFields on Product {
+  productId
+  productCategoryId
+  name
+  price
+  description
+}
