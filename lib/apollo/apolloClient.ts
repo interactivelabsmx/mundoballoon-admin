@@ -5,9 +5,9 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
-import { relayStylePagination } from '@apollo/client/utilities';
 import merge from 'deepmerge';
 import isEqual from 'lodash.isequal';
+import typePolicies from './typePolicies';
 
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 
@@ -34,11 +34,7 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
     return { headers };
   });
   const link = new HttpLink({ uri: graphQLUrl, credentials: 'same-origin' });
-  const cache = new InMemoryCache({
-    typePolicies: {
-      Query: { fields: { allProducts: relayStylePagination() } },
-    },
-  });
+  const cache = new InMemoryCache({ typePolicies });
   return new ApolloClient({
     cache,
     ssrMode: typeof window === 'undefined',

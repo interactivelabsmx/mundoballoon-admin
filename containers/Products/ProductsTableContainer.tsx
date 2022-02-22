@@ -13,7 +13,7 @@ import {
 import { getProductColumns } from './columns';
 
 const ProductsTableContainer = () => {
-  const productsQueryVars = { first: 5, after: null };
+  const productsQueryVars = { first: 10, after: null };
   const { loading, error, data, fetchMore } = useGetProductsEntityQuery({
     variables: productsQueryVars,
   });

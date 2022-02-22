@@ -1,6 +1,6 @@
 import { ApolloProvider } from '@apollo/client';
 import { ReactNode } from 'react';
-import { useApollo } from '@lib/apolloClient';
+import { useApollo } from '@lib/apollo/apolloClient';
 import { getCookieIdToken } from '@lib/firebaseAuth/utils';
 
 interface IAppContexts {
