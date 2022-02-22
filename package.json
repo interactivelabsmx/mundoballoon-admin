@@ -33,7 +33,8 @@
     "format": "prettier --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js --fix",
     "codegen": "graphql-codegen --config codegen.yml",
-    "test": "yarn lint && yarn tsc && yarn jest",
+    "test:lint": "yarn lint && yarn tsc",
+    "test:jest": "yarn jest",
     "prepare": "husky install"
   },
   "browserslist": {
