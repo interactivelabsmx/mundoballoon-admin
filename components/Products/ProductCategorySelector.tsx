@@ -7,7 +7,7 @@ import { ProductCategory } from '@graphql/graphql';
 import {
   GetProductCategoriesQuery,
   useGetProductCategoriesQuery,
-} from '@graphql/queries/collections/productCategories';
+} from '@graphql/queries/collections/ProductCategories';
 import { IProductFormSchema } from './ProductForm';
 
 interface IProductCategorySelector {

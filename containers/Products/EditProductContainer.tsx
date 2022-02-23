@@ -8,7 +8,7 @@ import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import LoadingText from '@components/UI/loading/LoadingText';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useUpdateProductMutation } from '@graphql/mutations/products/updateProduct';
+import { useUpdateProductMutation } from '@graphql/mutations/products/UpdateProduct';
 
 interface IEditProductContainer {
   product: ProductEntityFragment;

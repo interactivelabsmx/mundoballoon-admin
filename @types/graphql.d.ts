@@ -62,6 +62,33 @@ declare module '*/VariantDetailsFragment.graphql' {
 }
     
 
+declare module '*/CreateProduct.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateProduct: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/CreateProductVariant.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateProductVariant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/DeleteProduct.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteProduct: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/DeleteProductVariant.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -71,34 +98,7 @@ declare module '*/DeleteProductVariant.graphql' {
 }
     
 
-declare module '*/createProduct.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const CreateProduct: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/createProductVariant.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const CreateProductVariant: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/deleteProduct.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const DeleteProduct: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/updateProduct.graphql' {
+declare module '*/UpdateProduct.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const UpdateProduct: DocumentNode;
@@ -107,7 +107,7 @@ declare module '*/updateProduct.graphql' {
 }
     
 
-declare module '*/createUser.graphql' {
+declare module '*/CreateUser.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const CreateUser: DocumentNode;
@@ -116,7 +116,7 @@ declare module '*/createUser.graphql' {
 }
     
 
-declare module '*/countryCodes.graphql' {
+declare module '*/CountryCodes.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetCountryCodes: DocumentNode;
@@ -125,7 +125,7 @@ declare module '*/countryCodes.graphql' {
 }
     
 
-declare module '*/productCategories.graphql' {
+declare module '*/ProductCategories.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetProductCategories: DocumentNode;
@@ -134,7 +134,7 @@ declare module '*/productCategories.graphql' {
 }
     
 
-declare module '*/variantValues.graphql' {
+declare module '*/VariantValues.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariantValues: DocumentNode;
@@ -143,10 +143,19 @@ declare module '*/variantValues.graphql' {
 }
     
 
-declare module '*/variants.graphql' {
+declare module '*/Variants.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariants: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/AllProducts.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const AllProducts: DocumentNode;
 
   export default defaultDocument;
 }
@@ -170,16 +179,7 @@ declare module '*/GetProductsEntity.graphql' {
 }
     
 
-declare module '*/allProducts.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const AllProducts: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/productById.graphql' {
+declare module '*/ProductById.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetProductById: DocumentNode;

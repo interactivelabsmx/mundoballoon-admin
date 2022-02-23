@@ -7,7 +7,7 @@ import ProductForm, {
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { useCreateProductMutation } from '@graphql/mutations/products/createProduct';
+import { useCreateProductMutation } from '@graphql/mutations/products/CreateProduct';
 import { GetProductsEntityDocument } from '@graphql/queries/products/GetProductsEntity';
 
 const AddProductContainer = () => {

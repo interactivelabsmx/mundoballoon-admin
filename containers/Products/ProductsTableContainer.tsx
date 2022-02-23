@@ -5,7 +5,7 @@ import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import LoadingText from '@components/UI/loading/LoadingText';
 import BaseTable, { IExpandableRow } from '@components/UI/tables/BaseTable';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
+import { useDeleteProductMutation } from '@graphql/mutations/products/DeleteProduct';
 import {
   GetProductsEntityDocument,
   useGetProductsEntityQuery,

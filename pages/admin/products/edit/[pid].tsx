@@ -8,7 +8,7 @@ import SectionHeader from '@components/UI/headers/SectionHeader';
 import LoadingText from '@components/UI/loading/LoadingText';
 import EditProductContainer from '@containers/Products/EditProductContainer';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useGetProductByIdQuery } from '@graphql/queries/products/productById';
+import { useGetProductByIdQuery } from '@graphql/queries/products/ProductById';
 
 const EditProduct = () => {
   const router = useRouter();

@@ -5,7 +5,7 @@ import { setRecaptchaVerifier } from '@lib/firebaseAuth/phoneAuth';
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import { useAuth } from '@containers/AuthProvider';
-import { useCreateUserMutation } from '@graphql/mutations/user/createUser';
+import { useCreateUserMutation } from '@graphql/mutations/user/CreateUser';
 import FirebaseEmailAuth from './FirebaseEmailAuth';
 import FirebaseFacebookButton from './FirebaseFacebookButton';
 import FirebaseGoogleButton from './FirebaseGoogleButton';

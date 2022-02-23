@@ -7,7 +7,7 @@ import { VariantValue } from '@graphql/graphql';
 import {
   GetVariantValuesQuery,
   useGetVariantValuesQuery,
-} from '@graphql/queries/collections/variantValues';
+} from '@graphql/queries/collections/VariantValues';
 import { IProductVariantFormSchema } from './ProductVariantForm';
 
 interface IVariantValueSelector {
