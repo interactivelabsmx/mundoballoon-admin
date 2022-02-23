@@ -115,6 +115,7 @@ export type Mutation = {
   createProductVariant: CreateProductVariantPayload;
   createUser: CreateUserPayload;
   deleteProduct?: Maybe<Scalars['Boolean']>;
+  deleteProductVariant?: Maybe<Scalars['Boolean']>;
   updateProduct: UpdateProductPayload;
 };
 
@@ -132,6 +133,10 @@ export type MutationCreateUserArgs = {
 
 export type MutationDeleteProductArgs = {
   productId: Scalars['Int'];
+};
+
+export type MutationDeleteProductVariantArgs = {
+  productVariantId: Scalars['Int'];
 };
 
 export type MutationUpdateProductArgs = {
@@ -238,6 +243,20 @@ export type ProductVariant = {
   weight: Scalars['Float'];
 };
 
+export type ProductVariantEntity = {
+  __typename?: 'ProductVariantEntity';
+  description: Scalars['String'];
+  isBundle: Scalars['Boolean'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productId: Scalars['Int'];
+  productVariantId: Scalars['Int'];
+  sku: Scalars['String'];
+  storeOnly: Scalars['Boolean'];
+  variantValueId: Scalars['Int'];
+  weight: Scalars['Float'];
+};
+
 export type ProductVariantMedium = {
   __typename?: 'ProductVariantMedium';
   mediaType: Scalars['String'];
@@ -274,6 +293,7 @@ export type Query = {
   loggedInUser?: Maybe<User>;
   productById?: Maybe<Product>;
   productCategories: Array<ProductCategory>;
+  productVariantsEntityById: Array<ProductVariantEntity>;
   productsEntity?: Maybe<ProductsEntityConnection>;
   site: Site;
   variantValues: Array<VariantValue>;
@@ -289,6 +309,10 @@ export type QueryAllProductsArgs = {
 };
 
 export type QueryProductByIdArgs = {
+  productId: Scalars['Int'];
+};
+
+export type QueryProductVariantsEntityByIdArgs = {
   productId: Scalars['Int'];
 };
 

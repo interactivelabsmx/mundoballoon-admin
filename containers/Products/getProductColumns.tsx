@@ -1,14 +1,16 @@
 import {
+  ChevronDownIcon,
+  ChevronRightIcon,
   PencilAltIcon,
   PlusCircleIcon,
   TrashIcon,
 } from '@heroicons/react/solid';
 import { MouseEvent } from 'react';
-import { Row } from 'react-table';
+import { Row, UseExpandedRowProps } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
-export const getProductItems = (
+export const getProductActions = (
   productId: number,
   onClickDelete: (productId: number) => void
 ) => [
@@ -39,16 +41,26 @@ export const getProductColumns = (
   onClickDelete: (productId: number) => void
 ) => [
   {
+    Header: () => null,
+    id: 'expander',
+    Cell: ({ row }: { row: UseExpandedRowProps<ProductEntityFragment> }) => (
+      <span {...row.getToggleRowExpandedProps()} role="button">
+        {row.isExpanded ? (
+          <ChevronDownIcon className="mr-3 h-5 w-5" aria-hidden="true" />
+        ) : (
+          <ChevronRightIcon className="mr-3 h-5 w-5" aria-hidden="true" />
+        )}
+      </span>
+    ),
+    SubCell: () => null,
+  },
+  {
     Header: 'Name',
     accessor: 'name',
   },
   {
     Header: 'Description',
     accessor: 'description',
-  },
-  {
-    Header: 'Category',
-    accessor: 'category.name',
   },
   {
     Header: 'Price',
@@ -59,7 +71,7 @@ export const getProductColumns = (
     Header: () => null,
     Cell: ({ row }: { row: Row<ProductEntityFragment> }) => {
       const { productId } = row.original;
-      const items = getProductItems(productId, onClickDelete);
+      const items = getProductActions(productId, onClickDelete);
       return <DropdownActions label="Actions" items={items} />;
     },
   },

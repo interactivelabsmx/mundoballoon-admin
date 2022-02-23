@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import SimpleTextError from '@components/UI/alerts/SimpleTextError';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import PrimaryLinkButton from '@components/UI/links/PrimaryLinkButton';
 import LoadingText from '@components/UI/loading/LoadingText';
-import BaseTable from '@components/UI/tables/BaseTable';
+import BaseTable, { IExpandableRow } from '@components/UI/tables/BaseTable';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import { useDeleteProductMutation } from '@graphql/mutations/products/deleteProduct';
 import {
   GetProductsEntityDocument,
   useGetProductsEntityQuery,
 } from '@graphql/queries/products/GetProductsEntity';
-import { getProductColumns } from './columns';
+import ProductVariantsTableContainer from './ProductVariantsTableContainer';
+import { getProductColumns } from './getProductColumns';
 
 const ProductsTableContainer = () => {
   const productsQueryVars = { first: 10, after: null };
@@ -21,6 +22,17 @@ const ProductsTableContainer = () => {
     useDeleteProductMutation({
       refetchQueries: [{ query: GetProductsEntityDocument }],
     });
+  const expandableComponent = useCallback(
+    ({ row }: IExpandableRow<ProductEntityFragment>) => (
+      <tr>
+        <td colSpan={5}>
+          <ProductVariantsTableContainer productId={row.original.productId} />
+        </td>
+      </tr>
+    ),
+    []
+  );
+
   if (error || deleteError)
     return <SimpleTextError text="Error loading products" />;
   if (loading || deleteLoading || !data) return <LoadingText />;
@@ -31,7 +43,7 @@ const ProductsTableContainer = () => {
 
   const { productsEntity } = data;
   if (!productsEntity?.nodes) return <LoadingText />;
-  const { nodes, pageInfo } = productsEntity;
+  const { nodes: products, pageInfo } = productsEntity;
   const onClickNextPage = () =>
     fetchMore({ variables: { after: pageInfo.endCursor } });
   const onClickPrevPage = () =>
@@ -40,8 +52,12 @@ const ProductsTableContainer = () => {
     <div className="flex flex-wrap mt-4">
       <div className="w-full mb-12 px-4">
         <BaseTable<ProductEntityFragment>
-          data={nodes as ProductEntityFragment[]}
+          data={products as ProductEntityFragment[]}
           columns={columns}
+          options={{
+            isExpandable: true,
+            expandableComponent,
+          }}
         />
         <div className="flex justify-between mt-4">
           <SecundaryButton

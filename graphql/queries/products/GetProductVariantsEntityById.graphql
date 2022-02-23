@@ -1,0 +1,5 @@
+query GetProductVariantsEntityById($productId: Int!) {
+  productVariantsEntityById(productId: $productId) {
+    ...ProductVariantEntity
+  }
+}

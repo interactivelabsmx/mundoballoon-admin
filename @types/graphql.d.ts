@@ -44,10 +44,28 @@ declare module '*/ProductOwnFieldsFragment.graphql' {
 }
     
 
+declare module '*/ProductVariantEntityFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProductVariantEntity: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/VariantDetailsFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const VariantDetails: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/DeleteProductVariant.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteProductVariant: DocumentNode;
 
   export default defaultDocument;
 }
@@ -129,6 +147,15 @@ declare module '*/variants.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariants: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GetProductVariantsEntityById.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetProductVariantsEntityById: DocumentNode;
 
   export default defaultDocument;
 }
