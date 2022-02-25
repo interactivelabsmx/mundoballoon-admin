@@ -1,0 +1,9 @@
+mutation UpdateProductVariant(
+  $updateProductVariantInput: ProductVariantEntityInput!
+) {
+  updateProductVariant(input: $updateProductVariantInput) {
+    productVariant {
+      ...ProductVariantDetails
+    }
+  }
+}

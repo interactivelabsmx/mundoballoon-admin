@@ -6,20 +6,21 @@ import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import LoadingText from '@components/UI/loading/LoadingText';
-import AddProductVariantContainer from '@containers/Products/AddProductVariantContainer';
-import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useGetProductByIdQuery } from '@graphql/queries/products/ProductById';
+import EditProductVariantContainer from '@containers/Products/EditProductVariantContainer';
+import { ProductVariantDetailsFragment } from '@graphql/fragments/ProductVariantDetailsFragment';
+import { useGetProductVariantByIdQuery } from '@graphql/queries/products/ProductVariantById';
 
 const AddProductVariantRoute = () => {
   const router = useRouter();
-  const { pid = 0 } = router.query;
-  const { loading, error, data } = useGetProductByIdQuery({
-    variables: { productId: +pid },
+  const { pvid = 0 } = router.query;
+  const { loading, error, data } = useGetProductVariantByIdQuery({
+    variables: { productVariantId: +pvid },
   });
-  const product = data?.productById as ProductEntityFragment;
+  const productVariant =
+    data?.productVariantById as ProductVariantDetailsFragment;
   return (
     <AdminLayout>
-      <SectionHeader text="Add Product Variant" />
+      <SectionHeader text="Edit Product Variant" />
       {error && (
         <SimpleTextAlert
           text={error.message}
@@ -29,7 +30,7 @@ const AddProductVariantRoute = () => {
       {loading ? (
         <LoadingText />
       ) : (
-        <AddProductVariantContainer product={product} />
+        <EditProductVariantContainer productVariant={productVariant} />
       )}
     </AdminLayout>
   );

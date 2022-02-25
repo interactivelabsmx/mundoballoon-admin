@@ -1,5 +1,5 @@
-mutation CreateProduct($createProductPayload: CreateProductRequestInput!) {
-  createProduct(input: $createProductPayload) {
+mutation CreateProduct($createProductInput: CreateProductRequestInput!) {
+  createProduct(input: $createProductInput) {
     product {
       ...ProductOwnFields
     }

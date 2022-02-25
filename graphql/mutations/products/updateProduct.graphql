@@ -1,5 +1,5 @@
-mutation UpdateProduct($updateProductPayload: UpdateProductRequestInput!) {
-  updateProduct(input: $updateProductPayload) {
+mutation UpdateProduct($updateProductInput: ProductEntityInput!) {
+  updateProduct(input: $updateProductInput) {
     product {
       ...ProductOwnFields
     }

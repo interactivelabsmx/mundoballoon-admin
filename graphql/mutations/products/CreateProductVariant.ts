@@ -4,7 +4,7 @@ import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
 export type CreateProductVariantMutationVariables = Types.Exact<{
-  createProductVariantPayload: Types.CreateProductVariantRequestInput;
+  createProductVariantInput: Types.CreateProductVariantRequestInput;
 }>;
 
 export type CreateProductVariantMutation = {
@@ -17,9 +17,9 @@ export type CreateProductVariantMutation = {
 
 export const CreateProductVariantDocument = gql`
   mutation CreateProductVariant(
-    $createProductVariantPayload: CreateProductVariantRequestInput!
+    $createProductVariantInput: CreateProductVariantRequestInput!
   ) {
-    createProductVariant(input: $createProductVariantPayload) {
+    createProductVariant(input: $createProductVariantInput) {
       productVariant {
         productVariantId
       }
@@ -44,7 +44,7 @@ export type CreateProductVariantMutationFn = Apollo.MutationFunction<
  * @example
  * const [createProductVariantMutation, { data, loading, error }] = useCreateProductVariantMutation({
  *   variables: {
- *      createProductVariantPayload: // value for 'createProductVariantPayload'
+ *      createProductVariantInput: // value for 'createProductVariantInput'
  *   },
  * });
  */

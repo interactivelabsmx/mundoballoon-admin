@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import * as Types from '../graphql';
 import { MediaFragmentDoc } from './MediaFragment';
 
-export type VariantDetailsFragment = {
+export type ProductVariantDetailsFragment = {
   __typename?: 'ProductVariant';
   productVariantId: number;
   sku: string;
@@ -19,8 +19,8 @@ export type VariantDetailsFragment = {
   }> | null;
 };
 
-export const VariantDetailsFragmentDoc = gql`
-  fragment VariantDetails on ProductVariant {
+export const ProductVariantDetailsFragmentDoc = gql`
+  fragment ProductVariantDetails on ProductVariant {
     productVariantId
     sku
     name

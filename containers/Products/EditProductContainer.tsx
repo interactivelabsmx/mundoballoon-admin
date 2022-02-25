@@ -17,10 +17,10 @@ interface IEditProductContainer {
 const EditProductContainer = ({ product }: IEditProductContainer) => {
   const { push } = useRouter();
   const [updateProduct, { loading, error }] = useUpdateProductMutation();
-  const onSubmit: SubmitHandler<IProductFormSchema> = async (data) => {
+  const onSubmit: SubmitHandler<IProductFormSchema> = async (formData) => {
     const result = await updateProduct({
       variables: {
-        updateProductPayload: { ...data, productId: data.productId || 0 },
+        updateProductInput: { ...formData, productId: formData.productId || 0 },
       },
     });
     if (!result.errors) push('/admin/products');

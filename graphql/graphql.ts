@@ -117,6 +117,7 @@ export type Mutation = {
   deleteProduct?: Maybe<Scalars['Boolean']>;
   deleteProductVariant?: Maybe<Scalars['Boolean']>;
   updateProduct: UpdateProductPayload;
+  updateProductVariant: UpdateProductVariantPayload;
 };
 
 export type MutationCreateProductArgs = {
@@ -140,7 +141,11 @@ export type MutationDeleteProductVariantArgs = {
 };
 
 export type MutationUpdateProductArgs = {
-  input: UpdateProductRequestInput;
+  input: ProductEntityInput;
+};
+
+export type MutationUpdateProductVariantArgs = {
+  input: ProductVariantEntityInput;
 };
 
 export type OcassionCartDetail = {
@@ -210,6 +215,14 @@ export type ProductEntity = {
   productId: Scalars['Int'];
 };
 
+export type ProductEntityInput = {
+  description: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productCategoryId: Scalars['Int'];
+  productId: Scalars['Int'];
+};
+
 export type ProductEntitySortInput = {
   description?: InputMaybe<SortEnumType>;
   name?: InputMaybe<SortEnumType>;
@@ -246,15 +259,28 @@ export type ProductVariant = {
 export type ProductVariantEntity = {
   __typename?: 'ProductVariantEntity';
   description: Scalars['String'];
-  isBundle: Scalars['Boolean'];
+  isBundle?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
   sku: Scalars['String'];
-  storeOnly: Scalars['Boolean'];
+  storeOnly?: Maybe<Scalars['Boolean']>;
   variantValueId: Scalars['Int'];
-  weight: Scalars['Float'];
+  weight?: Maybe<Scalars['Float']>;
+};
+
+export type ProductVariantEntityInput = {
+  description: Scalars['String'];
+  isBundle?: InputMaybe<Scalars['Boolean']>;
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productId: Scalars['Int'];
+  productVariantId: Scalars['Int'];
+  sku: Scalars['String'];
+  storeOnly?: InputMaybe<Scalars['Boolean']>;
+  variantValueId: Scalars['Int'];
+  weight?: InputMaybe<Scalars['Float']>;
 };
 
 export type ProductVariantMedium = {
@@ -293,6 +319,7 @@ export type Query = {
   loggedInUser?: Maybe<User>;
   productById?: Maybe<Product>;
   productCategories: Array<ProductCategory>;
+  productVariantById?: Maybe<ProductVariant>;
   productVariantsEntityById: Array<ProductVariantEntity>;
   productsEntity?: Maybe<ProductsEntityConnection>;
   site: Site;
@@ -310,6 +337,10 @@ export type QueryAllProductsArgs = {
 
 export type QueryProductByIdArgs = {
   productId: Scalars['Int'];
+};
+
+export type QueryProductVariantByIdArgs = {
+  productVariantId: Scalars['Int'];
 };
 
 export type QueryProductVariantsEntityByIdArgs = {
@@ -346,12 +377,9 @@ export type UpdateProductPayload = {
   product: Product;
 };
 
-export type UpdateProductRequestInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  price: Scalars['Float'];
-  productCategoryId: Scalars['Int'];
-  productId: Scalars['Int'];
+export type UpdateProductVariantPayload = {
+  __typename?: 'UpdateProductVariantPayload';
+  productVariant: ProductVariant;
 };
 
 export type User = {

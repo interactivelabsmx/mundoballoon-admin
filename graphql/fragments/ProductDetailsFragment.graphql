@@ -4,6 +4,6 @@ fragment ProductDetails on Product {
     ...Category
   }
   variants {
-    ...VariantDetails
+    ...ProductVariantDetails
   }
 }

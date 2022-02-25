@@ -7,27 +7,32 @@ import ProductVariantForm, {
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useCreateProductVariantMutation } from '@graphql/mutations/products/CreateProductVariant';
+import { ProductVariantDetailsFragment } from '@graphql/fragments/ProductVariantDetailsFragment';
+import { useUpdateProductVariantMutation } from '@graphql/mutations/products/UpdateProductVariant';
 import { GetProductsEntityDocument } from '@graphql/queries/products/GetProductsEntity';
 
-export interface IAddProductVariantContainer {
-  product: ProductEntityFragment;
+export interface IEditProductVariantContainer {
+  productVariant: ProductVariantDetailsFragment;
 }
 
-const AddProductVariantContainer = ({
-  product,
-}: IAddProductVariantContainer) => {
+const EditProductVariantContainer = ({
+  productVariant,
+}: IEditProductVariantContainer) => {
   const { push } = useRouter();
-  const [createProduct, { loading, error }] = useCreateProductVariantMutation({
-    refetchQueries: [{ query: GetProductsEntityDocument }],
-  });
+  const [updateProductVariant, { loading, error }] =
+    useUpdateProductVariantMutation({
+      refetchQueries: [{ query: GetProductsEntityDocument }],
+    });
   const onSubmit: SubmitHandler<IProductVariantFormSchema> = async (
     formData
   ) => {
-    delete formData.variantId;
-    const result = await createProduct({
-      variables: { createProductVariantInput: formData },
+    const result = await updateProductVariant({
+      variables: {
+        updateProductVariantInput: {
+          ...formData,
+          productVariantId: formData.productVariantId || 0,
+        },
+      },
     });
     if (!result.errors) push('/admin/products');
   };
@@ -36,7 +41,7 @@ const AddProductVariantContainer = ({
     <>
       <ProductVariantForm
         onSubmit={onSubmit}
-        product={product}
+        product={productVariant}
         loading={loading}
       />
       {error && (
@@ -50,4 +55,4 @@ const AddProductVariantContainer = ({
   );
 };
 
-export default AddProductVariantContainer;
+export default EditProductVariantContainer;

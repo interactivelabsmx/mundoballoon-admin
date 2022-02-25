@@ -18,7 +18,7 @@ const AddProductContainer = () => {
   const onSubmit: SubmitHandler<IProductFormSchema> = async (data) => {
     const result = await createProduct({
       variables: {
-        createProductPayload: { ...data },
+        createProductInput: { ...data },
       },
     });
     if (!result.errors) push('/admin/products');

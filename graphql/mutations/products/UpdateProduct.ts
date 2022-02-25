@@ -5,7 +5,7 @@ import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
 export type UpdateProductMutationVariables = Types.Exact<{
-  updateProductPayload: Types.UpdateProductRequestInput;
+  updateProductInput: Types.ProductEntityInput;
 }>;
 
 export type UpdateProductMutation = {
@@ -24,8 +24,8 @@ export type UpdateProductMutation = {
 };
 
 export const UpdateProductDocument = gql`
-  mutation UpdateProduct($updateProductPayload: UpdateProductRequestInput!) {
-    updateProduct(input: $updateProductPayload) {
+  mutation UpdateProduct($updateProductInput: ProductEntityInput!) {
+    updateProduct(input: $updateProductInput) {
       product {
         ...ProductOwnFields
       }
@@ -51,7 +51,7 @@ export type UpdateProductMutationFn = Apollo.MutationFunction<
  * @example
  * const [updateProductMutation, { data, loading, error }] = useUpdateProductMutation({
  *   variables: {
- *      updateProductPayload: // value for 'updateProductPayload'
+ *      updateProductInput: // value for 'updateProductInput'
  *   },
  * });
  */
