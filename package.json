@@ -30,7 +30,7 @@
     "dev": "next dev",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm run build:tailwind && npm run dev",
     "build:tailwind": "tailwind build styles/index.css -o styles/tailwind.css",
-    "format": "prettier --write .",
+    "format": "prettier --loglevel=warn --write .",
     "lint": "eslint . --ext ts --ext tsx --ext js --fix",
     "codegen": "graphql-codegen --config codegen.yml && prettier --write ./graphql/ ",
     "test:lint": "yarn lint && yarn tsc",
