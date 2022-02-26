@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import * as Types from '../graphql';
 import { CategoryFragmentDoc } from './CategoryFragment';
-import { ProductOwnFieldsFragmentDoc } from './ProductOwnFieldsFragment';
+import { ProductFieldsFragmentDoc } from './ProductOwnFieldsFragment';
 import { ProductVariantDetailsFragmentDoc } from './ProductVariantDetailsFragment';
 
 export type ProductDetailsFragment = {
@@ -20,11 +20,16 @@ export type ProductDetailsFragment = {
   variants?: Array<{
     __typename?: 'ProductVariant';
     productVariantId: number;
+    productId: number;
     sku: string;
     name: string;
     description: string;
     price: number;
-    variant?: { __typename?: 'VariantValue'; value: string } | null;
+    variant?: {
+      __typename?: 'VariantValue';
+      variantId: number;
+      value: string;
+    } | null;
     media?: Array<{
       __typename?: 'ProductVariantMedium';
       productVariantMediaId: number;
@@ -37,7 +42,7 @@ export type ProductDetailsFragment = {
 
 export const ProductDetailsFragmentDoc = gql`
   fragment ProductDetails on Product {
-    ...ProductOwnFields
+    ...ProductFields
     category {
       ...Category
     }
@@ -45,7 +50,7 @@ export const ProductDetailsFragmentDoc = gql`
       ...ProductVariantDetails
     }
   }
-  ${ProductOwnFieldsFragmentDoc}
+  ${ProductFieldsFragmentDoc}
   ${CategoryFragmentDoc}
   ${ProductVariantDetailsFragmentDoc}
 `;

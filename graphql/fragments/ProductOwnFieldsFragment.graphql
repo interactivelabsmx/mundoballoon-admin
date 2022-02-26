@@ -1,4 +1,4 @@
-fragment ProductOwnFields on Product {
+fragment ProductFields on Product {
   productId
   productCategoryId
   name

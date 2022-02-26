@@ -1,5 +1,5 @@
 fragment ProductDetails on Product {
-  ...ProductOwnFields
+  ...ProductFields
   category {
     ...Category
   }

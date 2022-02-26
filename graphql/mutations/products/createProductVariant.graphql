@@ -3,7 +3,7 @@ mutation CreateProductVariant(
 ) {
   createProductVariant(input: $createProductVariantInput) {
     productVariant {
-      productVariantId
+      ...ProductVariantFields
     }
   }
 }

@@ -1,10 +1,12 @@
 fragment ProductVariantDetails on ProductVariant {
   productVariantId
+  productId
   sku
   name
   description
   price
   variant {
+    variantId
     value
   }
   media {

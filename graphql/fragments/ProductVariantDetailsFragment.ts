@@ -5,11 +5,16 @@ import { MediaFragmentDoc } from './MediaFragment';
 export type ProductVariantDetailsFragment = {
   __typename?: 'ProductVariant';
   productVariantId: number;
+  productId: number;
   sku: string;
   name: string;
   description: string;
   price: number;
-  variant?: { __typename?: 'VariantValue'; value: string } | null;
+  variant?: {
+    __typename?: 'VariantValue';
+    variantId: number;
+    value: string;
+  } | null;
   media?: Array<{
     __typename?: 'ProductVariantMedium';
     productVariantMediaId: number;
@@ -22,11 +27,13 @@ export type ProductVariantDetailsFragment = {
 export const ProductVariantDetailsFragmentDoc = gql`
   fragment ProductVariantDetails on ProductVariant {
     productVariantId
+    productId
     sku
     name
     description
     price
     variant {
+      variantId
       value
     }
     media {

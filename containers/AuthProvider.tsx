@@ -16,7 +16,11 @@ import React, {
   useCallback,
 } from 'react';
 import '@lib/firebaseAuth/firebaseClient';
-import { FI, FI_COOKIE_OPTIONS } from '@lib/firebaseAuth/utils';
+import {
+  FI,
+  FI_COOKIE_OPTIONS,
+  checkForExpiredCookieToken,
+} from '@lib/firebaseAuth/utils';
 
 interface IAuthContext {
   user?: User;
@@ -47,22 +51,25 @@ export function AuthProvider({ children }: IAuthProvider) {
     [setUser]
   );
 
+  const refreshIdToken = useCallback(async () => {
+    setCookie({}, FI, (await user?.getIdToken(true)) || '', FI_COOKIE_OPTIONS);
+  }, [user]);
+
   const logout = useCallback(() => {
     if (auth) signOut(auth).then(() => push('/'));
     destroyCookie(null, FI, { path: '/' });
     setUser(undefined);
   }, [setUser, auth, push]);
 
-  useEffect(() => {
-    setAuth(getAuth());
-  }, []);
+  useEffect(() => checkForExpiredCookieToken(refreshIdToken), [refreshIdToken]);
+
+  useEffect(() => setAuth(getAuth()), []);
 
   useEffect(() => {
-    if (auth) {
+    if (auth)
       onAuthStateChanged(auth, (user) => {
         if (user) onAuth(user);
       });
-    }
   }, [auth, logout, onAuth]);
 
   return (

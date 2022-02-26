@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 import * as Types from '../graphql';
 
-export type ProductOwnFieldsFragment = {
+export type ProductFieldsFragment = {
   __typename?: 'Product';
   productId: number;
   productCategoryId: number;
@@ -10,8 +10,8 @@ export type ProductOwnFieldsFragment = {
   description: string;
 };
 
-export const ProductOwnFieldsFragmentDoc = gql`
-  fragment ProductOwnFields on Product {
+export const ProductFieldsFragmentDoc = gql`
+  fragment ProductFields on Product {
     productId
     productCategoryId
     name

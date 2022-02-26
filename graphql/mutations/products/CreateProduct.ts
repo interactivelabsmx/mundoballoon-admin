@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import { ProductOwnFieldsFragmentDoc } from '../../fragments/ProductOwnFieldsFragment';
+import { ProductFieldsFragmentDoc } from '../../fragments/ProductOwnFieldsFragment';
 import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
@@ -27,11 +27,11 @@ export const CreateProductDocument = gql`
   mutation CreateProduct($createProductInput: CreateProductRequestInput!) {
     createProduct(input: $createProductInput) {
       product {
-        ...ProductOwnFields
+        ...ProductFields
       }
     }
   }
-  ${ProductOwnFieldsFragmentDoc}
+  ${ProductFieldsFragmentDoc}
 `;
 export type CreateProductMutationFn = Apollo.MutationFunction<
   CreateProductMutation,

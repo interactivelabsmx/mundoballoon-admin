@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+import { ProductVariantFieldsFragmentDoc } from '../../fragments/ProductVariantFieldsFragment';
 import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
@@ -11,7 +12,16 @@ export type CreateProductVariantMutation = {
   __typename?: 'Mutation';
   createProductVariant: {
     __typename?: 'CreateProductVariantPayload';
-    productVariant: { __typename?: 'ProductVariant'; productVariantId: number };
+    productVariant: {
+      __typename?: 'ProductVariant';
+      productVariantId: number;
+      variantValueId: number;
+      productId: number;
+      sku: string;
+      name: string;
+      description: string;
+      price: number;
+    };
   };
 };
 
@@ -21,10 +31,11 @@ export const CreateProductVariantDocument = gql`
   ) {
     createProductVariant(input: $createProductVariantInput) {
       productVariant {
-        productVariantId
+        ...ProductVariantFields
       }
     }
   }
+  ${ProductVariantFieldsFragmentDoc}
 `;
 export type CreateProductVariantMutationFn = Apollo.MutationFunction<
   CreateProductVariantMutation,

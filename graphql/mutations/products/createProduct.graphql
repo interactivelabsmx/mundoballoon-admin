@@ -1,7 +1,7 @@
 mutation CreateProduct($createProductInput: CreateProductRequestInput!) {
   createProduct(input: $createProductInput) {
     product {
-      ...ProductOwnFields
+      ...ProductFields
     }
   }
 }

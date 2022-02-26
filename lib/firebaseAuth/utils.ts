@@ -1,6 +1,6 @@
 import { parseCookies } from 'nookies';
 
-export const FI_TTL = 30 * 24 * 60 * 60;
+export const FI_TTL = 60 * 60;
 
 export const FI_COOKIE_OPTIONS = {
   path: '/',
@@ -29,3 +29,10 @@ export function cleanObject(object: any) {
   }, {});
   return newObject;
 }
+
+export const checkForExpiredCookieToken = (refreshIdToken: () => void) => {
+  setInterval(() => {
+    const cookie = getCookieIdToken();
+    if (!cookie) refreshIdToken();
+  }, FI_TTL * 1000);
+};

@@ -15,11 +15,16 @@ export type UpdateProductVariantMutation = {
     productVariant: {
       __typename?: 'ProductVariant';
       productVariantId: number;
+      productId: number;
       sku: string;
       name: string;
       description: string;
       price: number;
-      variant?: { __typename?: 'VariantValue'; value: string } | null;
+      variant?: {
+        __typename?: 'VariantValue';
+        variantId: number;
+        value: string;
+      } | null;
       media?: Array<{
         __typename?: 'ProductVariantMedium';
         productVariantMediaId: number;

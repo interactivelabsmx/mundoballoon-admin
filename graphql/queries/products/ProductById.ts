@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
-import { ProductOwnFieldsFragmentDoc } from '../../fragments/ProductOwnFieldsFragment';
+import { ProductFieldsFragmentDoc } from '../../fragments/ProductOwnFieldsFragment';
 import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
@@ -23,10 +23,10 @@ export type GetProductByIdQuery = {
 export const GetProductByIdDocument = gql`
   query GetProductById($productId: Int!) {
     productById(productId: $productId) {
-      ...ProductOwnFields
+      ...ProductFields
     }
   }
-  ${ProductOwnFieldsFragmentDoc}
+  ${ProductFieldsFragmentDoc}
 `;
 
 /**

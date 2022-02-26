@@ -3,7 +3,6 @@ import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
-import removeTypename from '@lib/utils/removeTypename';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
@@ -35,8 +34,9 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
     formState: { errors },
   } = useForm<IProductFormSchema>({
     resolver: yupResolver(productFormSchema),
-    defaultValues:
-      (product && removeTypename<ProductEntityFragment>(product)) || {},
+    defaultValues: {
+      ...productFormSchema.cast(product, { stripUnknown: true }),
+    },
   });
 
   return (

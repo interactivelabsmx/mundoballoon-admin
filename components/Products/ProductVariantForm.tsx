@@ -27,7 +27,7 @@ export interface IProductVariantFormSchema
   extends Asserts<typeof productVariantFormSchema> {}
 
 export interface IProductVariantForm {
-  product: ProductEntityFragment | ProductVariantDetailsFragment;
+  product: ProductVariantDetailsFragment | ProductEntityFragment;
   loading: boolean;
   onSubmit: SubmitHandler<IProductVariantFormSchema>;
 }
@@ -45,14 +45,19 @@ const ProductVariantForm = ({
     formState: { errors },
   } = useForm<IProductVariantFormSchema>({
     resolver: yupResolver(productVariantFormSchema),
-    defaultValues: product,
+    defaultValues: {
+      ...productVariantFormSchema.cast(product, { stripUnknown: true }),
+      variantId: 'variant' in product ? product?.variant?.variantId : undefined,
+    },
   });
 
   const variantId = watch('variantId');
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" {...register('productVariantId')} />
+      {'productVariantId' in product && (
+        <input type="hidden" {...register('productVariantId')} />
+      )}
       <input type="hidden" {...register('productId')} />
       <div className="mb-8">
         <Controller

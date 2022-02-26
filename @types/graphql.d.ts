@@ -38,7 +38,7 @@ declare module '*/ProductEntityFragment.graphql' {
 declare module '*/ProductOwnFieldsFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const ProductOwnFields: DocumentNode;
+  export const ProductFields: DocumentNode;
 
   export default defaultDocument;
 }
@@ -57,6 +57,15 @@ declare module '*/ProductVariantEntityFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const ProductVariantEntity: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/ProductVariantFieldsFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProductVariantFields: DocumentNode;
 
   export default defaultDocument;
 }
