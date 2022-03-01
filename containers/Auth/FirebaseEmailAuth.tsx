@@ -5,10 +5,10 @@ import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import unifiedEmailPasswordAuth from '@lib/firebaseAuth/unifiedEmailPasswordAuth';
+import { useAuth } from '@providers/AuthProvider';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { useAuth } from '@containers/AuthProvider';
 
 export const userPwdSchema = yup
   .object({

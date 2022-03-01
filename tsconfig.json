@@ -22,7 +22,8 @@
       "@hooks/*": ["hooks/*"],
       "@layouts/*": ["layouts/*"],
       "@lib/*": ["lib/*"],
-      "@pages/*": ["pages/*"]
+      "@pages/*": ["pages/*"],
+      "@providers/*": ["providers/*"]
     }
   },
   "exclude": ["node_modules", ".next", "out"],

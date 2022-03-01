@@ -1,0 +1,7 @@
+mutation CreateProductCategory(
+  $createProductCategoryRequestInput: CreateProductCategoryRequestInput!
+) {
+  createProductCategory(input: $createProductCategoryRequestInput) {
+    ...Category
+  }
+}

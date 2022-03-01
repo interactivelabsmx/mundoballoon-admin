@@ -2,8 +2,6 @@ mutation CreateProductVariant(
   $createProductVariantInput: CreateProductVariantRequestInput!
 ) {
   createProductVariant(input: $createProductVariantInput) {
-    productVariant {
-      ...ProductVariantFields
-    }
+    ...ProductVariantFields
   }
 }

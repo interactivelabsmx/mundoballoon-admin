@@ -1,9 +1,9 @@
 import { User, AuthError, AuthProvider } from '@firebase/auth';
 import { Dispatch, FC, SVGProps } from 'react';
 import getOpenSignInWithPopupFuction from '@lib/firebaseAuth/getOpenSignInWithPopupFuction';
+import { useAuth } from '@providers/AuthProvider';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import LoadingText from '@components/UI/loading/LoadingText';
-import { useAuth } from '@containers/AuthProvider';
 
 export interface IFirebaseSocialButton {
   onAuthComplete: (user: User) => void;

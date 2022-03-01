@@ -11,28 +11,25 @@ export type UpdateProductVariantMutationVariables = Types.Exact<{
 export type UpdateProductVariantMutation = {
   __typename?: 'Mutation';
   updateProductVariant: {
-    __typename?: 'UpdateProductVariantPayload';
-    productVariant: {
-      __typename?: 'ProductVariant';
-      productVariantId: number;
-      productId: number;
-      sku: string;
-      name: string;
-      description: string;
-      price: number;
-      variant?: {
-        __typename?: 'VariantValue';
-        variantId: number;
-        value: string;
-      } | null;
-      media?: Array<{
-        __typename?: 'ProductVariantMedium';
-        productVariantMediaId: number;
-        mediaType: string;
-        quality: string;
-        url: string;
-      }> | null;
-    };
+    __typename?: 'ProductVariant';
+    productVariantId: number;
+    productId: number;
+    sku: string;
+    name: string;
+    description: string;
+    price: number;
+    variant?: {
+      __typename?: 'VariantValue';
+      variantId: number;
+      value: string;
+    } | null;
+    media?: Array<{
+      __typename?: 'ProductVariantMedium';
+      productVariantMediaId: number;
+      mediaType: string;
+      quality: string;
+      url: string;
+    }> | null;
   };
 };
 
@@ -41,9 +38,7 @@ export const UpdateProductVariantDocument = gql`
     $updateProductVariantInput: ProductVariantEntityInput!
   ) {
     updateProductVariant(input: $updateProductVariantInput) {
-      productVariant {
-        ...ProductVariantDetails
-      }
+      ...ProductVariantDetails
     }
   }
   ${ProductVariantDetailsFragmentDoc}

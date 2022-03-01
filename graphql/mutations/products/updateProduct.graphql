@@ -1,7 +1,5 @@
 mutation UpdateProduct($updateProductInput: ProductEntityInput!) {
   updateProduct(input: $updateProductInput) {
-    product {
-      ...ProductFields
-    }
+    ...ProductFields
   }
 }

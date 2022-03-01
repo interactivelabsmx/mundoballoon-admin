@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { getFixtureProducts } from '@lib/test/fixtures/products';
-import BaseTable from '@components/UI/tables/BaseTable';
 import { getProductColumns } from '@containers/Products/getProductColumns';
+import BaseTable from '@components/UI/tables/BaseTable';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
 describe('Modal', () => {

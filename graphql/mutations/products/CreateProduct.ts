@@ -11,24 +11,19 @@ export type CreateProductMutationVariables = Types.Exact<{
 export type CreateProductMutation = {
   __typename?: 'Mutation';
   createProduct: {
-    __typename?: 'CreateProductPayload';
-    product: {
-      __typename?: 'Product';
-      productId: number;
-      productCategoryId: number;
-      name: string;
-      price: number;
-      description: string;
-    };
+    __typename?: 'Product';
+    productId: number;
+    productCategoryId: number;
+    name: string;
+    price: number;
+    description: string;
   };
 };
 
 export const CreateProductDocument = gql`
   mutation CreateProduct($createProductInput: CreateProductRequestInput!) {
     createProduct(input: $createProductInput) {
-      product {
-        ...ProductFields
-      }
+      ...ProductFields
     }
   }
   ${ProductFieldsFragmentDoc}

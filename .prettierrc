@@ -6,8 +6,9 @@
     "^@pages/(.*)$",
     "^@lib/(.*)$",
     "^@layouts/(.*)$",
-    "^@components/(.*)$",
+    "^@providers/(.*)$",
     "^@containers/(.*)$",
+    "^@components/(.*)$",
     "^@hooks/(.*)$",
     "^@graphql/(.*)$",
     "^[./]"

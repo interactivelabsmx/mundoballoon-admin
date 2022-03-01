@@ -2,8 +2,8 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
+import { useAuth } from '@providers/AuthProvider';
 import FirebaseAuth from '@containers/Auth/FirebaseAuth';
-import { useAuth } from '@containers/AuthProvider';
 
 const Login = () => {
   const { user } = useAuth();

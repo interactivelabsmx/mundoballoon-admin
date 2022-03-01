@@ -2,11 +2,11 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import withAuthServer from '@lib/firebaseAuth/withAuthServer';
 import AdminLayout from '@layouts/AdminLayout';
+import EditProductVariantContainer from '@containers/Products/EditProductVariantContainer';
 import { SimpleTextAlertType } from '@components/UI/alerts/AlertConfigTypes';
 import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import LoadingText from '@components/UI/loading/LoadingText';
-import EditProductVariantContainer from '@containers/Products/EditProductVariantContainer';
 import { ProductVariantDetailsFragment } from '@graphql/fragments/ProductVariantDetailsFragment';
 import { useGetProductVariantByIdQuery } from '@graphql/queries/products/ProductVariantById';
 

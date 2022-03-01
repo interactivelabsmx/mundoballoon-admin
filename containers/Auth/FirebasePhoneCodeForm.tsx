@@ -4,10 +4,10 @@ import { Dispatch } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import { useAuth } from '@providers/AuthProvider';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import Input from '@components/UI/form/Input';
-import { useAuth } from '@containers/AuthProvider';
 
 export const userCodeSchema = yup
   .object({ code: yup.string().required() })

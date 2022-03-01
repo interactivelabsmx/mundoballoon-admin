@@ -71,9 +71,9 @@ export type CountryCode = {
   wmo: Scalars['String'];
 };
 
-export type CreateProductPayload = {
-  __typename?: 'CreateProductPayload';
-  product: Product;
+export type CreateProductCategoryRequestInput = {
+  description: Scalars['String'];
+  name: Scalars['String'];
 };
 
 export type CreateProductRequestInput = {
@@ -81,11 +81,6 @@ export type CreateProductRequestInput = {
   name?: InputMaybe<Scalars['String']>;
   price: Scalars['Float'];
   productCategoryId: Scalars['Int'];
-};
-
-export type CreateProductVariantPayload = {
-  __typename?: 'CreateProductVariantPayload';
-  productVariant: ProductVariant;
 };
 
 export type CreateProductVariantRequestInput = {
@@ -111,17 +106,22 @@ export type CreateUserRequestInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createProduct: CreateProductPayload;
-  createProductVariant: CreateProductVariantPayload;
+  createProduct: Product;
+  createProductCategory: ProductCategory;
+  createProductVariant: ProductVariant;
   createUser: CreateUserPayload;
   deleteProduct?: Maybe<Scalars['Boolean']>;
   deleteProductVariant?: Maybe<Scalars['Boolean']>;
-  updateProduct: UpdateProductPayload;
-  updateProductVariant: UpdateProductVariantPayload;
+  updateProduct: Product;
+  updateProductVariant: ProductVariant;
 };
 
 export type MutationCreateProductArgs = {
   input: CreateProductRequestInput;
+};
+
+export type MutationCreateProductCategoryArgs = {
+  input: CreateProductCategoryRequestInput;
 };
 
 export type MutationCreateProductVariantArgs = {
@@ -371,16 +371,6 @@ export enum SortEnumType {
   Asc = 'ASC',
   Desc = 'DESC',
 }
-
-export type UpdateProductPayload = {
-  __typename?: 'UpdateProductPayload';
-  product: Product;
-};
-
-export type UpdateProductVariantPayload = {
-  __typename?: 'UpdateProductVariantPayload';
-  productVariant: ProductVariant;
-};
 
 export type User = {
   __typename?: 'User';

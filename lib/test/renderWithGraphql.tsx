@@ -5,7 +5,7 @@ import { loadSchema } from '@graphql-tools/load';
 import { addMocksToSchema } from '@graphql-tools/mock';
 import { render as rtlRender } from '@testing-library/react';
 import { ReactNode } from 'react';
-import { AuthProvider } from '@containers/AuthProvider';
+import { AuthProvider } from '@providers/AuthProvider';
 
 export default async function renderWithGraphql(
   component: ReactNode,
