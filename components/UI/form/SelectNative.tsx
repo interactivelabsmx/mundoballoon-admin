@@ -23,7 +23,7 @@ const SelectNative = <T extends Base>(
   }: ISelectNative<T>,
   ref: ForwardedRef<HTMLSelectElement>
 ) => (
-  <>
+  <div className="w-full">
     <LabelBase label={label} htmlFor={input.name || ''} />
     <div className="mt-1">
       <select
@@ -42,7 +42,7 @@ const SelectNative = <T extends Base>(
       </select>
     </div>
     {error && <ErrorText text={error} fieldName={input.name || ''} />}
-  </>
+  </div>
 );
 
 export default forwardRef(SelectNative) as <T>(

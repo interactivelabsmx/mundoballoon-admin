@@ -52,7 +52,6 @@ const ProductVariantForm = ({
   });
 
   const variantId = watch('variantId');
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {'productVariantId' in product && (
@@ -154,7 +153,7 @@ const ProductVariantForm = ({
       )}
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>
-          Save
+          Save Product Variation
         </PrimaryButton>
       </div>
     </form>

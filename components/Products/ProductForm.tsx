@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import AddProductCategoryModal from '@containers/Collections/AddProductCategoryModal';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
@@ -38,9 +39,8 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
       ...productFormSchema.cast(product, { stripUnknown: true }),
     },
   });
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form key="productForm" onSubmit={handleSubmit(onSubmit)}>
       <input type="hidden" {...register('productId')} />
       <div className="mb-8">
         <Controller
@@ -51,7 +51,7 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
             <Input
               {...field}
               label="Product Name"
-              placeholder="Some nice product"
+              placeholder="Nice product"
               error={errors?.name?.message}
             />
           )}
@@ -66,7 +66,7 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
             <Input
               {...field}
               label="Description"
-              placeholder="Some nice product"
+              placeholder="Some nice product that is super cool"
               error={errors?.description?.message}
             />
           )}
@@ -89,7 +89,7 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
           )}
         />
       </div>
-      <div className="mb-8">
+      <div className="mb-8 flex items-end">
         <Controller
           name="productCategoryId"
           control={control}
@@ -102,10 +102,11 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
             />
           )}
         />
+        <AddProductCategoryModal />
       </div>
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>
-          Save
+          Save Product
         </PrimaryButton>
       </div>
     </form>

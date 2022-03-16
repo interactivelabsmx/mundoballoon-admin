@@ -21,19 +21,19 @@ export interface IProductCategoryFormSchema
 export interface IProductCategoryForm {
   loading: boolean;
   productCategory?: CategoryFragment;
-  onSubmit: SubmitHandler<IProductCategoryFormSchema>;
+  onSubmitCategoryForm: SubmitHandler<IProductCategoryFormSchema>;
 }
 
 const ProductCategoryForm = ({
-  onSubmit,
+  onSubmitCategoryForm,
   loading,
   productCategory,
 }: IProductCategoryForm) => {
   const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
+    control: control1,
+    register: register1,
+    handleSubmit: handleSubmit1,
+    formState: { errors: errors1 },
   } = useForm<IProductCategoryFormSchema>({
     resolver: yupResolver(productCategoryFormSchema),
     defaultValues: {
@@ -42,23 +42,22 @@ const ProductCategoryForm = ({
       }),
     },
   });
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form key="1" onSubmit={handleSubmit1(onSubmitCategoryForm)}>
       {productCategory?.productCategoryId && (
-        <input type="hidden" {...register('productCategoryId')} />
+        <input type="hidden" {...register1('productCategoryId')} />
       )}
       <div className="mb-8">
         <Controller
           name="name"
-          control={control}
+          control={control1}
           defaultValue=""
           render={({ field }) => (
             <Input
               {...field}
-              label="Product Name"
-              placeholder="Some nice product"
-              error={errors?.name?.message}
+              label="Category Name"
+              placeholder="Some nice category"
+              error={errors1?.name?.message}
             />
           )}
         />
@@ -66,21 +65,21 @@ const ProductCategoryForm = ({
       <div className="mb-8">
         <Controller
           name="description"
-          control={control}
+          control={control1}
           defaultValue=""
           render={({ field }) => (
             <Input
               {...field}
-              label="Description"
-              placeholder="Some nice product"
-              error={errors?.description?.message}
+              label="Category Description"
+              placeholder="This category is super cool"
+              error={errors1?.description?.message}
             />
           )}
         />
       </div>
       <div className="flex justify-end">
-        <PrimaryButton type="submit" disabled={loading}>
-          Save
+        <PrimaryButton type="button" disabled={loading}>
+          Save Category
         </PrimaryButton>
       </div>
     </form>
