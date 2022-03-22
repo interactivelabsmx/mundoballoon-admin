@@ -12,7 +12,7 @@ export type GetProductByIdQuery = {
   __typename?: 'Query';
   productById?: {
     __typename?: 'Product';
-    productId: number;
+    productId?: number | null;
     productCategoryId: number;
     name: string;
     price: number;

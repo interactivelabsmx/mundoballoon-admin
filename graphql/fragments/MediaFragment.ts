@@ -3,7 +3,7 @@ import * as Types from '../graphql';
 
 export type MediaFragment = {
   __typename?: 'ProductVariantMedium';
-  productVariantMediaId: number;
+  productVariantMediaId?: number | null;
   mediaType: string;
   quality: string;
   url: string;

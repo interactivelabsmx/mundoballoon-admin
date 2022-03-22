@@ -12,7 +12,7 @@ export type GetProductVariantByIdQuery = {
   __typename?: 'Query';
   productVariantById?: {
     __typename?: 'ProductVariant';
-    productVariantId: number;
+    productVariantId?: number | null;
     productId: number;
     sku: string;
     name: string;
@@ -25,7 +25,7 @@ export type GetProductVariantByIdQuery = {
     } | null;
     media?: Array<{
       __typename?: 'ProductVariantMedium';
-      productVariantMediaId: number;
+      productVariantMediaId?: number | null;
       mediaType: string;
       quality: string;
       url: string;

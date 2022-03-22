@@ -5,14 +5,14 @@ import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
 export type CreateProductVariantMutationVariables = Types.Exact<{
-  createProductVariantInput: Types.CreateProductVariantRequestInput;
+  createProductVariantInput: Types.ProductVariantInput;
 }>;
 
 export type CreateProductVariantMutation = {
   __typename?: 'Mutation';
   createProductVariant: {
     __typename?: 'ProductVariant';
-    productVariantId: number;
+    productVariantId?: number | null;
     variantValueId: number;
     productId: number;
     sku: string;
@@ -24,7 +24,7 @@ export type CreateProductVariantMutation = {
 
 export const CreateProductVariantDocument = gql`
   mutation CreateProductVariant(
-    $createProductVariantInput: CreateProductVariantRequestInput!
+    $createProductVariantInput: ProductVariantInput!
   ) {
     createProductVariant(input: $createProductVariantInput) {
       ...ProductVariantFields

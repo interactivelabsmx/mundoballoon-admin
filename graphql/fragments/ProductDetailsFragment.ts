@@ -6,20 +6,20 @@ import { ProductVariantDetailsFragmentDoc } from './ProductVariantDetailsFragmen
 
 export type ProductDetailsFragment = {
   __typename?: 'Product';
-  productId: number;
+  productId?: number | null;
   productCategoryId: number;
   name: string;
   price: number;
   description: string;
   category?: {
     __typename?: 'ProductCategory';
-    productCategoryId: number;
+    productCategoryId?: number | null;
     name: string;
     description: string;
   } | null;
   variants?: Array<{
     __typename?: 'ProductVariant';
-    productVariantId: number;
+    productVariantId?: number | null;
     productId: number;
     sku: string;
     name: string;
@@ -32,7 +32,7 @@ export type ProductDetailsFragment = {
     } | null;
     media?: Array<{
       __typename?: 'ProductVariantMedium';
-      productVariantMediaId: number;
+      productVariantMediaId?: number | null;
       mediaType: string;
       quality: string;
       url: string;

@@ -12,7 +12,7 @@ export type UpdateProductMutation = {
   __typename?: 'Mutation';
   updateProduct: {
     __typename?: 'Product';
-    productId: number;
+    productId?: number | null;
     productCategoryId: number;
     name: string;
     price: number;

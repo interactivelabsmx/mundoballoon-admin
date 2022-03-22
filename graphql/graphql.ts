@@ -45,12 +45,6 @@ export enum ApplyPolicy {
   BeforeResolver = 'BEFORE_RESOLVER',
 }
 
-export type Claim = {
-  __typename?: 'Claim';
-  claim1: Scalars['String'];
-  claimId: Scalars['Int'];
-};
-
 export type CountryCode = {
   __typename?: 'CountryCode';
   capital: Scalars['String'];
@@ -69,30 +63,6 @@ export type CountryCode = {
   supported: Scalars['Boolean'];
   updatedAt?: Maybe<Scalars['DateTime']>;
   wmo: Scalars['String'];
-};
-
-export type CreateProductCategoryRequestInput = {
-  description: Scalars['String'];
-  name: Scalars['String'];
-};
-
-export type CreateProductRequestInput = {
-  description?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
-  price: Scalars['Float'];
-  productCategoryId: Scalars['Int'];
-};
-
-export type CreateProductVariantRequestInput = {
-  description?: InputMaybe<Scalars['String']>;
-  isBundle?: InputMaybe<Scalars['Boolean']>;
-  name?: InputMaybe<Scalars['String']>;
-  price: Scalars['Float'];
-  productId: Scalars['Int'];
-  sku?: InputMaybe<Scalars['String']>;
-  storeOnly?: InputMaybe<Scalars['Boolean']>;
-  variantValueId: Scalars['Int'];
-  weight?: InputMaybe<Scalars['Float']>;
 };
 
 export type CreateUserPayload = {
@@ -117,15 +87,15 @@ export type Mutation = {
 };
 
 export type MutationCreateProductArgs = {
-  input: CreateProductRequestInput;
+  input: ProductInput;
 };
 
 export type MutationCreateProductCategoryArgs = {
-  input: CreateProductCategoryRequestInput;
+  input: ProductCategoryInput;
 };
 
 export type MutationCreateProductVariantArgs = {
-  input: CreateProductVariantRequestInput;
+  input: ProductVariantInput;
 };
 
 export type MutationCreateUserArgs = {
@@ -164,7 +134,7 @@ export type OccasionCart = {
   cartDetails?: Maybe<Array<OcassionCartDetail>>;
   description: Scalars['String'];
   dropOffStage: Scalars['String'];
-  occasionCartId: Scalars['Int'];
+  occasionCartId?: Maybe<Scalars['Int']>;
   title: Scalars['String'];
   userOccasionId: Scalars['Int'];
 };
@@ -189,7 +159,7 @@ export type Product = {
   name: Scalars['String'];
   price: Scalars['Float'];
   productCategoryId: Scalars['Int'];
-  productId: Scalars['Int'];
+  productId?: Maybe<Scalars['Int']>;
   variants?: Maybe<Array<ProductVariant>>;
 };
 
@@ -197,7 +167,13 @@ export type ProductCategory = {
   __typename?: 'ProductCategory';
   description: Scalars['String'];
   name: Scalars['String'];
-  productCategoryId: Scalars['Int'];
+  productCategoryId?: Maybe<Scalars['Int']>;
+};
+
+export type ProductCategoryInput = {
+  description: Scalars['String'];
+  name: Scalars['String'];
+  productCategoryId?: InputMaybe<Scalars['Int']>;
 };
 
 export type ProductCategorySortInput = {
@@ -231,6 +207,16 @@ export type ProductEntitySortInput = {
   productId?: InputMaybe<SortEnumType>;
 };
 
+export type ProductInput = {
+  category?: InputMaybe<ProductCategoryInput>;
+  description: Scalars['String'];
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productCategoryId: Scalars['Int'];
+  productId?: InputMaybe<Scalars['Int']>;
+  variants?: InputMaybe<Array<ProductVariantInput>>;
+};
+
 export type ProductSortInput = {
   category?: InputMaybe<ProductCategorySortInput>;
   description?: InputMaybe<SortEnumType>;
@@ -243,17 +229,17 @@ export type ProductSortInput = {
 export type ProductVariant = {
   __typename?: 'ProductVariant';
   description: Scalars['String'];
-  isBundle: Scalars['Boolean'];
+  isBundle?: Maybe<Scalars['Boolean']>;
   media?: Maybe<Array<ProductVariantMedium>>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
-  productVariantId: Scalars['Int'];
+  productVariantId?: Maybe<Scalars['Int']>;
   sku: Scalars['String'];
-  storeOnly: Scalars['Boolean'];
+  storeOnly?: Maybe<Scalars['Boolean']>;
   variant?: Maybe<VariantValue>;
   variantValueId: Scalars['Int'];
-  weight: Scalars['Float'];
+  weight?: Maybe<Scalars['Float']>;
 };
 
 export type ProductVariantEntity = {
@@ -283,11 +269,34 @@ export type ProductVariantEntityInput = {
   weight?: InputMaybe<Scalars['Float']>;
 };
 
+export type ProductVariantInput = {
+  description: Scalars['String'];
+  isBundle?: InputMaybe<Scalars['Boolean']>;
+  media?: InputMaybe<Array<ProductVariantMediumInput>>;
+  name: Scalars['String'];
+  price: Scalars['Float'];
+  productId: Scalars['Int'];
+  productVariantId?: InputMaybe<Scalars['Int']>;
+  sku: Scalars['String'];
+  storeOnly?: InputMaybe<Scalars['Boolean']>;
+  variant?: InputMaybe<VariantValueInput>;
+  variantValueId: Scalars['Int'];
+  weight?: InputMaybe<Scalars['Float']>;
+};
+
 export type ProductVariantMedium = {
   __typename?: 'ProductVariantMedium';
   mediaType: Scalars['String'];
   productVariantId: Scalars['Int'];
-  productVariantMediaId: Scalars['Int'];
+  productVariantMediaId?: Maybe<Scalars['Int']>;
+  quality: Scalars['String'];
+  url: Scalars['String'];
+};
+
+export type ProductVariantMediumInput = {
+  mediaType: Scalars['String'];
+  productVariantId: Scalars['Int'];
+  productVariantMediaId?: InputMaybe<Scalars['Int']>;
   quality: Scalars['String'];
   url: Scalars['String'];
 };
@@ -374,21 +383,16 @@ export enum SortEnumType {
 
 export type User = {
   __typename?: 'User';
-  addreses?: Maybe<Array<UserAddrese>>;
+  addreses?: Maybe<Array<UserAddresses>>;
   carts?: Maybe<Array<UserCart>>;
-  email: Scalars['String'];
-  emailVerified?: Maybe<Scalars['DateTime']>;
   id: Scalars['Int'];
-  image: Scalars['String'];
-  name: Scalars['String'];
   occasions?: Maybe<Array<UserOccasion>>;
-  profile?: Maybe<UserProfile>;
-  userClaims?: Maybe<Array<UserClaim>>;
+  paymentProfiles?: Maybe<Array<UserPaymentProfile>>;
   userId: Scalars['String'];
 };
 
-export type UserAddrese = {
-  __typename?: 'UserAddrese';
+export type UserAddresses = {
+  __typename?: 'UserAddresses';
   address1: Scalars['String'];
   address2: Scalars['String'];
   city: Scalars['String'];
@@ -396,7 +400,7 @@ export type UserAddrese = {
   isBilling: Scalars['Boolean'];
   isShipping: Scalars['Boolean'];
   state: Scalars['String'];
-  userAddresesId: Scalars['Int'];
+  userAddressesId?: Maybe<Scalars['Int']>;
   userId: Scalars['Int'];
   zipcode: Scalars['String'];
 };
@@ -411,14 +415,6 @@ export type UserCart = {
   variant?: Maybe<ProductVariant>;
 };
 
-export type UserClaim = {
-  __typename?: 'UserClaim';
-  claim?: Maybe<Claim>;
-  claimId: Scalars['Int'];
-  userClaimsId: Scalars['Int'];
-  userId: Scalars['String'];
-};
-
 export type UserOccasion = {
   __typename?: 'UserOccasion';
   carts?: Maybe<Array<OccasionCart>>;
@@ -426,12 +422,11 @@ export type UserOccasion = {
   details: Scalars['String'];
   name: Scalars['String'];
   userId: Scalars['Int'];
-  userOccasionId: Scalars['Int'];
+  userOccasionId?: Maybe<Scalars['Int']>;
 };
 
-export type UserProfile = {
-  __typename?: 'UserProfile';
-  picture: Scalars['String'];
+export type UserPaymentProfile = {
+  __typename?: 'UserPaymentProfile';
   processorId: Scalars['String'];
   userId: Scalars['Int'];
   userProfileId: Scalars['Int'];
@@ -441,8 +436,15 @@ export type Variant = {
   __typename?: 'Variant';
   name: Scalars['String'];
   type: Scalars['String'];
-  variantId: Scalars['Int'];
+  variantId?: Maybe<Scalars['Int']>;
   variantValues?: Maybe<Array<VariantValue>>;
+};
+
+export type VariantInput = {
+  name: Scalars['String'];
+  type: Scalars['String'];
+  variantId?: InputMaybe<Scalars['Int']>;
+  variantValues?: InputMaybe<Array<VariantValueInput>>;
 };
 
 export type VariantValue = {
@@ -450,5 +452,12 @@ export type VariantValue = {
   value: Scalars['String'];
   variant?: Maybe<Variant>;
   variantId: Scalars['Int'];
-  variantValueId: Scalars['Int'];
+  variantValueId?: Maybe<Scalars['Int']>;
+};
+
+export type VariantValueInput = {
+  value: Scalars['String'];
+  variant?: InputMaybe<VariantInput>;
+  variantId: Scalars['Int'];
+  variantValueId?: InputMaybe<Scalars['Int']>;
 };

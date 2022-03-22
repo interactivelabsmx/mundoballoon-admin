@@ -20,9 +20,7 @@ const AddProductCategoryContainer = ({
     useCreateProductCategoryMutation({
       refetchQueries: [{ query: GetProductCategoriesDocument }],
     });
-  const onSubmitCategoryForm: SubmitHandler<
-    IProductCategoryFormSchema
-  > = async (data) => {
+  const onSubmit: SubmitHandler<IProductCategoryFormSchema> = async (data) => {
     const result = await createProductCategory({
       variables: {
         createProductCategoryRequestInput: { ...data },
@@ -33,17 +31,14 @@ const AddProductCategoryContainer = ({
 
   return (
     <>
-      <ProductCategoryForm
-        onSubmitCategoryForm={onSubmitCategoryForm}
-        loading={loading}
-      />
+      <ProductCategoryForm onSubmit={onSubmit} loading={loading} />
       {error && (
         <SimpleTextAlert
           text={error.message}
           type={SimpleTextAlertType.ERROR}
         />
       )}
-      {loading && <LoadingText text="Creating product..." />}
+      {loading && <LoadingText text="Creating product category..." />}
     </>
   );
 };

@@ -11,7 +11,7 @@ export type GetVariantValuesQuery = {
   __typename?: 'Query';
   variantValues: Array<{
     __typename?: 'VariantValue';
-    variantValueId: number;
+    variantValueId?: number | null;
     value: string;
   }>;
 };

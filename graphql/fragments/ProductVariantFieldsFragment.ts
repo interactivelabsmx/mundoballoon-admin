@@ -3,7 +3,7 @@ import * as Types from '../graphql';
 
 export type ProductVariantFieldsFragment = {
   __typename?: 'ProductVariant';
-  productVariantId: number;
+  productVariantId?: number | null;
   variantValueId: number;
   productId: number;
   sku: string;

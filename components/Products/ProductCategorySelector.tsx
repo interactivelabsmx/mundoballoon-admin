@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
@@ -14,12 +14,14 @@ interface IProductCategorySelector {
   field: ControllerRenderProps<IProductFormSchema, 'productCategoryId'>;
   label: string;
   error?: string;
+  addProductCategoryComponent?: ReactNode;
 }
 
 const ProductCategorySelector = ({
   field,
   label,
   error,
+  addProductCategoryComponent,
 }: IProductCategorySelector) => {
   const { loading, error: loadError, data } = useGetProductCategoriesQuery();
   useAutoSelectFirst<
@@ -43,6 +45,7 @@ const ProductCategorySelector = ({
       options={productCategories as ProductCategory[]}
       optionValue="productCategoryId"
       optionLabel="name"
+      addToOptionsComponent={addProductCategoryComponent}
     />
   );
 };

@@ -5,14 +5,14 @@ import * as Types from '../../graphql';
 
 const defaultOptions = {} as const;
 export type CreateProductCategoryMutationVariables = Types.Exact<{
-  createProductCategoryRequestInput: Types.CreateProductCategoryRequestInput;
+  createProductCategoryRequestInput: Types.ProductCategoryInput;
 }>;
 
 export type CreateProductCategoryMutation = {
   __typename?: 'Mutation';
   createProductCategory: {
     __typename?: 'ProductCategory';
-    productCategoryId: number;
+    productCategoryId?: number | null;
     name: string;
     description: string;
   };
@@ -20,7 +20,7 @@ export type CreateProductCategoryMutation = {
 
 export const CreateProductCategoryDocument = gql`
   mutation CreateProductCategory(
-    $createProductCategoryRequestInput: CreateProductCategoryRequestInput!
+    $createProductCategoryRequestInput: ProductCategoryInput!
   ) {
     createProductCategory(input: $createProductCategoryRequestInput) {
       ...Category

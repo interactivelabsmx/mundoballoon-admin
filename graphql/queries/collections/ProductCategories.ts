@@ -12,7 +12,7 @@ export type GetProductCategoriesQuery = {
   __typename?: 'Query';
   productCategories: Array<{
     __typename?: 'ProductCategory';
-    productCategoryId: number;
+    productCategoryId?: number | null;
     name: string;
     description: string;
   }>;

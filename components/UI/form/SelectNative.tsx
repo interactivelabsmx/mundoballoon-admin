@@ -1,4 +1,9 @@
-import { ForwardedRef, forwardRef, InputHTMLAttributes } from 'react';
+import {
+  ForwardedRef,
+  forwardRef,
+  InputHTMLAttributes,
+  ReactNode,
+} from 'react';
 import { Base } from '@lib/utils/baseType';
 import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
@@ -10,6 +15,7 @@ type ISelectNative<T> = InputHTMLAttributes<HTMLSelectElement> & {
   options: Readonly<T[]>;
   optionLabel: keyof T;
   optionValue: keyof T;
+  addToOptionsComponent?: ReactNode;
 };
 
 const SelectNative = <T extends Base>(
@@ -19,18 +25,20 @@ const SelectNative = <T extends Base>(
     options,
     optionLabel,
     optionValue,
+    addToOptionsComponent,
     ...input
   }: ISelectNative<T>,
   ref: ForwardedRef<HTMLSelectElement>
 ) => (
   <div className="w-full">
     <LabelBase label={label} htmlFor={input.name || ''} />
-    <div className="mt-1">
+    <div className="mt-1 flex rounded-md shadow-sm">
       <select
         {...input}
         className={classNames(
-          'mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md',
-          input.className
+          'flex-1 min-w-0 block w-full px-3 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+          input.className,
+          !addToOptionsComponent ? 'rounded-md' : 'rounded-none rounded-l-md'
         )}
         ref={ref}
       >
@@ -40,6 +48,7 @@ const SelectNative = <T extends Base>(
           </option>
         ))}
       </select>
+      {addToOptionsComponent}
     </div>
     {error && <ErrorText text={error} fieldName={input.name || ''} />}
   </div>

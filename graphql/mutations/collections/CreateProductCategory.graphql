@@ -1,5 +1,5 @@
 mutation CreateProductCategory(
-  $createProductCategoryRequestInput: CreateProductCategoryRequestInput!
+  $createProductCategoryRequestInput: ProductCategoryInput!
 ) {
   createProductCategory(input: $createProductCategoryRequestInput) {
     ...Category

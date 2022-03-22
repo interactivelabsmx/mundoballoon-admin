@@ -21,18 +21,18 @@ export interface IProductCategoryFormSchema
 export interface IProductCategoryForm {
   loading: boolean;
   productCategory?: CategoryFragment;
-  onSubmitCategoryForm: SubmitHandler<IProductCategoryFormSchema>;
+  onSubmit: SubmitHandler<IProductCategoryFormSchema>;
 }
 
 const ProductCategoryForm = ({
-  onSubmitCategoryForm,
+  onSubmit,
   loading,
   productCategory,
 }: IProductCategoryForm) => {
   const {
-    control: control1,
-    register: register1,
-    handleSubmit: handleSubmit1,
+    control: controlCategory,
+    register: registerCategory,
+    handleSubmit: handleSubmitCategory,
     formState: { errors: errors1 },
   } = useForm<IProductCategoryFormSchema>({
     resolver: yupResolver(productCategoryFormSchema),
@@ -43,14 +43,22 @@ const ProductCategoryForm = ({
     },
   });
   return (
-    <form key="1" onSubmit={handleSubmit1(onSubmitCategoryForm)}>
+    <form
+      // This is a hack for react-hook-form when rendering a form inside another
+      // even if using portal the event bubbles to the parent component tree not DOM tree.
+      onSubmit={(event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        handleSubmitCategory(onSubmit)(event);
+      }}
+    >
       {productCategory?.productCategoryId && (
-        <input type="hidden" {...register1('productCategoryId')} />
+        <input type="hidden" {...registerCategory('productCategoryId')} />
       )}
       <div className="mb-8">
         <Controller
           name="name"
-          control={control1}
+          control={controlCategory}
           defaultValue=""
           render={({ field }) => (
             <Input
@@ -65,7 +73,7 @@ const ProductCategoryForm = ({
       <div className="mb-8">
         <Controller
           name="description"
-          control={control1}
+          control={controlCategory}
           defaultValue=""
           render={({ field }) => (
             <Input
@@ -78,7 +86,7 @@ const ProductCategoryForm = ({
         />
       </div>
       <div className="flex justify-end">
-        <PrimaryButton type="button" disabled={loading}>
+        <PrimaryButton type="submit" disabled={loading}>
           Save Category
         </PrimaryButton>
       </div>

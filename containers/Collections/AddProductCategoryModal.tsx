@@ -10,7 +10,10 @@ const AddProductCategoryModal = () => {
 
   return (
     <>
-      <SecundaryButton onClick={openModal} className="h-10">
+      <SecundaryButton
+        onClick={openModal}
+        className="px-3 rounded-none rounded-r-md border-l-0"
+      >
         <span className="sr-only">Close sidebar</span>
         <PlusCircleIcon className="h-6 w-6" aria-hidden="true" />
       </SecundaryButton>

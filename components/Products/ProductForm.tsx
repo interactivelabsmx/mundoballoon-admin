@@ -89,7 +89,7 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
           )}
         />
       </div>
-      <div className="mb-8 flex items-end">
+      <div className="mb-8">
         <Controller
           name="productCategoryId"
           control={control}
@@ -99,10 +99,10 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
               field={field}
               label="Product Category"
               error={errors?.productCategoryId?.message}
+              addProductCategoryComponent={<AddProductCategoryModal />}
             />
           )}
         />
-        <AddProductCategoryModal />
       </div>
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>

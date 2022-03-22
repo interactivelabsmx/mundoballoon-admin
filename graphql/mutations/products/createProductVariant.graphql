@@ -1,5 +1,5 @@
 mutation CreateProductVariant(
-  $createProductVariantInput: CreateProductVariantRequestInput!
+  $createProductVariantInput: ProductVariantInput!
 ) {
   createProductVariant(input: $createProductVariantInput) {
     ...ProductVariantFields
