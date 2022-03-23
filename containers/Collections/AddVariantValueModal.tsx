@@ -1,9 +1,13 @@
 import React, { useCallback, useState } from 'react';
 import AddIconButton from '@components/UI/buttons/AddIconButton';
 import Modal from '@components/UI/modal/Modal';
-import AddProductCategoryContainer from './AddProductCategoryContainer';
+import AddVariantValueContainer from './AddVariantValueContainer';
 
-const AddProductCategoryModal = () => {
+interface IAddVariantValueModal {
+  variantId: number;
+}
+
+const AddVariantValueModal = ({ variantId }: IAddVariantValueModal) => {
   const [open, setOpen] = useState<boolean>(false);
   const openModal = useCallback(() => setOpen(true), [setOpen]);
 
@@ -11,13 +15,13 @@ const AddProductCategoryModal = () => {
     <>
       <AddIconButton
         onClick={openModal}
-        aria-label="Open Add Product Category Modal"
+        aria-label="Open Add Variant Value Modal"
       />
       <Modal open={open} setOpen={setOpen}>
-        <AddProductCategoryContainer setOpen={setOpen} />
+        <AddVariantValueContainer setOpen={setOpen} variantId={variantId} />
       </Modal>
     </>
   );
 };
 
-export default AddProductCategoryModal;
+export default AddVariantValueModal;

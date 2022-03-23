@@ -1,0 +1,5 @@
+mutation CreateVariant($createVariantRequestInput: VariantInput!) {
+  createVariant(input: $createVariantRequestInput) {
+    ...Variant
+  }
+}

@@ -71,10 +71,46 @@ declare module '*/ProductVariantFieldsFragment.graphql' {
 }
     
 
+declare module '*/VariantFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Variant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/VariantValueFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const VariantValue: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/CreateProductCategory.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const CreateProductCategory: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/CreateVariant.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateVariant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/CreateVariantValue.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateVariantValue: DocumentNode;
 
   export default defaultDocument;
 }

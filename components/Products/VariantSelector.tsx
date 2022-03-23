@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
@@ -14,9 +14,15 @@ interface IVariantSelector {
   field: ControllerRenderProps<IProductVariantFormSchema, 'variantId'>;
   label: string;
   error?: string;
+  addVariantComponent?: ReactNode;
 }
 
-const VariantSelector = ({ field, label, error }: IVariantSelector) => {
+const VariantSelector = ({
+  field,
+  label,
+  error,
+  addVariantComponent,
+}: IVariantSelector) => {
   const { loading, error: loadError, data } = useGetVariantsQuery();
   useAutoSelectFirst<GetVariantsQuery, IProductVariantFormSchema, 'variantId'>({
     field,
@@ -37,6 +43,7 @@ const VariantSelector = ({ field, label, error }: IVariantSelector) => {
       options={variants as Variant[]}
       optionValue="variantId"
       optionLabel="name"
+      addToOptionsComponent={addVariantComponent}
     />
   );
 };

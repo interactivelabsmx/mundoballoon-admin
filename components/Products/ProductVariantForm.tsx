@@ -3,6 +3,8 @@ import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import AddVariantModal from '@containers/Collections/AddVariantModal';
+import AddVariantValueModal from '@containers/Collections/AddVariantValueModal';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
@@ -130,6 +132,7 @@ const ProductVariantForm = ({
               field={field}
               label="Variants"
               error={errors?.variantId?.message}
+              addVariantComponent={<AddVariantModal />}
             />
           )}
         />
@@ -143,9 +146,12 @@ const ProductVariantForm = ({
             render={({ field }) => (
               <VariantValueSelector
                 field={field}
-                variantId={variantId}
+                variantId={+variantId}
                 label="Variant Values"
                 error={errors?.variantValueId?.message}
+                addVariantValueComponent={
+                  <AddVariantValueModal variantId={+variantId} />
+                }
               />
             )}
           />

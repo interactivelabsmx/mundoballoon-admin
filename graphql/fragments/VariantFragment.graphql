@@ -1,0 +1,5 @@
+fragment Variant on Variant {
+  variantId
+  name
+  type
+}

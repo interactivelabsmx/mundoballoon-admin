@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { ControllerRenderProps } from 'react-hook-form';
 import SelectNative from '@components/UI/form/SelectNative';
 import LoadingText from '@components/UI/loading/LoadingText';
@@ -15,6 +15,7 @@ interface IVariantValueSelector {
   label: string;
   error?: string;
   variantId: number;
+  addVariantValueComponent?: ReactNode;
 }
 
 const VariantValueSelector = ({
@@ -22,6 +23,7 @@ const VariantValueSelector = ({
   label,
   error,
   variantId,
+  addVariantValueComponent,
 }: IVariantValueSelector) => {
   const {
     loading,
@@ -51,6 +53,7 @@ const VariantValueSelector = ({
       options={variantValues as VariantValue[]}
       optionValue="variantValueId"
       optionLabel="value"
+      addToOptionsComponent={addVariantValueComponent}
     />
   );
 };

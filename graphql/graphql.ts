@@ -80,6 +80,8 @@ export type Mutation = {
   createProductCategory: ProductCategory;
   createProductVariant: ProductVariant;
   createUser: CreateUserPayload;
+  createVariant: Variant;
+  createVariantValue: VariantValue;
   deleteProduct?: Maybe<Scalars['Boolean']>;
   deleteProductVariant?: Maybe<Scalars['Boolean']>;
   updateProduct: Product;
@@ -100,6 +102,14 @@ export type MutationCreateProductVariantArgs = {
 
 export type MutationCreateUserArgs = {
   input: CreateUserRequestInput;
+};
+
+export type MutationCreateVariantArgs = {
+  input: VariantInput;
+};
+
+export type MutationCreateVariantValueArgs = {
+  input: VariantValueInput;
 };
 
 export type MutationDeleteProductArgs = {
