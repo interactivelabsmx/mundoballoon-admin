@@ -25,7 +25,6 @@ const AddProductVariantContainer = ({
   const onSubmit: SubmitHandler<IProductVariantFormSchema> = async (
     formData
   ) => {
-    delete formData.variantId;
     const result = await createProduct({
       variables: { createProductVariantInput: formData },
     });

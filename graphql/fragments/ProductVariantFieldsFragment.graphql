@@ -1,6 +1,6 @@
 fragment ProductVariantFields on ProductVariant {
   productVariantId
-  variantValueId
+
   productId
   sku
   name

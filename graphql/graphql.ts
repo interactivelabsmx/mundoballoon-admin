@@ -239,64 +239,51 @@ export type ProductSortInput = {
 export type ProductVariant = {
   __typename?: 'ProductVariant';
   description: Scalars['String'];
-  isBundle?: Maybe<Scalars['Boolean']>;
   media?: Maybe<Array<ProductVariantMedium>>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId?: Maybe<Scalars['Int']>;
   sku: Scalars['String'];
-  storeOnly?: Maybe<Scalars['Boolean']>;
-  variant?: Maybe<VariantValue>;
-  variantValueId: Scalars['Int'];
-  weight?: Maybe<Scalars['Float']>;
+  variantValues?: Maybe<Array<ProductVariantValue>>;
 };
 
 export type ProductVariantEntity = {
   __typename?: 'ProductVariantEntity';
   description: Scalars['String'];
-  isBundle?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
   sku: Scalars['String'];
-  storeOnly?: Maybe<Scalars['Boolean']>;
   variantValueId: Scalars['Int'];
-  weight?: Maybe<Scalars['Float']>;
 };
 
 export type ProductVariantEntityInput = {
   description: Scalars['String'];
-  isBundle?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
   sku: Scalars['String'];
-  storeOnly?: InputMaybe<Scalars['Boolean']>;
   variantValueId: Scalars['Int'];
-  weight?: InputMaybe<Scalars['Float']>;
 };
 
 export type ProductVariantInput = {
   description: Scalars['String'];
-  isBundle?: InputMaybe<Scalars['Boolean']>;
   media?: InputMaybe<Array<ProductVariantMediumInput>>;
   name: Scalars['String'];
   price: Scalars['Float'];
   productId: Scalars['Int'];
   productVariantId?: InputMaybe<Scalars['Int']>;
   sku: Scalars['String'];
-  storeOnly?: InputMaybe<Scalars['Boolean']>;
-  variant?: InputMaybe<VariantValueInput>;
-  variantValueId: Scalars['Int'];
-  weight?: InputMaybe<Scalars['Float']>;
+  variantValues?: InputMaybe<Array<ProductVariantValueInput>>;
 };
 
 export type ProductVariantMedium = {
   __typename?: 'ProductVariantMedium';
   mediaType: Scalars['String'];
+  productVariant?: Maybe<ProductVariant>;
   productVariantId: Scalars['Int'];
   productVariantMediaId?: Maybe<Scalars['Int']>;
   quality: Scalars['String'];
@@ -305,10 +292,30 @@ export type ProductVariantMedium = {
 
 export type ProductVariantMediumInput = {
   mediaType: Scalars['String'];
+  productVariant?: InputMaybe<ProductVariantInput>;
   productVariantId: Scalars['Int'];
   productVariantMediaId?: InputMaybe<Scalars['Int']>;
   quality: Scalars['String'];
   url: Scalars['String'];
+};
+
+export type ProductVariantValue = {
+  __typename?: 'ProductVariantValue';
+  productVariant?: Maybe<ProductVariant>;
+  productVariantId: Scalars['Int'];
+  variant?: Maybe<Variant>;
+  variantId: Scalars['Int'];
+  variantValue?: Maybe<VariantValue>;
+  variantValueId: Scalars['Int'];
+};
+
+export type ProductVariantValueInput = {
+  productVariant?: InputMaybe<ProductVariantInput>;
+  productVariantId: Scalars['Int'];
+  variant?: InputMaybe<VariantInput>;
+  variantId: Scalars['Int'];
+  variantValue?: InputMaybe<VariantValueInput>;
+  variantValueId: Scalars['Int'];
 };
 
 /** A connection to a list of items. */
@@ -459,15 +466,15 @@ export type VariantInput = {
 
 export type VariantValue = {
   __typename?: 'VariantValue';
+  productVariantValues?: Maybe<Array<ProductVariantValue>>;
   value: Scalars['String'];
-  variant?: Maybe<Variant>;
   variantId: Scalars['Int'];
   variantValueId?: Maybe<Scalars['Int']>;
 };
 
 export type VariantValueInput = {
+  productVariantValues?: InputMaybe<Array<ProductVariantValueInput>>;
   value: Scalars['String'];
-  variant?: InputMaybe<VariantInput>;
   variantId: Scalars['Int'];
   variantValueId?: InputMaybe<Scalars['Int']>;
 };

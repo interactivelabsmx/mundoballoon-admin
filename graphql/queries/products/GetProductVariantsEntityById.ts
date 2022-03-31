@@ -14,7 +14,6 @@ export type GetProductVariantsEntityByIdQuery = {
     __typename?: 'ProductVariantEntity';
     productVariantId: number;
     sku: string;
-    variantValueId: number;
     productId: number;
     name: string;
     description: string;

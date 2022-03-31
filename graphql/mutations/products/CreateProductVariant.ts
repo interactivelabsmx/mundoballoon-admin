@@ -13,7 +13,6 @@ export type CreateProductVariantMutation = {
   createProductVariant: {
     __typename?: 'ProductVariant';
     productVariantId?: number | null;
-    variantValueId: number;
     productId: number;
     sku: string;
     name: string;

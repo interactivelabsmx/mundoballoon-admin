@@ -18,11 +18,13 @@ export type GetProductVariantByIdQuery = {
     name: string;
     description: string;
     price: number;
-    variant?: {
-      __typename?: 'VariantValue';
+    variantValues?: Array<{
+      __typename?: 'ProductVariantValue';
       variantId: number;
-      value: string;
-    } | null;
+      variantValueId: number;
+      variant?: { __typename?: 'Variant'; name: string; type: string } | null;
+      variantValue?: { __typename?: 'VariantValue'; value: string } | null;
+    }> | null;
     media?: Array<{
       __typename?: 'ProductVariantMedium';
       productVariantMediaId?: number | null;

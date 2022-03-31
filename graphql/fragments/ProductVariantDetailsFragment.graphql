@@ -5,9 +5,8 @@ fragment ProductVariantDetails on ProductVariant {
   name
   description
   price
-  variant {
-    variantId
-    value
+  variantValues {
+    ...VariantValues
   }
   media {
     ...Media

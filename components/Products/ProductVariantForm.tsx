@@ -20,8 +20,6 @@ export const productVariantFormSchema = yup
     description: yup.string().required(),
     price: yup.number().positive().required(),
     productId: yup.number().positive().required(),
-    variantId: yup.number().positive().optional(),
-    variantValueId: yup.number().positive().required(),
   })
   .required();
 
@@ -40,7 +38,6 @@ const ProductVariantForm = ({
   loading,
 }: IProductVariantForm) => {
   const {
-    watch,
     control,
     register,
     handleSubmit,
@@ -49,11 +46,9 @@ const ProductVariantForm = ({
     resolver: yupResolver(productVariantFormSchema),
     defaultValues: {
       ...productVariantFormSchema.cast(product, { stripUnknown: true }),
-      variantId: 'variant' in product ? product?.variant?.variantId : undefined,
     },
   });
 
-  const variantId = watch('variantId');
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {'productVariantId' in product && (
@@ -122,7 +117,7 @@ const ProductVariantForm = ({
           )}
         />
       </div>
-      <div className="mb-8">
+      {/* <div className="mb-8">
         <Controller
           name="variantId"
           control={control}
@@ -156,7 +151,7 @@ const ProductVariantForm = ({
             )}
           />
         </div>
-      )}
+      )} */}
       <div className="flex justify-end">
         <PrimaryButton type="submit" disabled={loading}>
           Save Product Variation

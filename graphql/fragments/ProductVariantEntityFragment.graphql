@@ -1,7 +1,6 @@
 fragment ProductVariantEntity on ProductVariantEntity {
   productVariantId
   sku
-  variantValueId
   productId
   name
   description
