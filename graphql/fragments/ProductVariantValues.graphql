@@ -1,0 +1,11 @@
+fragment VariantValues on ProductVariantValue {
+  variantId
+  variantValueId
+  variant {
+    name
+    type
+  }
+  variantValue {
+    value
+  }
+}
