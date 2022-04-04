@@ -8,10 +8,10 @@ import {
   GetVariantsQuery,
   useGetVariantsQuery,
 } from '@graphql/queries/collections/Variants';
-import { IProductVariantFormSchema } from './ProductVariantForm';
+import { IProductVariantAddValueFormSchema } from './ProductVariantAddValueForm';
 
 interface IVariantSelector {
-  field: ControllerRenderProps<IProductVariantFormSchema, 'variantId'>;
+  field: ControllerRenderProps<IProductVariantAddValueFormSchema, 'variantId'>;
   label: string;
   error?: string;
   addVariantComponent?: ReactNode;
@@ -24,7 +24,11 @@ const VariantSelector = ({
   addVariantComponent,
 }: IVariantSelector) => {
   const { loading, error: loadError, data } = useGetVariantsQuery();
-  useAutoSelectFirst<GetVariantsQuery, IProductVariantFormSchema, 'variantId'>({
+  useAutoSelectFirst<
+    GetVariantsQuery,
+    IProductVariantAddValueFormSchema,
+    'variantId'
+  >({
     field,
     data,
     list: 'variants',

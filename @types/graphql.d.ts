@@ -161,6 +161,15 @@ declare module '*/DeleteProductVariant.graphql' {
 }
     
 
+declare module '*/ProductVariantAddValue.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const ProductVariantAddValue: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/UpdateProduct.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

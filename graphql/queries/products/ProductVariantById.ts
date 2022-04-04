@@ -30,7 +30,7 @@ export type GetProductVariantByIdQuery = {
       productVariantMediaId?: number | null;
       mediaType: string;
       quality: string;
-      url: string;
+      url?: string | null;
     }> | null;
   } | null;
 };

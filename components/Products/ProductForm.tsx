@@ -46,7 +46,6 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
         <Controller
           name="name"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <Input
               {...field}
@@ -61,7 +60,6 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
         <Controller
           name="description"
           control={control}
-          defaultValue=""
           render={({ field }) => (
             <Input
               {...field}
@@ -76,7 +74,6 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
         <Controller
           name="price"
           control={control}
-          defaultValue={undefined}
           render={({ field }) => (
             <Input
               {...field}
@@ -93,7 +90,6 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
         <Controller
           name="productCategoryId"
           control={control}
-          defaultValue={undefined}
           render={({ field }) => (
             <ProductCategorySelector
               field={field}

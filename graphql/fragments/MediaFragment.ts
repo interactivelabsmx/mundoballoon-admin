@@ -6,7 +6,7 @@ export type MediaFragment = {
   productVariantMediaId?: number | null;
   mediaType: string;
   quality: string;
-  url: string;
+  url?: string | null;
 };
 
 export const MediaFragmentDoc = gql`

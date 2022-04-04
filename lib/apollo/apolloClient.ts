@@ -1,10 +1,10 @@
 import {
   ApolloClient,
-  HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { createUploadLink } from 'apollo-upload-client';
 import merge from 'deepmerge';
 import isEqual from 'lodash.isequal';
 import typePolicies from './typePolicies';
@@ -33,7 +33,10 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
       };
     return { headers };
   });
-  const link = new HttpLink({ uri: graphQLUrl, credentials: 'same-origin' });
+  const link = createUploadLink({
+    uri: graphQLUrl,
+    credentials: 'same-origin',
+  });
   const cache = new InMemoryCache({ typePolicies });
   return new ApolloClient({
     cache,

@@ -1,0 +1,7 @@
+mutation ProductVariantAddValue(
+  $productVariantValueInput: ProductVariantValueInput!
+) {
+  productVariantAddValue(input: $productVariantValueInput) {
+    ...ProductVariantDetails
+  }
+}

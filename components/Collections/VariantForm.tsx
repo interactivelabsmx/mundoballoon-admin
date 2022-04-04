@@ -39,8 +39,6 @@ const VariantForm = ({ onSubmit, loading, variant }: IVariantForm) => {
   });
   return (
     <form
-      // This is a hack for react-hook-form when rendering a form inside another
-      // even if using portal the event bubbles to the parent component tree not DOM tree.
       onSubmit={(event) => {
         event.stopPropagation();
         event.preventDefault();
@@ -54,7 +52,6 @@ const VariantForm = ({ onSubmit, loading, variant }: IVariantForm) => {
         <Controller
           name="name"
           control={controlCategory}
-          defaultValue=""
           render={({ field }) => (
             <Input
               {...field}
@@ -69,7 +66,6 @@ const VariantForm = ({ onSubmit, loading, variant }: IVariantForm) => {
         <Controller
           name="type"
           control={controlCategory}
-          defaultValue=""
           render={({ field }) => (
             <Input
               {...field}

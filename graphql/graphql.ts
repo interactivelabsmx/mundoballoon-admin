@@ -18,6 +18,8 @@ export type Scalars = {
   Float: number;
   /** The `DateTime` scalar represents an ISO-8601 compliant date time type. */
   DateTime: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 /** A connection to a list of items. */
@@ -84,6 +86,8 @@ export type Mutation = {
   createVariantValue: VariantValue;
   deleteProduct?: Maybe<Scalars['Boolean']>;
   deleteProductVariant?: Maybe<Scalars['Boolean']>;
+  productVariantAddMedia?: Maybe<ProductVariant>;
+  productVariantAddValue: ProductVariant;
   updateProduct: Product;
   updateProductVariant: ProductVariant;
 };
@@ -118,6 +122,15 @@ export type MutationDeleteProductArgs = {
 
 export type MutationDeleteProductVariantArgs = {
   productVariantId: Scalars['Int'];
+};
+
+export type MutationProductVariantAddMediaArgs = {
+  file: Scalars['Upload'];
+  input: ProductVariantMediumInput;
+};
+
+export type MutationProductVariantAddValueArgs = {
+  input: ProductVariantValueInput;
 };
 
 export type MutationUpdateProductArgs = {
@@ -256,7 +269,6 @@ export type ProductVariantEntity = {
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
   sku: Scalars['String'];
-  variantValueId: Scalars['Int'];
 };
 
 export type ProductVariantEntityInput = {
@@ -266,7 +278,6 @@ export type ProductVariantEntityInput = {
   productId: Scalars['Int'];
   productVariantId: Scalars['Int'];
   sku: Scalars['String'];
-  variantValueId: Scalars['Int'];
 };
 
 export type ProductVariantInput = {
@@ -287,7 +298,7 @@ export type ProductVariantMedium = {
   productVariantId: Scalars['Int'];
   productVariantMediaId?: Maybe<Scalars['Int']>;
   quality: Scalars['String'];
-  url: Scalars['String'];
+  url?: Maybe<Scalars['String']>;
 };
 
 export type ProductVariantMediumInput = {
@@ -296,7 +307,7 @@ export type ProductVariantMediumInput = {
   productVariantId: Scalars['Int'];
   productVariantMediaId?: InputMaybe<Scalars['Int']>;
   quality: Scalars['String'];
-  url: Scalars['String'];
+  url?: InputMaybe<Scalars['String']>;
 };
 
 export type ProductVariantValue = {

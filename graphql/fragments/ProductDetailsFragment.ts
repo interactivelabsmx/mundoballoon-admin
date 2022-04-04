@@ -37,7 +37,7 @@ export type ProductDetailsFragment = {
       productVariantMediaId?: number | null;
       mediaType: string;
       quality: string;
-      url: string;
+      url?: string | null;
     }> | null;
   }> | null;
 };
