@@ -25,10 +25,11 @@ const useAutoSelectFirst = <
   useEffect(() => {
     if (data) {
       const elements = data[list] as Array<T>;
-      if (!field.value && elements.length > 0)
+      if (!field.value && elements.length > 0) {
         field.onChange({
           target: { value: elements[0][prop] },
         });
+      }
     }
   }, [field, data, list, prop]);
 };
