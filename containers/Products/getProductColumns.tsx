@@ -6,7 +6,7 @@ import {
   TrashIcon,
 } from '@heroicons/react/solid';
 import { MouseEvent } from 'react';
-import { Row, UseExpandedRowProps } from 'react-table';
+import { Column, Row, UseExpandedRowProps } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
@@ -39,7 +39,7 @@ export const getProductActions = (
 
 export const getProductColumns = (
   onClickDelete: (productId: number) => void
-) => [
+): Column<ProductEntityFragment>[] => [
   {
     Header: () => null,
     id: 'expander',
@@ -52,7 +52,6 @@ export const getProductColumns = (
         )}
       </span>
     ),
-    SubCell: () => null,
   },
   {
     Header: 'Name',

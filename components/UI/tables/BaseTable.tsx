@@ -12,7 +12,7 @@ export interface IBaseTableOptions<T extends object> {
 }
 
 export interface IBaseTable<T extends Base> {
-  columns: Readonly<Column<any>[]>;
+  columns: Readonly<Column<T>[]>;
   data: Readonly<T[]>;
   options?: IBaseTableOptions<T>;
 }
