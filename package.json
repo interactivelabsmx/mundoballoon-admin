@@ -85,6 +85,7 @@
     "eslint-plugin-testing-library": "^5.3.1",
     "husky": "^7.0.0",
     "jest": "^28.0.3",
+    "jest-environment-jsdom": "^28.0.2",
     "jest-transform-graphql": "^2.1.0",
     "lint-staged": "^12.4.1",
     "next-router-mock": "^0.6.7",
