@@ -5,8 +5,19 @@ const createJestConfig = nextJest({ dir: './' });
 
 // Add any custom config to be passed to Jest
 const customJestConfig = {
-  moduleDirectories: ['node_modules', '<rootDir>/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    // Handle module aliases (this will be automatically configured for you soon)
+    '^@components/(.*)$': '<rootDir>/components/$1',
+    '^@containers/(.*)$': '<rootDir>/containers/$1',
+    '^@graphql/(.*)$': '<rootDir>/graphql/$1',
+    '^@hooks/(.*)$': '<rootDir>/hooks/$1',
+    '^@layouts/(.*)$': '<rootDir>/layouts/$1',
+    '^@lib/(.*)$': '<rootDir>/lib/$1',
+    '^@pages/(.*)$': '<rootDir>/pages/$1',
+    '^@providers/(.*)$': '<rootDir>/providers/$1',
+    '^firebase-admin/(.*)$': '<rootDir>/node_modules/firebase-admin/lib/$1',
+  },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
   collectCoverageFrom: [

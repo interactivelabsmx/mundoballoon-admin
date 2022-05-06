@@ -36,7 +36,7 @@
     "codegen": "graphql-codegen --config codegen.yml && prettier --write ./graphql/ ",
     "test:lint": "yarn lint && yarn tsc",
     "test:jest": "yarn jest",
-    "test": "yarn test:lint && test:jest",
+    "test": "yarn test:lint && yarn test:jest",
     "prepare": "husky install"
   },
   "browserslist": {
@@ -77,7 +77,6 @@
     "@typescript-eslint/eslint-plugin": "^5.22.0",
     "@typescript-eslint/parser": "^5.22.0",
     "autoprefixer": "^10.4.7",
-    "babel-jest": "^28.0.3",
     "eslint": "8.14.0",
     "eslint-config-next": "^12.1.6",
     "eslint-config-prettier": "^8.5.0",
@@ -86,7 +85,6 @@
     "husky": "^7.0.0",
     "jest": "^28.0.3",
     "jest-environment-jsdom": "^28.0.2",
-    "jest-transform-graphql": "^2.1.0",
     "lint-staged": "^12.4.1",
     "next-router-mock": "^0.6.7",
     "postcss": "^8.4.13",
