@@ -1,6 +1,6 @@
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/solid';
 import { MouseEvent } from 'react';
-import { Row } from 'react-table';
+import { Row, Column } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 import { ProductVariantEntityFragment } from '@graphql/fragments/ProductVariantEntityFragment';
 
@@ -27,7 +27,7 @@ export const getProductVariantActions = (
 
 export const getProductVariantColumns = (
   onClickDelete: (productVariantId: number) => void
-) => [
+): Readonly<Column<ProductVariantEntityFragment>[]> => [
   {
     Header: 'Sku',
     accessor: 'sku',

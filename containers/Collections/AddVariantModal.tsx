@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import AddIconButton from '@components/UI/buttons/AddIconButton';
+import AddIconTrailButton from '@components/UI/buttons/AddIconTrailButton';
 import Modal from '@components/UI/modal/Modal';
 import AddVariantContainer from './AddVariantContainer';
 
@@ -9,7 +9,10 @@ const AddVariantModal = () => {
 
   return (
     <>
-      <AddIconButton onClick={openModal} aria-label="Open Add Variant Modal" />
+      <AddIconTrailButton
+        onClick={openModal}
+        aria-label="Open Add Variant Modal"
+      />
       <Modal open={open} setOpen={setOpen}>
         <AddVariantContainer setOpen={setOpen} />
       </Modal>

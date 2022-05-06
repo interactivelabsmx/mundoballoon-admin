@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import AddIconButton from '@components/UI/buttons/AddIconButton';
+import AddIconTrailButton from '@components/UI/buttons/AddIconTrailButton';
 import Modal from '@components/UI/modal/Modal';
 import AddProductCategoryContainer from './AddProductCategoryContainer';
 
@@ -9,7 +9,7 @@ const AddProductCategoryModal = () => {
 
   return (
     <>
-      <AddIconButton
+      <AddIconTrailButton
         onClick={openModal}
         aria-label="Open Add Product Category Modal"
       />

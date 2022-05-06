@@ -41,6 +41,7 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
   return new ApolloClient({
     cache,
     ssrMode: typeof window === 'undefined',
+    // @ts-expect-error ApolloLink from apollo-upload-client seems to be exporting a different version
     link: setAuthorizationLink.concat(link),
   });
 }

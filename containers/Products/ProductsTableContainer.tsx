@@ -52,7 +52,7 @@ const ProductsTableContainer = () => {
     <div className="flex flex-wrap mt-4">
       <div className="w-full mb-12 px-4">
         <BaseTable<ProductEntityFragment>
-          data={products as ProductEntityFragment[]}
+          data={products}
           columns={columns}
           options={{
             isExpandable: true,

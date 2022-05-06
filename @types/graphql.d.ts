@@ -242,6 +242,24 @@ declare module '*/AllProducts.graphql' {
 }
     
 
+declare module '*/GetProductById.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetProductById: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GetProductVariantById.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetProductVariantById: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/GetProductVariantsEntityById.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -255,24 +273,6 @@ declare module '*/GetProductsEntity.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetProductsEntity: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/ProductById.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const GetProductById: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/ProductVariantById.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const GetProductVariantById: DocumentNode;
 
   export default defaultDocument;
 }

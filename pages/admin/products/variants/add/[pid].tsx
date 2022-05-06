@@ -8,7 +8,7 @@ import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import SectionHeader from '@components/UI/headers/SectionHeader';
 import LoadingText from '@components/UI/loading/LoadingText';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
-import { useGetProductByIdQuery } from '@graphql/queries/products/ProductById';
+import { useGetProductByIdQuery } from '@graphql/queries/products/GetProductById';
 
 const AddProductVariantRoute = () => {
   const router = useRouter();

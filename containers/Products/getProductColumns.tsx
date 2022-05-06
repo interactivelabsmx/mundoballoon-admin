@@ -6,7 +6,7 @@ import {
   TrashIcon,
 } from '@heroicons/react/solid';
 import { MouseEvent } from 'react';
-import { Column, Row, UseExpandedRowProps } from 'react-table';
+import { Row, Column, UseExpandedRowProps } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
@@ -39,10 +39,11 @@ export const getProductActions = (
 
 export const getProductColumns = (
   onClickDelete: (productId: number) => void
-): Column<ProductEntityFragment>[] => [
+): Readonly<Column<ProductEntityFragment>[]> => [
   {
-    Header: () => null,
     id: 'expander',
+    Header: () => null,
+    // @ts-expect-error UseExpandedRowProps is not used formely on the Column<D> type
     Cell: ({ row }: { row: UseExpandedRowProps<ProductEntityFragment> }) => (
       <span {...row.getToggleRowExpandedProps()} role="button">
         {row.isExpanded ? (

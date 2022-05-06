@@ -2,7 +2,7 @@ import { PlusCircleIcon } from '@heroicons/react/outline';
 import { ButtonHTMLAttributes } from 'react';
 import SecundaryButton from './SecundaryButton';
 
-const AddIconButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
+const AddIconTrailButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
   <SecundaryButton
     {...props}
     className="px-3 rounded-none rounded-r-md border-l-0"
@@ -12,4 +12,4 @@ const AddIconButton = (props: ButtonHTMLAttributes<HTMLButtonElement>) => (
   </SecundaryButton>
 );
 
-export default AddIconButton;
+export default AddIconTrailButton;
