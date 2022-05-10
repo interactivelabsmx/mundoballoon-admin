@@ -9,7 +9,7 @@ import SimpleTextAlert from '@components/UI/alerts/SimpleTextAlert';
 import LoadingText from '@components/UI/loading/LoadingText';
 import { ProductVariantDetailsFragment } from '@graphql/fragments/ProductVariantDetailsFragment';
 import { useUpdateProductVariantMutation } from '@graphql/mutations/products/UpdateProductVariant';
-import { GetProductsEntityDocument } from '@graphql/queries/products/GetProductsEntity';
+import { GetProductVariantByIdDocument } from '@graphql/queries/products/GetProductVariantById';
 
 export interface IEditProductVariantContainer {
   productVariant: ProductVariantDetailsFragment;
@@ -21,7 +21,7 @@ const EditProductVariantContainer = ({
   const { push } = useRouter();
   const [updateProductVariant, { loading, error }] =
     useUpdateProductVariantMutation({
-      refetchQueries: [{ query: GetProductsEntityDocument }],
+      refetchQueries: [{ query: GetProductVariantByIdDocument }],
     });
   const onSubmit: SubmitHandler<IProductVariantFormSchema> = async (
     formData

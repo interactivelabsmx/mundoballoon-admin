@@ -1,0 +1,8 @@
+mutation ProductVariantAddMedia(
+  $file: Upload!
+  $productVariantMediaInput: ProductVariantMediumInput!
+) {
+  productVariantAddMedia(file: $file, input: $productVariantMediaInput) {
+    ...ProductVariantDetails
+  }
+}

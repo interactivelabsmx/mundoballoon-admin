@@ -25,10 +25,16 @@ const useAutoSelectFirst = <
   useEffect(() => {
     if (data) {
       const elements = data[list] as Array<T>;
+
       if (!field.value && elements.length > 0) {
-        field.onChange({
-          target: { value: elements[0][prop] },
-        });
+        // this timeout is to allow react-hook-form finish register and allow for
+        // watch and other APIs to execute properly when there is no network call
+        setTimeout(() => {
+          field.onChange({
+            target: { value: elements[0][prop] },
+            name: field.name,
+          });
+        }, 1);
       }
     }
   }, [field, data, list, prop]);

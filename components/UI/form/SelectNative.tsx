@@ -9,6 +9,11 @@ import classNames from '@lib/utils/classnames';
 import ErrorText from './ErrorText';
 import LabelBase from './LabeBase';
 
+export interface ISimpleSelectOptions {
+  label: string;
+  value: string | number;
+}
+
 type ISelectNative<T> = InputHTMLAttributes<HTMLSelectElement> & {
   label: string;
   error?: string;

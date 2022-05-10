@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useEffect } from 'react';
-import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+import { useForm, useWatch, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
 import AddVariantModal from '@containers/Collections/AddVariantModal';
@@ -35,24 +34,16 @@ const ProductVariantAddValueForm = ({
   onCancel,
 }: IProductVariantAddValueForm) => {
   const {
-    watch: watch2,
     control: control2,
     register: register2,
-    unregister: unregister2,
     handleSubmit: handleSubmit2,
     formState: { errors },
   } = useForm<IProductVariantAddValueFormSchema>({
     resolver: yupResolver(productVariantFormSchema),
     defaultValues: { productVariantId },
   });
-  useEffect(
-    () => () => {
-      unregister2('variantId');
-      unregister2('variantValueId');
-    },
-    [unregister2]
-  );
-  const variantId = watch2('variantId');
+  const variantId = useWatch({ control: control2, name: 'variantId' });
+
   return (
     <form
       className="mb-8 w-full md:w-1/2"

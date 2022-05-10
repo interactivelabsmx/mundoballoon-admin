@@ -7,6 +7,7 @@ import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 import { ProductVariantDetailsFragment } from '@graphql/fragments/ProductVariantDetailsFragment';
+import ProductVariantMedia from './ProductVariantMedia';
 import ProductVariantValues from './ProductVariantValues';
 
 export const productVariantFormSchema = yup
@@ -121,6 +122,12 @@ const ProductVariantForm = ({
         <ProductVariantValues
           productVariantId={product.productVariantId || 0}
           variantValues={product.variantValues}
+        />
+      )}
+      {'media' in product && product.media && (
+        <ProductVariantMedia
+          productVariantId={product.productVariantId || 0}
+          media={product.media}
         />
       )}
     </>
