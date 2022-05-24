@@ -10,10 +10,12 @@ const TypeToColor = {
 
 interface IProductVariantValueCard {
   variantValue: VariantValuesFragment;
+  onClickDelete: (variantId: number, variantValueId: number) => void;
 }
 
 const ProductVariantValueCard = ({
   variantValue,
+  onClickDelete,
 }: IProductVariantValueCard) => (
   <li
     key={variantValue.variantValueId}
@@ -36,7 +38,12 @@ const ProductVariantValueCard = ({
         <p className="text-gray-500 text-sm">{variantValue.variant?.name}</p>
       </div>
       <div className="flex-shrink-0 pr-2">
-        <DeleteIconButton aria-label="Delete Variation Value" />
+        <DeleteIconButton
+          aria-label="Delete Variation Value"
+          onClick={() =>
+            onClickDelete(variantValue.variantId, variantValue.variantValueId)
+          }
+        />
       </div>
     </div>
   </li>

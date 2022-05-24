@@ -1,0 +1,3 @@
+mutation DeleteProductVariantMedia($productVariantMediaId: Int!) {
+  deleteProductVariantMedia(productVariantMediaId: $productVariantMediaId)
+}

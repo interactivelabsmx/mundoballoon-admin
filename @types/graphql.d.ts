@@ -161,6 +161,24 @@ declare module '*/DeleteProductVariant.graphql' {
 }
     
 
+declare module '*/DeleteProductVariantMedia.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteProductVariantMedia: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/DeleteProductVariantValue.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteProductVariantValue: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/ProductVariantAddMedia.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;

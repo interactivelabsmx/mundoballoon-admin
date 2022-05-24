@@ -1,9 +1,9 @@
 import { PlusCircleIcon } from '@heroicons/react/outline';
 import { useCallback, useState } from 'react';
 import AddProductVariantMediaContainer from '@containers/Products/AddProductVariantMediaContainer';
+import ProductVariantMediaDisplayListContainer from '@containers/Products/ProductVariantMediaDisplayListContainer';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import { MediaFragment } from '@graphql/fragments/MediaFragment';
-import ProductVariantMediaDisplayList from './ProductVariantMediaDisplayList';
 
 export interface IProductVariantMedia {
   productVariantId: number;
@@ -21,7 +21,7 @@ const ProductVariantMedia = ({
     <>
       <div className="pb-4 pt-4">
         <p>Variant Media</p>
-        <ProductVariantMediaDisplayList media={media} />
+        <ProductVariantMediaDisplayListContainer media={media} />
       </div>
       {addMedia ? (
         <AddProductVariantMediaContainer

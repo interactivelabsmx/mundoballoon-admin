@@ -1,12 +1,15 @@
 import Image from 'next/image';
+import DeleteIconButton from '@components/UI/buttons/DeleteIconButton';
 import { MediaFragment } from '@graphql/fragments/MediaFragment';
 
 interface IProductVariantMediaDisplayList {
   media: MediaFragment[];
+  onClickDelete: (productVariantMediaId: number) => void;
 }
 
 const ProductVariantMediaDisplayList = ({
   media,
+  onClickDelete,
 }: IProductVariantMediaDisplayList) => (
   <ul
     role="list"
@@ -14,7 +17,7 @@ const ProductVariantMediaDisplayList = ({
   >
     {media.map((file) => (
       <li key={file.productVariantMediaId} className="relative">
-        <div className="group block w-full aspect-w-10 aspect-h-7 rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-offset-gray-100 focus-within:ring-indigo-500 overflow-hidden">
+        <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
           {file.url && (
             <Image
               layout="raw"
@@ -22,15 +25,15 @@ const ProductVariantMediaDisplayList = ({
               height="100%"
               src={file.url}
               alt={file.mediaType}
-              className="object-cover pointer-events-none group-hover:opacity-75"
+              className="object-cover pointer-events-none"
             />
           )}
-          <button type="button" className="absolute inset-0 focus:outline-none">
-            <span className="sr-only">View details for {file.mediaType}</span>
-          </button>
         </div>
-        <p className="mt-2 block text-sm font-medium text-gray-900 truncate pointer-events-none">
-          {file.mediaType} {file.quality}
+        <p className="mt-2 flex justify-between text-sm font-medium text-gray-900">
+          {file.name} / {file.mediaType} / {file.quality}
+          <DeleteIconButton
+            onClick={() => onClickDelete(file.productVariantMediaId || 0)}
+          />
         </p>
       </li>
     ))}

@@ -86,6 +86,8 @@ export type Mutation = {
   createVariantValue: VariantValue;
   deleteProduct?: Maybe<Scalars['Boolean']>;
   deleteProductVariant?: Maybe<Scalars['Boolean']>;
+  deleteProductVariantMedia?: Maybe<Scalars['Boolean']>;
+  deleteProductVariantValue?: Maybe<Scalars['Boolean']>;
   productVariantAddMedia?: Maybe<ProductVariant>;
   productVariantAddValue: ProductVariant;
   updateProduct: Product;
@@ -122,6 +124,16 @@ export type MutationDeleteProductArgs = {
 
 export type MutationDeleteProductVariantArgs = {
   productVariantId: Scalars['Int'];
+};
+
+export type MutationDeleteProductVariantMediaArgs = {
+  productVariantMediaId: Scalars['Int'];
+};
+
+export type MutationDeleteProductVariantValueArgs = {
+  productVariantId: Scalars['Int'];
+  variantId: Scalars['Int'];
+  variantValueId: Scalars['Int'];
 };
 
 export type MutationProductVariantAddMediaArgs = {
@@ -293,7 +305,9 @@ export type ProductVariantInput = {
 
 export type ProductVariantMedium = {
   __typename?: 'ProductVariantMedium';
+  description?: Maybe<Scalars['String']>;
   mediaType: Scalars['String'];
+  name: Scalars['String'];
   productVariant?: Maybe<ProductVariant>;
   productVariantId: Scalars['Int'];
   productVariantMediaId?: Maybe<Scalars['Int']>;
@@ -302,7 +316,9 @@ export type ProductVariantMedium = {
 };
 
 export type ProductVariantMediumInput = {
+  description?: InputMaybe<Scalars['String']>;
   mediaType: Scalars['String'];
+  name: Scalars['String'];
   productVariant?: InputMaybe<ProductVariantInput>;
   productVariantId: Scalars['Int'];
   productVariantMediaId?: InputMaybe<Scalars['Int']>;

@@ -1,0 +1,11 @@
+mutation DeleteProductVariantValue(
+  $productVariantId: Int!
+  $variantId: Int!
+  $variantValueId: Int!
+) {
+  deleteProductVariantValue(
+    productVariantId: $productVariantId
+    variantId: $variantId
+    variantValueId: $variantValueId
+  )
+}

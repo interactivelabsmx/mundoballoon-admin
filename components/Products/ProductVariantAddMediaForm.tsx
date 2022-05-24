@@ -7,6 +7,7 @@ import { SelectOne } from '@lib/utils/sharedConsts';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import DropzoneFileInput from '@components/UI/form/DropzoneFileInput';
+import Input from '@components/UI/form/Input';
 import SelectNative, {
   ISimpleSelectOptions,
 } from '@components/UI/form/SelectNative';
@@ -19,6 +20,8 @@ export const productVariantMediaFormSchema = yup
     productVariantId: yup.number().positive().required(),
     mediaType: yup.string().oneOf(MediaTypes).required(),
     quality: yup.string().oneOf(MediaQuality).required(),
+    name: yup.string().required(),
+    description: yup.string().optional(),
     file: yup.mixed().required(),
   })
   .required();
@@ -68,6 +71,34 @@ const ProductVariantAddMediaForm = ({
       }}
     >
       <input type="hidden" {...register3('productVariantId')} />
+      <div className="mb-8">
+        <Controller
+          name="name"
+          control={control3}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Media Name"
+              placeholder="Some nice picture"
+              error={errors?.name?.message}
+            />
+          )}
+        />
+      </div>
+      <div className="mb-8">
+        <Controller
+          name="description"
+          control={control3}
+          render={({ field }) => (
+            <Input
+              {...field}
+              label="Description (optional)"
+              placeholder="Some nice picture"
+              error={errors?.description?.message}
+            />
+          )}
+        />
+      </div>
       <div className="mb-8">
         <Controller
           name="mediaType"

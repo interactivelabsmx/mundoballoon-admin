@@ -1,9 +1,9 @@
 import { PlusCircleIcon } from '@heroicons/react/outline';
 import { useCallback, useState } from 'react';
 import AddProductVariantValueContainer from '@containers/Products/AddProductVariantValueContainer';
+import ProductVariantValuesListContainer from '@containers/Products/ProductVariantValuesListContainer';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import { VariantValuesFragment } from '@graphql/fragments/ProductVariantValues';
-import ProductVariantValuesList from './ProductVariantValuesList';
 
 export interface IProductVariantValues {
   productVariantId: number;
@@ -21,7 +21,10 @@ const ProductVariantValues = ({
     <>
       <div className="pb-4 pt-4 text-lg">
         <h3>Variant Values</h3>
-        <ProductVariantValuesList variantValues={variantValues} />
+        <ProductVariantValuesListContainer
+          variantValues={variantValues}
+          productVariantId={productVariantId}
+        />
       </div>
       {addVariant ? (
         <AddProductVariantValueContainer

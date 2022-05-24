@@ -7,6 +7,8 @@ export type MediaFragment = {
   mediaType: string;
   quality: string;
   url?: string | null;
+  name: string;
+  description?: string | null;
 };
 
 export const MediaFragmentDoc = gql`
@@ -15,5 +17,7 @@ export const MediaFragmentDoc = gql`
     mediaType
     quality
     url
+    name
+    description
   }
 `;

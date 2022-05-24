@@ -38,6 +38,8 @@ export type ProductDetailsFragment = {
       mediaType: string;
       quality: string;
       url?: string | null;
+      name: string;
+      description?: string | null;
     }> | null;
   }> | null;
 };

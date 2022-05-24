@@ -3,4 +3,6 @@ fragment Media on ProductVariantMedium {
   mediaType
   quality
   url
+  name
+  description
 }

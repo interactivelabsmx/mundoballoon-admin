@@ -30,19 +30,21 @@ const AddProductVariantMediaContainer = ({
   const onSubmit: SubmitHandler<IProductVariantAddMediaFormSchema> = async (
     data
   ) => {
-    // const result =
-    await productVariantAddMedia({
+    const result = await productVariantAddMedia({
       variables: {
         file: data.file[0],
         productVariantMediaInput: {
           productVariantId: data.productVariantId,
           mediaType: data.mediaType,
           quality: data.quality,
+          name: data.name,
+          description: data.description,
         },
       },
     });
     // TODO: HANDLE ERRORS
     // if (result.errors) console.log(result.errors);
+    if (!result.errors) onCancel();
   };
 
   return (
