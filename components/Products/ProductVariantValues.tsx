@@ -19,8 +19,8 @@ const ProductVariantValues = ({
   const onCancelClick = useCallback(() => setAddVariant(false), []);
   return (
     <>
-      <div className="pb-4">
-        <p>Variant Values</p>
+      <div className="pb-4 pt-4 text-lg">
+        <h3>Variant Values</h3>
         <ProductVariantValuesList variantValues={variantValues} />
       </div>
       {addVariant ? (

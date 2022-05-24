@@ -1,5 +1,6 @@
 import {
   ApolloClient,
+  ApolloLink,
   InMemoryCache,
   NormalizedCacheObject,
 } from '@apollo/client';
@@ -36,7 +37,7 @@ function createApolloClient({ graphQLUrl, getToken }: ICreateApolloClient) {
   const link = createUploadLink({
     uri: graphQLUrl,
     credentials: 'same-origin',
-  });
+  }) as unknown as ApolloLink;
   const cache = new InMemoryCache({ typePolicies });
   return new ApolloClient({
     cache,

@@ -3,13 +3,15 @@ import { useMemo } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import { SelectOne } from '@lib/utils/sharedConsts';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
+import DropzoneFileInput from '@components/UI/form/DropzoneFileInput';
 import SelectNative, {
   ISimpleSelectOptions,
 } from '@components/UI/form/SelectNative';
 
-export const MediaTypes = ['string', 'number', 'boolean'];
+export const MediaTypes = ['Image', 'Video'];
 export const MediaQuality = ['high', 'low'];
 
 export const productVariantMediaFormSchema = yup
@@ -48,11 +50,11 @@ const ProductVariantAddMediaForm = ({
   });
 
   const mediaTypeOptions = useMemo(
-    () => MediaTypes.map((mt) => ({ label: mt, value: mt })),
+    () => [SelectOne, ...MediaTypes.map((mt) => ({ label: mt, value: mt }))],
     []
   );
   const mediaQualityOptions = useMemo(
-    () => MediaQuality.map((mt) => ({ label: mt, value: mt })),
+    () => [SelectOne, ...MediaQuality.map((mt) => ({ label: mt, value: mt }))],
     []
   );
 
@@ -74,8 +76,8 @@ const ProductVariantAddMediaForm = ({
             <SelectNative<ISimpleSelectOptions>
               {...field}
               label="Media Type"
-              optionValue="label"
-              optionLabel="value"
+              optionValue="value"
+              optionLabel="label"
               options={mediaTypeOptions}
               error={errors?.mediaType?.message}
             />
@@ -84,16 +86,28 @@ const ProductVariantAddMediaForm = ({
       </div>
       <div className="mb-8">
         <Controller
-          name="mediaType"
+          name="quality"
           control={control3}
           render={({ field }) => (
             <SelectNative<ISimpleSelectOptions>
               {...field}
               label="Media Quality"
-              optionValue="label"
-              optionLabel="value"
+              optionValue="value"
+              optionLabel="label"
               options={mediaQualityOptions}
               error={errors?.quality?.message}
+            />
+          )}
+        />
+      </div>
+      <div className="mb-8">
+        <Controller
+          name="file"
+          control={control3}
+          render={({ field }) => (
+            <DropzoneFileInput<IProductVariantAddMediaFormSchema, 'file'>
+              field={field}
+              error={errors?.file?.message}
             />
           )}
         />
@@ -110,7 +124,7 @@ const ProductVariantAddMediaForm = ({
           </SecundaryButton>
         )}
         <PrimaryButton type="submit" disabled={loading}>
-          Add Variation
+          Add Media
         </PrimaryButton>
       </div>
     </form>

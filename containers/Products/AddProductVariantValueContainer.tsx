@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import ProductVariantAddValueForm, {
@@ -19,7 +18,6 @@ const AddProductVariantValueContainer = ({
   onCancel,
   productVariantId,
 }: IAddProductVariantValueContainer) => {
-  const { push } = useRouter();
   const [productVariantAddValue, { loading, error }] =
     useProductVariantAddValueMutation({
       refetchQueries: [{ query: GetProductVariantByIdDocument }],
@@ -27,12 +25,14 @@ const AddProductVariantValueContainer = ({
   const onSubmit: SubmitHandler<IProductVariantAddValueFormSchema> = async (
     data
   ) => {
-    const result = await productVariantAddValue({
+    // const result =
+    await productVariantAddValue({
       variables: {
         productVariantValueInput: { ...data },
       },
     });
-    if (!result.errors) push('/admin/products');
+    // TODO: HANDLE ERRORS
+    // if (result.errors) console.log(result.errors);
   };
 
   return (

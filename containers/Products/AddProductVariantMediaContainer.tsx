@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React from 'react';
 import { SubmitHandler } from 'react-hook-form';
 import ProductVariantAddMediaForm, {
@@ -19,7 +18,6 @@ const AddProductVariantMediaContainer = ({
   onCancel,
   productVariantId,
 }: IAddProductVariantMediaContainer) => {
-  const { push } = useRouter();
   const [productVariantAddMedia, { loading, error }] =
     useProductVariantAddMediaMutation({
       refetchQueries: [
@@ -32,13 +30,19 @@ const AddProductVariantMediaContainer = ({
   const onSubmit: SubmitHandler<IProductVariantAddMediaFormSchema> = async (
     data
   ) => {
-    const result = await productVariantAddMedia({
+    // const result =
+    await productVariantAddMedia({
       variables: {
-        file: data.file,
-        productVariantMediaInput: { ...data },
+        file: data.file[0],
+        productVariantMediaInput: {
+          productVariantId: data.productVariantId,
+          mediaType: data.mediaType,
+          quality: data.quality,
+        },
       },
     });
-    if (!result.errors) push('/admin/products');
+    // TODO: HANDLE ERRORS
+    // if (result.errors) console.log(result.errors);
   };
 
   return (
