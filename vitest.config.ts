@@ -12,6 +12,10 @@ export default defineConfig({
     mockReset: true,
     environment: 'jsdom',
     setupFiles: './vitest.setup.ts',
+    coverage: {
+      lines: 80,
+      statements: 80,
+    },
   },
   resolve: {
     alias: {
