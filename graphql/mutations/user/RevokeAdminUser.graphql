@@ -1,0 +1,3 @@
+mutation RevokeAdminUser($userId: String!) {
+  revokeAdminUser(userId: $userId)
+}

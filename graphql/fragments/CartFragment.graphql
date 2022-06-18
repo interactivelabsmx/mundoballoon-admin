@@ -1,0 +1,6 @@
+fragment Cart on UserCart {
+  sku
+  quantity
+  price
+  productVariantId
+}

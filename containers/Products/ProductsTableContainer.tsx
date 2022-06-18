@@ -14,9 +14,9 @@ import ProductVariantsTableContainer from './ProductVariantsTableContainer';
 import { getProductColumns } from './getProductColumns';
 
 const ProductsTableContainer = () => {
-  const productsQueryVars = { first: 10, after: null };
+  const pagingQueryVars = { first: 5, after: null };
   const { loading, error, data, fetchMore } = useGetProductsEntityQuery({
-    variables: productsQueryVars,
+    variables: pagingQueryVars,
   });
   const [deleteProduct, { loading: deleteLoading, error: deleteError }] =
     useDeleteProductMutation({

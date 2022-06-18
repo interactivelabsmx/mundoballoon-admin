@@ -1,0 +1,6 @@
+fragment Occasion on UserOccasion {
+  userOccasionId
+  name
+  date
+  details
+}

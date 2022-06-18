@@ -1,0 +1,13 @@
+query GetUsers($first: Int = 5, $after: String) {
+  users(first: $first, after: $after) {
+    nodes {
+      ...FirebaseUser
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+      hasPreviousPage
+      startCursor
+    }
+  }
+}

@@ -11,7 +11,7 @@ export type DeleteProductVariantValueMutationVariables = Types.Exact<{
 
 export type DeleteProductVariantValueMutation = {
   __typename?: 'Mutation';
-  deleteProductVariantValue?: boolean | null;
+  deleteProductVariantValue: boolean;
 };
 
 export const DeleteProductVariantValueDocument = gql`

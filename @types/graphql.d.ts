@@ -1,4 +1,13 @@
 
+declare module '*/CartFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Cart: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/CategoryFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -8,10 +17,37 @@ declare module '*/CategoryFragment.graphql' {
 }
     
 
+declare module '*/FirebaseUserFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const FirebaseUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/MediaFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const Media: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/OccasionFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const Occasion: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/PaymentProfileFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const PaymentProfile: DocumentNode;
 
   export default defaultDocument;
 }
@@ -75,6 +111,15 @@ declare module '*/ProductVariantValues.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const VariantValues: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/UserFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const User: DocumentNode;
 
   export default defaultDocument;
 }
@@ -224,6 +269,33 @@ declare module '*/CreateUser.graphql' {
 }
     
 
+declare module '*/DeleteUser.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GrantAdminUser.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GrantAdminUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/RevokeAdminUser.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const RevokeAdminUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/CountryCodes.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -300,6 +372,24 @@ declare module '*/GetProductsEntity.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetProductsEntity: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GetUserById.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetUserById: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/GetUsers.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetUsers: DocumentNode;
 
   export default defaultDocument;
 }

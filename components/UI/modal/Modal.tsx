@@ -1,11 +1,11 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/outline';
 import { Dispatch, Fragment, ReactNode } from 'react';
+import CloseModalButtonIcon from './CloseModalButtonIcon';
 
 export interface IModal {
   open: boolean;
   setOpen: Dispatch<boolean>;
-  title?: string;
+  title?: ReactNode;
   children: ReactNode;
 }
 
@@ -45,25 +45,13 @@ const Modal = ({ children, title, open, setOpen }: IModal) => (
           leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         >
           <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
-            <div className="hidden sm:block absolute top-0 right-0 pt-4 pr-4">
-              <button
-                type="button"
-                className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                onClick={() => setOpen(false)}
-              >
-                <span className="sr-only">Close</span>
-                <XIcon className="h-6 w-6" aria-hidden="true" />
-              </button>
-            </div>
+            <CloseModalButtonIcon setOpen={setOpen} />
             {title && (
-              <Dialog.Title
-                as="h3"
-                className="text-lg leading-6 font-medium text-gray-900"
-              >
+              <Dialog.Title className="flex text-lg font-medium text-gray-900">
                 {title}
               </Dialog.Title>
             )}
-            {children}
+            <Dialog.Panel>{children}</Dialog.Panel>
           </div>
         </Transition.Child>
       </div>

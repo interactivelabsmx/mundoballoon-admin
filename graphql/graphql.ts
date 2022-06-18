@@ -67,12 +67,16 @@ export type CountryCode = {
   wmo: Scalars['String'];
 };
 
-export type CreateUserPayload = {
-  __typename?: 'CreateUserPayload';
-  user: User;
-};
-
-export type CreateUserRequestInput = {
+export type FirebaseUser = {
+  __typename?: 'FirebaseUser';
+  carts?: Maybe<Array<UserCart>>;
+  claims?: Maybe<Array<Maybe<Scalars['String']>>>;
+  displayName?: Maybe<Scalars['String']>;
+  email?: Maybe<Scalars['String']>;
+  id: Scalars['Int'];
+  occasions?: Maybe<Array<UserOccasion>>;
+  paymentProfiles?: Maybe<Array<UserPaymentProfile>>;
+  phoneNumber?: Maybe<Scalars['String']>;
   userId: Scalars['String'];
 };
 
@@ -81,15 +85,18 @@ export type Mutation = {
   createProduct: Product;
   createProductCategory: ProductCategory;
   createProductVariant: ProductVariant;
-  createUser: CreateUserPayload;
+  createUser: User;
   createVariant: Variant;
   createVariantValue: VariantValue;
-  deleteProduct?: Maybe<Scalars['Boolean']>;
-  deleteProductVariant?: Maybe<Scalars['Boolean']>;
-  deleteProductVariantMedia?: Maybe<Scalars['Boolean']>;
-  deleteProductVariantValue?: Maybe<Scalars['Boolean']>;
+  deleteProduct: Scalars['Boolean'];
+  deleteProductVariant: Scalars['Boolean'];
+  deleteProductVariantMedia: Scalars['Boolean'];
+  deleteProductVariantValue: Scalars['Boolean'];
+  deleteUser: Scalars['Boolean'];
+  grantAdminUser: Scalars['Boolean'];
   productVariantAddMedia?: Maybe<ProductVariant>;
   productVariantAddValue: ProductVariant;
+  revokeAdminUser: Scalars['Boolean'];
   updateProduct: Product;
   updateProductVariant: ProductVariant;
 };
@@ -107,7 +114,7 @@ export type MutationCreateProductVariantArgs = {
 };
 
 export type MutationCreateUserArgs = {
-  input: CreateUserRequestInput;
+  userId: Scalars['String'];
 };
 
 export type MutationCreateVariantArgs = {
@@ -136,6 +143,14 @@ export type MutationDeleteProductVariantValueArgs = {
   variantValueId: Scalars['Int'];
 };
 
+export type MutationDeleteUserArgs = {
+  userId: Scalars['String'];
+};
+
+export type MutationGrantAdminUserArgs = {
+  userId: Scalars['String'];
+};
+
 export type MutationProductVariantAddMediaArgs = {
   file: Scalars['Upload'];
   input: ProductVariantMediumInput;
@@ -143,6 +158,10 @@ export type MutationProductVariantAddMediaArgs = {
 
 export type MutationProductVariantAddValueArgs = {
   input: ProductVariantValueInput;
+};
+
+export type MutationRevokeAdminUserArgs = {
+  userId: Scalars['String'];
 };
 
 export type MutationUpdateProductArgs = {
@@ -376,6 +395,8 @@ export type Query = {
   productVariantsEntityById: Array<ProductVariantEntity>;
   productsEntity?: Maybe<ProductsEntityConnection>;
   site: Site;
+  userById?: Maybe<FirebaseUser>;
+  users?: Maybe<UsersConnection>;
   variantValues: Array<VariantValue>;
   variants: Array<Variant>;
 };
@@ -408,6 +429,17 @@ export type QueryProductsEntityArgs = {
   order?: InputMaybe<Array<ProductEntitySortInput>>;
 };
 
+export type QueryUserByIdArgs = {
+  userId: Scalars['String'];
+};
+
+export type QueryUsersArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
 export type QueryVariantValuesArgs = {
   variantId: Scalars['Int'];
 };
@@ -427,26 +459,11 @@ export enum SortEnumType {
 
 export type User = {
   __typename?: 'User';
-  addreses?: Maybe<Array<UserAddresses>>;
   carts?: Maybe<Array<UserCart>>;
   id: Scalars['Int'];
   occasions?: Maybe<Array<UserOccasion>>;
   paymentProfiles?: Maybe<Array<UserPaymentProfile>>;
   userId: Scalars['String'];
-};
-
-export type UserAddresses = {
-  __typename?: 'UserAddresses';
-  address1: Scalars['String'];
-  address2: Scalars['String'];
-  city: Scalars['String'];
-  country: Scalars['String'];
-  isBilling: Scalars['Boolean'];
-  isShipping: Scalars['Boolean'];
-  state: Scalars['String'];
-  userAddressesId?: Maybe<Scalars['Int']>;
-  userId: Scalars['Int'];
-  zipcode: Scalars['String'];
 };
 
 export type UserCart = {
@@ -474,6 +491,26 @@ export type UserPaymentProfile = {
   processorId: Scalars['String'];
   userId: Scalars['Int'];
   userProfileId: Scalars['Int'];
+};
+
+/** A connection to a list of items. */
+export type UsersConnection = {
+  __typename?: 'UsersConnection';
+  /** A list of edges. */
+  edges?: Maybe<Array<UsersEdge>>;
+  /** A flattened list of the nodes. */
+  nodes?: Maybe<Array<FirebaseUser>>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+/** An edge in a connection. */
+export type UsersEdge = {
+  __typename?: 'UsersEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: FirebaseUser;
 };
 
 export type Variant = {

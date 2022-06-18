@@ -1,0 +1,17 @@
+fragment User on FirebaseUser {
+  id
+  userId
+  email
+  displayName
+  phoneNumber
+  claims
+  carts {
+    ...Cart
+  }
+  occasions {
+    ...Occasion
+  }
+  paymentProfiles {
+    ...PaymentProfile
+  }
+}

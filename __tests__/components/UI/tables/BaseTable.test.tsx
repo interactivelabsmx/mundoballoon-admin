@@ -4,8 +4,8 @@ import { getProductColumns } from '@containers/Products/getProductColumns';
 import BaseTable from '@components/UI/tables/BaseTable';
 import { ProductEntityFragment } from '@graphql/fragments/ProductEntityFragment';
 
-describe('Modal', () => {
-  it('Renders modal', async () => {
+describe('BaseTable', () => {
+  it('Renders table', async () => {
     const onClickDelete = jest.fn();
     const columns = getProductColumns(onClickDelete);
     render(

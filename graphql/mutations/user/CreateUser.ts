@@ -9,18 +9,13 @@ export type CreateUserMutationVariables = Types.Exact<{
 
 export type CreateUserMutation = {
   __typename?: 'Mutation';
-  createUser: {
-    __typename?: 'CreateUserPayload';
-    user: { __typename?: 'User'; id: number };
-  };
+  createUser: { __typename?: 'User'; id: number };
 };
 
 export const CreateUserDocument = gql`
   mutation CreateUser($userId: String!) {
-    createUser(input: { userId: $userId }) {
-      user {
-        id
-      }
+    createUser(userId: $userId) {
+      id
     }
   }
 `;
