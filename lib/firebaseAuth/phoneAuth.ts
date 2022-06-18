@@ -4,7 +4,7 @@ import {
   RecaptchaVerifier,
   ConfirmationResult,
   signInWithPhoneNumber,
-} from 'firebase/auth';
+} from '@firebase/auth';
 import { IBaeFunctionAuth } from './firebaseAuthTypes';
 
 declare global {

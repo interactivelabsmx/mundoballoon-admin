@@ -1,4 +1,5 @@
 import { screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
 import { getFixtureProduct } from '@lib/test/fixtures/products';
 import renderWithGraphql from '@lib/test/renderWithGraphql';
 import AddProductVariantContainer from '@containers/Products/AddProductVariantContainer';

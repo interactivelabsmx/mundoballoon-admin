@@ -9,7 +9,7 @@ import { AuthProvider } from '@providers/AuthProvider';
 
 export default async function renderWithGraphql(
   component: ReactNode,
-  { mocks = {} } = {}
+  mocks = {}
 ) {
   const schema = await loadSchema('graphql/graphql.schema.json', {
     loaders: [new JsonFileLoader()],

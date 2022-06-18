@@ -1,11 +1,12 @@
 import { render, screen } from '@testing-library/react';
+import { describe, it, expect, vi } from 'vitest';
 import Modal, { IModal } from '@components/UI/modal/Modal';
 
 const comp = <div>Text</div>;
 
 const getProps = (props?: Partial<IModal>): IModal => ({
   open: true,
-  setOpen: jest.fn(),
+  setOpen: vi.fn(),
   children: comp,
   ...props,
 });
