@@ -138,7 +138,7 @@ const ProductVariantAddMediaForm = ({
           render={({ field }) => (
             <DropzoneFileInput<IProductVariantAddMediaFormSchema, 'file'>
               field={field}
-              error={errors?.file?.message}
+              error={errors?.file?.message?.toString()}
             />
           )}
         />
