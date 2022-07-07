@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from 'next/future/image';
 import DeleteIconButton from '@components/UI/buttons/DeleteIconButton';
 import { MediaFragment } from '@graphql/fragments/MediaFragment';
 
@@ -20,7 +20,6 @@ const ProductVariantMediaDisplayList = ({
         <div className="block w-full aspect-w-10 aspect-h-7 rounded-lg overflow-hidden">
           {file.url && (
             <Image
-              layout="raw"
               width="100%"
               height="100%"
               src={file.url}
