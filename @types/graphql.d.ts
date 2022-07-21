@@ -332,15 +332,6 @@ declare module '*/Variants.graphql' {
 }
     
 
-declare module '*/AllProducts.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const AllProducts: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
 declare module '*/GetProductById.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
