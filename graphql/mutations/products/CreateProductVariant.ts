@@ -17,7 +17,7 @@ export type CreateProductVariantMutation = {
     sku: string;
     name: string;
     description: string;
-    price: number;
+    price: any;
   };
 };
 

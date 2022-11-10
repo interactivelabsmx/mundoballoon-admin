@@ -15,7 +15,6 @@ export type GetUsersQuery = {
     __typename?: 'UsersConnection';
     nodes?: Array<{
       __typename?: 'FirebaseUser';
-      id: number;
       userId: string;
       email?: string | null;
       displayName?: string | null;

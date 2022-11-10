@@ -5,13 +5,15 @@ export type VariantFragment = {
   __typename?: 'Variant';
   variantId?: number | null;
   name: string;
-  type: string;
+  type: { __typename?: 'VariantsType'; variantType?: string | null };
 };
 
 export const VariantFragmentDoc = gql`
   fragment Variant on Variant {
     variantId
     name
-    type
+    type {
+      variantType
+    }
   }
 `;

@@ -4,8 +4,8 @@ import * as Types from '../graphql';
 export type CartFragment = {
   __typename?: 'UserCart';
   sku: string;
-  quantity: number;
-  price: number;
+  quantity: any;
+  price: any;
   productVariantId: number;
 };
 

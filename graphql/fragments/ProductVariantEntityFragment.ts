@@ -8,7 +8,7 @@ export type ProductVariantEntityFragment = {
   productId: number;
   name: string;
   description: string;
-  price: number;
+  price: any;
 };
 
 export const ProductVariantEntityFragmentDoc = gql`

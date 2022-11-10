@@ -72,9 +72,9 @@ const SideBar = ({
                 <div className="flex-shrink-0 flex items-center px-4">
                   <div className="h-8 w-auto relative flex-1">
                     <Image
+                      fill
                       src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                       alt="Workflow"
-                      layout="fill"
                     />
                   </div>
                 </div>
@@ -94,7 +94,7 @@ const SideBar = ({
                 <Image
                   src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                   alt="Workflow"
-                  layout="fill"
+                  fill
                 />
               </div>
             </div>

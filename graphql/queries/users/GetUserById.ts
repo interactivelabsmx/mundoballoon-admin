@@ -12,7 +12,6 @@ export type GetUserByIdQuery = {
   __typename?: 'Query';
   userById?: {
     __typename?: 'FirebaseUser';
-    id: number;
     userId: string;
     email?: string | null;
     displayName?: string | null;
@@ -21,16 +20,9 @@ export type GetUserByIdQuery = {
     carts?: Array<{
       __typename?: 'UserCart';
       sku: string;
-      quantity: number;
-      price: number;
+      quantity: any;
+      price: any;
       productVariantId: number;
-    }> | null;
-    occasions?: Array<{
-      __typename?: 'UserOccasion';
-      userOccasionId?: number | null;
-      name: string;
-      date?: any | null;
-      details: string;
     }> | null;
     paymentProfiles?: Array<{
       __typename?: 'UserPaymentProfile';

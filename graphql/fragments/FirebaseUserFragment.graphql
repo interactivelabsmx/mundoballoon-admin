@@ -1,5 +1,4 @@
 fragment FirebaseUser on FirebaseUser {
-  id
   userId
   email
   displayName

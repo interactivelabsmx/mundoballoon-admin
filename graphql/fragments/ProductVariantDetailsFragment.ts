@@ -10,12 +10,16 @@ export type ProductVariantDetailsFragment = {
   sku: string;
   name: string;
   description: string;
-  price: number;
+  price: any;
   variantValues?: Array<{
     __typename?: 'ProductVariantValue';
     variantId: number;
     variantValueId: number;
-    variant?: { __typename?: 'Variant'; name: string; type: string } | null;
+    variant?: {
+      __typename?: 'Variant';
+      name: string;
+      type: { __typename?: 'VariantsType'; variantType?: string | null };
+    } | null;
     variantValue?: { __typename?: 'VariantValue'; value: string } | null;
   }> | null;
   media?: Array<{
@@ -25,7 +29,7 @@ export type ProductVariantDetailsFragment = {
     quality: string;
     url?: string | null;
     name: string;
-    description?: string | null;
+    description: string;
   }> | null;
 };
 

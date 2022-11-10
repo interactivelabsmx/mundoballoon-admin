@@ -1,19 +1,21 @@
 import { PhotographIcon } from '@heroicons/react/outline';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { ControllerRenderProps, Path } from 'react-hook-form';
-import { Base } from '@lib/utils/baseType';
+import { ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
 import ErrorText from './ErrorText';
 import InputFileList from './InputFileList';
 
-interface IDropzoneFileInput<TFieldValues, TPath extends Path<TFieldValues>> {
+interface IDropzoneFileInput<
+  TFieldValues extends FieldValues,
+  TPath extends Path<TFieldValues>
+> {
   field: ControllerRenderProps<TFieldValues, TPath>;
   error?: string;
   multiple?: boolean;
 }
 
 const DropzoneFileInput = <
-  TFieldValues extends Base,
+  TFieldValues extends FieldValues,
   TPath extends Path<TFieldValues>
 >({
   field,

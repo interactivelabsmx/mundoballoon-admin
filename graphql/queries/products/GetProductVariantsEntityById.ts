@@ -17,7 +17,7 @@ export type GetProductVariantsEntityByIdQuery = {
     productId: number;
     name: string;
     description: string;
-    price: number;
+    price: any;
   }>;
 };
 

@@ -1,12 +1,10 @@
 import { gql } from '@apollo/client';
 import * as Types from '../graphql';
 import { CartFragmentDoc } from './CartFragment';
-import { OccasionFragmentDoc } from './OccasionFragment';
 import { PaymentProfileFragmentDoc } from './PaymentProfileFragment';
 
 export type UserFragment = {
   __typename?: 'FirebaseUser';
-  id: number;
   userId: string;
   email?: string | null;
   displayName?: string | null;
@@ -15,16 +13,9 @@ export type UserFragment = {
   carts?: Array<{
     __typename?: 'UserCart';
     sku: string;
-    quantity: number;
-    price: number;
+    quantity: any;
+    price: any;
     productVariantId: number;
-  }> | null;
-  occasions?: Array<{
-    __typename?: 'UserOccasion';
-    userOccasionId?: number | null;
-    name: string;
-    date?: any | null;
-    details: string;
   }> | null;
   paymentProfiles?: Array<{
     __typename?: 'UserPaymentProfile';
@@ -35,7 +26,6 @@ export type UserFragment = {
 
 export const UserFragmentDoc = gql`
   fragment User on FirebaseUser {
-    id
     userId
     email
     displayName
@@ -44,14 +34,10 @@ export const UserFragmentDoc = gql`
     carts {
       ...Cart
     }
-    occasions {
-      ...Occasion
-    }
     paymentProfiles {
       ...PaymentProfile
     }
   }
   ${CartFragmentDoc}
-  ${OccasionFragmentDoc}
   ${PaymentProfileFragmentDoc}
 `;

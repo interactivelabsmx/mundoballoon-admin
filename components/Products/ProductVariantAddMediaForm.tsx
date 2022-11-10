@@ -21,7 +21,7 @@ export const productVariantMediaFormSchema = yup
     mediaType: yup.string().oneOf(MediaTypes).required(),
     quality: yup.string().oneOf(MediaQuality).required(),
     name: yup.string().required(),
-    description: yup.string().optional(),
+    description: yup.string().required(),
     file: yup.mixed().required(),
   })
   .required();

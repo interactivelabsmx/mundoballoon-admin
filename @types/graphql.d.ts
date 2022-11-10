@@ -35,15 +35,6 @@ declare module '*/MediaFragment.graphql' {
 }
     
 
-declare module '*/OccasionFragment.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const Occasion: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
 declare module '*/PaymentProfileFragment.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -170,33 +161,6 @@ declare module '*/CreateVariantValue.graphql' {
 }
     
 
-declare module '*/CreateProduct.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const CreateProduct: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/CreateProductVariant.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const CreateProductVariant: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
-declare module '*/DeleteProduct.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const DeleteProduct: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
 declare module '*/DeleteProductVariant.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -242,15 +206,6 @@ declare module '*/ProductVariantAddValue.graphql' {
 }
     
 
-declare module '*/UpdateProduct.graphql' {
-  import { DocumentNode } from 'graphql';
-  const defaultDocument: DocumentNode;
-  export const UpdateProduct: DocumentNode;
-
-  export default defaultDocument;
-}
-    
-
 declare module '*/UpdateProductVariant.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -260,10 +215,37 @@ declare module '*/UpdateProductVariant.graphql' {
 }
     
 
-declare module '*/CreateUser.graphql' {
+declare module '*/createProduct.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
-  export const CreateUser: DocumentNode;
+  export const CreateProduct: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/createProductVariant.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateProductVariant: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/deleteProduct.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const DeleteProduct: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/updateProduct.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const UpdateProduct: DocumentNode;
 
   export default defaultDocument;
 }
@@ -296,7 +278,16 @@ declare module '*/RevokeAdminUser.graphql' {
 }
     
 
-declare module '*/CountryCodes.graphql' {
+declare module '*/createUser.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateUser: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/countryCodes.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetCountryCodes: DocumentNode;
@@ -305,7 +296,7 @@ declare module '*/CountryCodes.graphql' {
 }
     
 
-declare module '*/ProductCategories.graphql' {
+declare module '*/productCategories.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetProductCategories: DocumentNode;
@@ -314,7 +305,7 @@ declare module '*/ProductCategories.graphql' {
 }
     
 
-declare module '*/VariantValues.graphql' {
+declare module '*/variantValues.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariantValues: DocumentNode;
@@ -323,7 +314,7 @@ declare module '*/VariantValues.graphql' {
 }
     
 
-declare module '*/Variants.graphql' {
+declare module '*/variants.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariants: DocumentNode;

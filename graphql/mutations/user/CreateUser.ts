@@ -9,13 +9,13 @@ export type CreateUserMutationVariables = Types.Exact<{
 
 export type CreateUserMutation = {
   __typename?: 'Mutation';
-  createUser: { __typename?: 'User'; id: number };
+  createUser: { __typename?: 'User'; userId: string };
 };
 
 export const CreateUserDocument = gql`
   mutation CreateUser($userId: String!) {
     createUser(userId: $userId) {
-      id
+      userId
     }
   }
 `;
