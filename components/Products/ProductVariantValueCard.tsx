@@ -1,12 +1,5 @@
-import classNames from '@lib/utils/classnames';
 import DeleteIconButton from '@components/UI/buttons/DeleteIconButton';
 import { VariantValuesFragment } from '@graphql/fragments/ProductVariantValues';
-
-const TypeToColor = {
-  string: 'bg-green-400',
-  number: 'bg-purple-400',
-  boolean: 'bg-cyan-400',
-};
 
 interface IProductVariantValueCard {
   variantValue: VariantValuesFragment;
@@ -21,14 +14,8 @@ const ProductVariantValueCard = ({
     key={variantValue.variantValueId}
     className="col-span-1 flex shadow-sm rounded-md"
   >
-    <div
-      className={classNames(
-        // @ts-expect-error this is an enum on mysql I need to translate to enum
-        TypeToColor[variantValue.variant?.type || 'string'],
-        'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md capitalize'
-      )}
-    >
-      {variantValue.variant?.type.variantType}
+    <div className="bg-green-600 flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md capitalize">
+      {variantValue.variant?.variantType?.variantType}
     </div>
     <div className="flex-1 flex items-center justify-between border-t border-r border-b border-gray-200 bg-white rounded-r-md truncate">
       <div className="flex-1 px-4 py-2 truncate">

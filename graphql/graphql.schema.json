@@ -2871,6 +2871,39 @@
             "deprecationReason": null
           },
           {
+            "name": "createVariantsType",
+            "description": null,
+            "args": [
+              {
+                "name": "variantsType",
+                "description": null,
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "VariantsType",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "deleteProduct",
             "description": null,
             "args": [
@@ -8061,6 +8094,30 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "variantsType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "VariantsType",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -10579,22 +10636,6 @@
             "deprecationReason": null
           },
           {
-            "name": "type",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "VariantsType",
-                "ofType": null
-              }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "uiRegistry",
             "description": null,
             "args": [],
@@ -10637,6 +10678,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variantType",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "VariantsType",
               "ofType": null
             },
             "isDeprecated": false,
@@ -10767,18 +10820,6 @@
             "deprecationReason": null
           },
           {
-            "name": "type",
-            "description": null,
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "VariantsTypeFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "uiRegistry",
             "description": null,
             "type": {
@@ -10820,6 +10861,18 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "ComparableNullableOfInt32OperationFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variantType",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "VariantsTypeFilterInput",
               "ofType": null
             },
             "defaultValue": null,
@@ -10902,22 +10955,6 @@
             "deprecationReason": null
           },
           {
-            "name": "type",
-            "description": null,
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "INPUT_OBJECT",
-                "name": "VariantsTypeInput",
-                "ofType": null
-              }
-            },
-            "defaultValue": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "uiRegistry",
             "description": null,
             "type": {
@@ -10959,6 +10996,18 @@
             "type": {
               "kind": "SCALAR",
               "name": "Int",
+              "ofType": null
+            },
+            "defaultValue": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "variantType",
+            "description": null,
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "VariantsTypeInput",
               "ofType": null
             },
             "defaultValue": null,

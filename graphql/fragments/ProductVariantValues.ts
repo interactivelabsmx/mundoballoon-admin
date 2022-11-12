@@ -8,7 +8,10 @@ export type VariantValuesFragment = {
   variant?: {
     __typename?: 'Variant';
     name: string;
-    type: { __typename?: 'VariantsType'; variantType?: string | null };
+    variantType?: {
+      __typename?: 'VariantsType';
+      variantType?: string | null;
+    } | null;
   } | null;
   variantValue?: { __typename?: 'VariantValue'; value: string } | null;
 };
@@ -19,7 +22,7 @@ export const VariantValuesFragmentDoc = gql`
     variantValueId
     variant {
       name
-      type {
+      variantType {
         variantType
       }
     }

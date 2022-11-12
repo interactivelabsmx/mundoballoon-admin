@@ -134,6 +134,15 @@ declare module '*/VariantValueFragment.graphql' {
 }
     
 
+declare module '*/VariantsTypeFragment.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const VariantsType: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
 declare module '*/CreateProductCategory.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
@@ -156,6 +165,15 @@ declare module '*/CreateVariantValue.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const CreateVariantValue: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/CreateVariantsType.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const CreateVariantsType: DocumentNode;
 
   export default defaultDocument;
 }
@@ -318,6 +336,15 @@ declare module '*/variants.graphql' {
   import { DocumentNode } from 'graphql';
   const defaultDocument: DocumentNode;
   export const GetVariants: DocumentNode;
+
+  export default defaultDocument;
+}
+    
+
+declare module '*/variantsType.graphql' {
+  import { DocumentNode } from 'graphql';
+  const defaultDocument: DocumentNode;
+  export const GetVariantsType: DocumentNode;
 
   export default defaultDocument;
 }

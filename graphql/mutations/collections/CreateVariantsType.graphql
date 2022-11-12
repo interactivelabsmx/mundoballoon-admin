@@ -1,0 +1,5 @@
+mutation CreateVariantsType($variantsType: String!) {
+  createVariantsType(variantsType: $variantsType) {
+    ...VariantsType
+  }
+}

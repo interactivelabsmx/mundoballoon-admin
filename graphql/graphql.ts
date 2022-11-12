@@ -278,6 +278,7 @@ export type Mutation = {
   createUserEvent: UserEvent;
   createVariant: Variant;
   createVariantValue: VariantValue;
+  createVariantsType: VariantsType;
   deleteProduct: Scalars['Boolean'];
   deleteProductVariant: Scalars['Boolean'];
   deleteProductVariantMedia: Scalars['Boolean'];
@@ -324,6 +325,10 @@ export type MutationCreateVariantArgs = {
 
 export type MutationCreateVariantValueArgs = {
   input: VariantValueInput;
+};
+
+export type MutationCreateVariantsTypeArgs = {
+  variantsType: Scalars['String'];
 };
 
 export type MutationDeleteProductArgs = {
@@ -784,6 +789,7 @@ export type Query = {
   users?: Maybe<UsersConnection>;
   variantValues: Array<VariantValue>;
   variants: Array<Variant>;
+  variantsType: Array<VariantsType>;
 };
 
 export type QueryHomepageProductsArgs = {
@@ -1088,11 +1094,11 @@ export type Variant = {
   createdAt?: Maybe<Scalars['DateTime']>;
   isDeleted?: Maybe<Scalars['Boolean']>;
   name: Scalars['String'];
-  type: VariantsType;
   uiRegistry?: Maybe<UiRegistry>;
   uiRegistryId?: Maybe<Scalars['Int']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
   variantId?: Maybe<Scalars['Int']>;
+  variantType?: Maybe<VariantsType>;
   variantTypeId: Scalars['Int'];
   variantValues?: Maybe<Array<VariantValue>>;
 };
@@ -1103,11 +1109,11 @@ export type VariantFilterInput = {
   isDeleted?: InputMaybe<BooleanOperationFilterInput>;
   name?: InputMaybe<StringOperationFilterInput>;
   or?: InputMaybe<Array<VariantFilterInput>>;
-  type?: InputMaybe<VariantsTypeFilterInput>;
   uiRegistry?: InputMaybe<UiRegistryFilterInput>;
   uiRegistryId?: InputMaybe<ComparableNullableOfInt32OperationFilterInput>;
   updatedAt?: InputMaybe<ComparableNullableOfDateTimeOperationFilterInput>;
   variantId?: InputMaybe<ComparableNullableOfInt32OperationFilterInput>;
+  variantType?: InputMaybe<VariantsTypeFilterInput>;
   variantTypeId?: InputMaybe<ComparableInt32OperationFilterInput>;
   variantValues?: InputMaybe<ListFilterInputTypeOfVariantValueFilterInput>;
 };
@@ -1116,11 +1122,11 @@ export type VariantInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   isDeleted?: InputMaybe<Scalars['Boolean']>;
   name: Scalars['String'];
-  type: VariantsTypeInput;
   uiRegistry?: InputMaybe<UiRegistryInput>;
   uiRegistryId?: InputMaybe<Scalars['Int']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   variantId?: InputMaybe<Scalars['Int']>;
+  variantType?: InputMaybe<VariantsTypeInput>;
   variantTypeId: Scalars['Int'];
   variantValues?: InputMaybe<Array<VariantValueInput>>;
 };

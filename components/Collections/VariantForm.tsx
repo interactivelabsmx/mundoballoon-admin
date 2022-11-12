@@ -3,6 +3,8 @@ import React from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import * as yup from 'yup';
 import type { Asserts } from 'yup';
+import AddVariantsTypeModal from '@containers/Collections/AddVariantsTypeModal';
+import VariantsTypeSelector from '@components/Products/VariantsTypeSelector';
 import PrimaryButton from '@components/UI/buttons/PrimaryButton';
 import Input from '@components/UI/form/Input';
 import { VariantFragment } from '@graphql/fragments/VariantFragment';
@@ -11,7 +13,7 @@ export const variantFormSchema = yup
   .object({
     variantId: yup.number().positive(),
     name: yup.string().required(),
-    type: yup.string().required(),
+    variantTypeId: yup.number().positive().required(),
   })
   .required();
 
@@ -25,10 +27,10 @@ export interface IVariantForm {
 
 const VariantForm = ({ onSubmit, loading, variant }: IVariantForm) => {
   const {
-    control: controlCategory,
+    control: controlVariant,
     register: registerCategory,
     handleSubmit: handleSubmitCategory,
-    formState: { errors: errors1 },
+    formState: { errors: errorsVariant },
   } = useForm<IVariantFormSchema>({
     resolver: yupResolver(variantFormSchema),
     defaultValues: {
@@ -51,27 +53,27 @@ const VariantForm = ({ onSubmit, loading, variant }: IVariantForm) => {
       <div className="mb-8">
         <Controller
           name="name"
-          control={controlCategory}
+          control={controlVariant}
           render={({ field }) => (
             <Input
               {...field}
               label="Variant Name"
               placeholder="[Size, Color]"
-              error={errors1?.name?.message}
+              error={errorsVariant?.name?.message}
             />
           )}
         />
       </div>
       <div className="mb-8">
         <Controller
-          name="type"
-          control={controlCategory}
+          name="variantTypeId"
+          control={controlVariant}
           render={({ field }) => (
-            <Input
-              {...field}
-              label="Type"
-              placeholder="[number, text]"
-              error={errors1?.type?.message}
+            <VariantsTypeSelector
+              field={field}
+              label="Variants Type"
+              error={errorsVariant?.variantTypeId?.message}
+              addVariantComponent={<AddVariantsTypeModal />}
             />
           )}
         />

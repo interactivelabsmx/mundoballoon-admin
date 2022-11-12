@@ -14,7 +14,10 @@ export type CreateVariantMutation = {
     __typename?: 'Variant';
     variantId?: number | null;
     name: string;
-    type: { __typename?: 'VariantsType'; variantType?: string | null };
+    variantType?: {
+      __typename?: 'VariantsType';
+      variantType?: string | null;
+    } | null;
   };
 };
 

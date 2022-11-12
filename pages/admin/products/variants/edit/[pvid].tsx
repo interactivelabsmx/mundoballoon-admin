@@ -18,6 +18,7 @@ const AddProductVariantRoute = () => {
   });
   const productVariant =
     data?.productVariantById as ProductVariantDetailsFragment;
+
   return (
     <AdminLayout>
       <SectionHeader text="Edit Product Variant" />
