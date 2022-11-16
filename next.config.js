@@ -7,5 +7,4 @@ module.exports = {
       'graph.facebook.com',
     ],
   },
-  experimental: { images: { layoutRaw: true } },
 };

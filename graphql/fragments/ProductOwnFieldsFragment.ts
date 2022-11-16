@@ -6,7 +6,7 @@ export type ProductFieldsFragment = {
   productId?: number | null;
   productCategoryId: number;
   name: string;
-  price: number;
+  price: any;
   description: string;
 };
 

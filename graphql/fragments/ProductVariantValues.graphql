@@ -3,7 +3,9 @@ fragment VariantValues on ProductVariantValue {
   variantValueId
   variant {
     name
-    type
+    variantType {
+      variantType
+    }
   }
   variantValue {
     value

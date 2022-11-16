@@ -6,7 +6,7 @@ export type ProductEntityFragment = {
   productId: number;
   productCategoryId: number;
   name: string;
-  price: number;
+  price: any;
   description: string;
 };
 

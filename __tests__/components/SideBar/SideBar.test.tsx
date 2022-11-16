@@ -13,6 +13,7 @@ const getProps = (props?: Partial<ISideBar>): ISideBar => ({
 describe('SideBar', () => {
   it('Renders SideBar', () => {
     render(<SideBar {...getProps()} />);
+
     expect(screen.getByText('Dashboard')).not.toBeNull();
   });
 });

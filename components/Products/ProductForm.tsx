@@ -41,7 +41,7 @@ const ProductForm = ({ onSubmit, loading, product }: IProductForm) => {
   });
   return (
     <form key="productForm" onSubmit={handleSubmit(onSubmit)}>
-      <input type="hidden" {...register('productId')} />
+      {product?.productId && <input type="hidden" {...register('productId')} />}
       <div className="mb-8">
         <Controller
           name="name"

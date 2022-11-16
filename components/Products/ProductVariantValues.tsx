@@ -1,4 +1,4 @@
-import { PlusCircleIcon } from '@heroicons/react/outline';
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { useCallback, useState } from 'react';
 import AddProductVariantValueContainer from '@containers/Products/AddProductVariantValueContainer';
 import ProductVariantValuesListContainer from '@containers/Products/ProductVariantValuesListContainer';

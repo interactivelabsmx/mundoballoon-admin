@@ -18,7 +18,7 @@ export type GetProductsEntityQuery = {
       productId: number;
       productCategoryId: number;
       name: string;
-      price: number;
+      price: any;
       description: string;
     }> | null;
     pageInfo: {

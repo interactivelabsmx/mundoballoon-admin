@@ -8,7 +8,7 @@ export type ProductVariantFieldsFragment = {
   sku: string;
   name: string;
   description: string;
-  price: number;
+  price: any;
 };
 
 export const ProductVariantFieldsFragmentDoc = gql`

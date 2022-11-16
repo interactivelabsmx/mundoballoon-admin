@@ -14,6 +14,7 @@ export type GetCountryCodesQuery = {
     fifa: string;
     dial: string;
     officialNameEn: string;
+    officialNameEs: string;
   }>;
 };
 
@@ -23,6 +24,7 @@ export const GetCountryCodesDocument = gql`
       fifa
       dial
       officialNameEn
+      officialNameEs
     }
   }
 `;

@@ -1,4 +1,4 @@
-import { LogoutIcon } from '@heroicons/react/outline';
+import { ArrowLeftOnRectangleIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { useAuth } from '@providers/AuthProvider';
 import AvatarDefault from '@components/UI/Icons/AvatarDefault';
@@ -40,7 +40,7 @@ const NavBarProfile = () => {
       <div>
         <SecundaryButton onClick={logout}>
           <span className="sr-only">Log out</span>
-          <LogoutIcon height={24} />
+          <ArrowLeftOnRectangleIcon height={24} />
         </SecundaryButton>
       </div>
     </div>

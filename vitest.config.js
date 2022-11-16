@@ -11,10 +11,10 @@ export default defineConfig({
     globals: true,
     mockReset: true,
     environment: 'jsdom',
-    setupFiles: './vitest.setup.ts',
+    setupFiles: './vitest.setup.tsx',
     coverage: {
-      lines: 70,
-      statements: 70,
+      lines: 50,
+      statements: 50,
     },
   },
   resolve: {

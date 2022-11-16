@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { XIcon } from '@heroicons/react/solid';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import { Dispatch, Fragment, useCallback } from 'react';
 import NavBarProfile from '@components/User/NavBarProfile';
@@ -64,7 +64,10 @@ const SideBar = ({
                     onClick={onCloseSideBar}
                   >
                     <span className="sr-only">Close sidebar</span>
-                    <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                    <XMarkIcon
+                      className="h-6 w-6 text-white"
+                      aria-hidden="true"
+                    />
                   </button>
                 </div>
               </Transition.Child>
@@ -72,9 +75,9 @@ const SideBar = ({
                 <div className="flex-shrink-0 flex items-center px-4">
                   <div className="h-8 w-auto relative flex-1">
                     <Image
+                      fill
                       src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                       alt="Workflow"
-                      layout="fill"
                     />
                   </div>
                 </div>
@@ -94,7 +97,7 @@ const SideBar = ({
                 <Image
                   src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
                   alt="Workflow"
-                  layout="fill"
+                  fill
                 />
               </div>
             </div>

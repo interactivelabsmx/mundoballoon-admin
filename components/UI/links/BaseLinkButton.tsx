@@ -10,10 +10,12 @@ const BaseLinkButton = ({
   className,
   ...props
 }: AnchorHTMLAttributes<HTMLAnchorElement>) => (
-  <Link href={props.href || ''}>
-    <a className={classNames(baseClassNames, className)} {...props}>
-      {children}
-    </a>
+  <Link
+    href={props.href || ''}
+    className={classNames(baseClassNames, className)}
+    {...props}
+  >
+    {children}
   </Link>
 );
 

@@ -1,5 +1,4 @@
 fragment User on FirebaseUser {
-  id
   userId
   email
   displayName
@@ -7,9 +6,6 @@ fragment User on FirebaseUser {
   claims
   carts {
     ...Cart
-  }
-  occasions {
-    ...Occasion
   }
   paymentProfiles {
     ...PaymentProfile

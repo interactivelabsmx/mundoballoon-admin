@@ -1,0 +1,6 @@
+query GetVariantsType {
+  variantsType {
+    variantTypeId
+    variantType
+  }
+}

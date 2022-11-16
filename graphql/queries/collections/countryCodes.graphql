@@ -3,5 +3,6 @@ query GetCountryCodes {
     fifa
     dial
     officialNameEn
+    officialNameEs
   }
 }

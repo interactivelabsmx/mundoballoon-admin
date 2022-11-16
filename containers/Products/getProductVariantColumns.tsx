@@ -1,4 +1,4 @@
-import { PencilAltIcon, TrashIcon } from '@heroicons/react/solid';
+import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { MouseEvent } from 'react';
 import { Row, Column } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
@@ -12,7 +12,7 @@ export const getProductVariantActions = (
     id: `Edit${productVariantId}`,
     url: `/admin/products/variants/edit/${productVariantId}`,
     label: 'Edit',
-    Icon: PencilAltIcon,
+    Icon: PencilIcon,
   },
   {
     onClick: (evt: MouseEvent<HTMLButtonElement>) => {
