@@ -1,8 +1,8 @@
 import {
   CheckCircleIcon,
-  ExclamationIcon,
+  ExclamationTriangleIcon,
   XCircleIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/outline';
 
 export enum SimpleTextAlertType {
   SUCCESS,
@@ -33,7 +33,7 @@ export const SimpleTextAlertTypeConfig = {
       text: 'text-yellow-800',
       icon: 'text-yellow-400',
     },
-    Icon: ExclamationIcon,
+    Icon: ExclamationTriangleIcon,
   },
 };
 

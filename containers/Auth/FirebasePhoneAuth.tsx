@@ -1,5 +1,5 @@
 import { ConfirmationResult, User } from '@firebase/auth';
-import { PhoneIcon } from '@heroicons/react/solid';
+import { PhoneIcon } from '@heroicons/react/24/outline';
 import { Dispatch, useState } from 'react';
 import SecundaryButton from '@components/UI/buttons/SecundaryButton';
 import Modal from '@components/UI/modal/Modal';

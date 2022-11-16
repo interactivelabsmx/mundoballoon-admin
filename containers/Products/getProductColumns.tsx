@@ -1,10 +1,10 @@
 import {
   ChevronDownIcon,
   ChevronRightIcon,
-  PencilAltIcon,
+  PencilIcon,
   PlusCircleIcon,
   TrashIcon,
-} from '@heroicons/react/solid';
+} from '@heroicons/react/24/outline';
 import { MouseEvent } from 'react';
 import { Row, Column, UseExpandedRowProps } from 'react-table';
 import DropdownActions from '@components/UI/tables/DropdownActions';
@@ -18,7 +18,7 @@ export const getProductActions = (
     id: `Edit${productId}`,
     url: `/admin/products/edit/${productId}`,
     label: 'Edit',
-    Icon: PencilAltIcon,
+    Icon: PencilIcon,
   },
   {
     onClick: (evt: MouseEvent<HTMLButtonElement>) => {

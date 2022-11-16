@@ -2,7 +2,7 @@ import {
   HomeIcon,
   ShoppingCartIcon,
   UserGroupIcon,
-} from '@heroicons/react/outline';
+} from '@heroicons/react/24/outline';
 import { INavigationOption } from '@components/Sidebar/SideBarOptions';
 
 const navigationOptions: INavigationOption[] = [

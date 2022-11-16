@@ -1,4 +1,4 @@
-import { PhotographIcon } from '@heroicons/react/outline';
+import { PhotoIcon } from '@heroicons/react/24/outline';
 import { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
@@ -59,7 +59,7 @@ const DropzoneFileInput = <
         >
           <div className="max-w-lg flex justify-center">
             <div className="text-center">
-              <PhotographIcon
+              <PhotoIcon
                 className="h-12 w-12 text-gray-300 inline-block"
                 aria-hidden="true"
               />

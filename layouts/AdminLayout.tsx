@@ -1,4 +1,4 @@
-import { MenuIcon } from '@heroicons/react/solid';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 import React, { useState, ReactNode, useCallback } from 'react';
 import SideBar from '@components/Sidebar/SideBar';
 import navigationOptions from './navigationOptions';
@@ -27,7 +27,7 @@ const AdminLayout = ({ children }: IAdminLayout) => {
             onClick={onOpenSidebar}
           >
             <span className="sr-only">Open sidebar</span>
-            <MenuIcon className="h-6 w-6" aria-hidden="true" />
+            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
         <main className="flex-1">
